@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BeatReply : Automatisation IA des DM pour Producteurs de Beats</title>
+<meta name="description" content="Transforme tes DM en machine à ventes automatique. L'IA qui vend tes beats 24h/7j pendant que tu crées. Essai gratuit.">
+<meta name="keywords" content="automatisation DM beats, IA producteur musique, vente beats automatique, chatbot beatmaker, automatisation studio, IA musicale">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230a0a0a'/%3E%3Ctext x='16' y='23' font-family='Arial, sans-serif' font-weight='800' font-size='20' fill='%2300D9FF' text-anchor='middle'%3EB%3C/text%3E%3C/svg%3E">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="BeatReply : Automatisation IA des DM pour Producteurs de Beats">
+<meta property="og:description" content="Transforme tes DM en machine à ventes automatique. L'IA qui vend tes beats 24h/7j pendant que tu crées. Essai gratuit.">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="BeatReply : Automatisation IA des DM pour Producteurs de Beats">
+<meta name="twitter:description" content="Transforme tes DM en machine à ventes automatique. L'IA qui vend tes beats 24h/7j pendant que tu crées. Essai gratuit.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          primary: '#00D9FF',
+          'primary-hover': '#00C4E6',
+          'primary-muted': 'rgba(0, 217, 255, 0.1)',
+          secondary: '#8B5CF6',
+          'secondary-hover': '#7C3AED',
+          accent: '#00D9FF',
+          'accent-hover': '#00C4E6',
+          'accent-muted': 'rgba(0, 217, 255, 0.15)',
+          background: '#0a0a0a',
+          surface: 'rgba(255, 255, 255, 0.03)',
+          'surface-elevated': 'rgba(255, 255, 255, 0.06)',
+          'text-primary': '#ffffff',
+          'text-secondary': 'rgba(255, 255, 255, 0.85)',
+          'text-muted': 'rgba(255, 255, 255, 0.6)',
+          'text-ghost': 'rgba(255, 255, 255, 0.5)',
+          'border-primary': 'rgba(255, 255, 255, 0.1)',
+          'border-subtle': 'rgba(255, 255, 255, 0.05)',
+          success: '#10B981',
+          error: '#EF4444',
+          warning: '#F59E0B',
+        },
+        fontFamily: {
+          sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
+        },
+        fontSize: {
+          display: ['4.5rem', { lineHeight: '1.1', letterSpacing: '-0.02em', fontWeight: '800' }],
+          h1: ['3.5rem', { lineHeight: '1.15', letterSpacing: '-0.01em', fontWeight: '700' }],
+          h2: ['2.5rem', { lineHeight: '1.2', letterSpacing: '-0.01em', fontWeight: '600' }],
+          h3: ['1.875rem', { lineHeight: '1.3', fontWeight: '600' }],
+          h4: ['1.25rem', { lineHeight: '1.4', fontWeight: '600' }],
+          'body-lg': ['1.125rem', { lineHeight: '1.6', fontWeight: '400' }],
+          body: ['1rem', { lineHeight: '1.6', fontWeight: '400' }],
+          'body-sm': ['0.875rem', { lineHeight: '1.5', fontWeight: '400' }],
+          caption: ['0.75rem', { lineHeight: '1.4', letterSpacing: '0.02em', fontWeight: '500' }],
+        },
+        maxWidth: {
+          prose: '680px',
+          content: '1080px',
+          wide: '1280px',
+        },
+        borderRadius: {
+          none: '0',
+          xs: '4px',
+          sm: '8px',
+          md: '12px',
+          lg: '16px',
+          xl: '24px',
+          full: '9999px',
+        },
+        boxShadow: {
+          xs: '0 1px 2px rgba(0, 0, 0, 0.1)',
+          sm: '0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.16)',
+          md: '0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.08), 0 12px 20px rgba(0, 0, 0, 0.06)',
+          lg: '0 8px 30px rgba(0, 0, 0, 0.15), 0 4px 10px rgba(0, 0, 0, 0.12), 0 20px 40px rgba(0, 0, 0, 0.08)',
+          glow: '0 0 30px rgba(0, 217, 255, 0.15), 0 0 60px rgba(0, 217, 255, 0.08)',
+        },
+      },
+    },
+  };
+</script>
+
+<style>
+  html { background: #0a0a0a; scroll-behavior: smooth; }
+  body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; }
+
+  .gradient-text {
+    background: linear-gradient(135deg, #00D9FF, #8B5CF6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-glow { text-shadow: 0 0 20px rgba(0, 217, 255, 0.4); }
+
+  .hero-gradient {
+    background:
+      radial-gradient(ellipse 80% 50% at 50% -20%, rgba(0, 217, 255, 0.15), transparent),
+      radial-gradient(ellipse 60% 40% at 80% 100%, rgba(139, 92, 246, 0.1), transparent),
+      linear-gradient(180deg, #0a0a0a 0%, rgba(0, 0, 0, 0.95) 100%);
+  }
+
+  .accent-gradient { background: linear-gradient(135deg, #00D9FF, #00C4E6); }
+
+  .surface-gradient {
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
+  }
+
+  .glass-surface {
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+
+  .texture-grain { position: relative; }
+  .texture-grain::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.02'/%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+
+  .glow-orb-1 {
+    position: absolute; top: 10%; right: 15%; width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(0, 217, 255, 0.15), transparent);
+    filter: blur(40px); border-radius: 50%; z-index: 0; pointer-events: none;
+  }
+  .glow-orb-2 {
+    position: absolute; bottom: 20%; left: 10%; width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.1), transparent);
+    filter: blur(60px); border-radius: 50%; z-index: 0; pointer-events: none;
+  }
+
+  .section-divider {
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(0, 217, 255, 0.3), transparent);
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, #00D9FF, #00C4E6);
+    color: #0a0a0a;
+    transition: all 0.2s ease;
+  }
+  .btn-primary:hover { transform: scale(1.02); box-shadow: 0 0 30px rgba(0, 217, 255, 0.15), 0 0 60px rgba(0, 217, 255, 0.08); }
+  .btn-primary:active { transform: scale(0.98); }
+
+  .btn-primary.btn-glow-loop {
+    background: linear-gradient(90deg, #00D9FF, #8B5CF6, #00C4E6, #00D9FF);
+    background-size: 300% 100%;
+    animation: gradient-loop 6s ease-in-out infinite;
+  }
+  @keyframes gradient-loop {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .gradient-text-loop {
+    background: linear-gradient(90deg, #00D9FF, #8B5CF6, #00C4E6, #00D9FF);
+    background-size: 300% 100%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradient-loop 6s ease-in-out infinite;
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.2s ease;
+  }
+  .btn-secondary:hover { border-color: #00D9FF; background: rgba(0, 217, 255, 0.1); transform: scale(1.02); }
+
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid #00D9FF;
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  .skip-link {
+    position: absolute;
+    top: -100%;
+    left: 1rem;
+    z-index: 100;
+    background: #00D9FF;
+    color: #0a0a0a;
+    padding: 0.75rem 1.25rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.875rem;
+    transition: top 0.2s ease;
+  }
+  .skip-link:focus { top: 1rem; }
+
+  .card { transition: all 0.3s ease; }
+  .card:hover { transform: translateY(-4px); box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15), 0 4px 10px rgba(0, 0, 0, 0.12), 0 20px 40px rgba(0, 0, 0, 0.08); border-color: rgba(0, 217, 255, 0.3); }
+
+  .hover-lift { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+  .hover-lift:hover { transform: translateY(-4px); box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15), 0 4px 10px rgba(0, 0, 0, 0.12), 0 20px 40px rgba(0, 0, 0, 0.08); }
+
+  .navbar { transition: all 0.3s ease; }
+  .navbar-scrolled { background: rgba(10, 10, 10, 0.95) !important; border-bottom-color: rgba(255, 255, 255, 0.1) !important; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.16); }
+
+  .scroll-reveal { opacity: 0; transform: translateY(30px); filter: blur(8px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+  .scroll-reveal.is-visible { opacity: 1; transform: translateY(0); filter: blur(0); }
+  .scroll-reveal:nth-child(2) { transition-delay: 0.1s; }
+  .scroll-reveal:nth-child(3) { transition-delay: 0.2s; }
+  .scroll-reveal:nth-child(4) { transition-delay: 0.3s; }
+
+  .image-treatment { transition: transform 0.3s ease; }
+  .image-treatment:hover { transform: scale(1.02); }
+
+  @keyframes pulse-slow { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+  .loading-pulse { animation: pulse-slow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+
+  .counter { font-variant-numeric: tabular-nums; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .scroll-reveal {
+      transform: none;
+      filter: none;
+      transition: opacity 0.3s ease;
+    }
+    .loading-pulse,
+    .card,
+    .hover-lift,
+    .image-treatment,
+    .btn-primary,
+    .btn-secondary,
+    .gradient-text-loop {
+      animation: none !important;
+      transition: opacity 0.2s ease !important;
+    }
+    .card:hover,
+    .hover-lift:hover,
+    .btn-primary:hover,
+    .btn-secondary:hover {
+      transform: none !important;
+    }
+  }
+</style>
+</head>
+<body class="bg-background text-text-primary antialiased texture-grain">
+
+<a href="#main-content" class="skip-link">Aller au contenu principal</a>
+
+<!-- NAVBAR -->
+<header id="navbar" class="navbar sticky top-0 z-50 bg-background/80 backdrop-blur-2xl border-b border-border-subtle">
+  <div class="max-w-wide mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16 lg:h-20">
+    <a href="#" class="flex items-center gap-2">
+      <span class="w-8 h-8 rounded-md accent-gradient flex items-center justify-center font-h4 text-background font-bold">B</span>
+      <span class="text-h4 font-bold text-text-primary">BeatReply</span>
+    </a>
+    <nav class="hidden lg:flex items-center gap-8">
+      <a href="#solutions" class="text-body-sm text-text-secondary hover:text-text-primary transition-colors">Fonctionnalités</a>
+      <a href="#process" class="text-body-sm text-text-secondary hover:text-text-primary transition-colors">Process</a>
+      <a href="#testimonials" class="text-body-sm text-text-secondary hover:text-text-primary transition-colors">Témoignages</a>
+    </nav>
+    <div class="flex items-center gap-3">
+      <a href="#cta-final" class="hidden sm:inline-flex btn-primary rounded-md px-6 py-3 text-body-sm font-semibold">
+        Essai gratuit
+      </a>
+      <button id="nav-burger" class="lg:hidden -mr-2 p-2.5 min-w-11 min-h-11 flex items-center justify-center text-text-primary" aria-label="Menu" aria-expanded="false" aria-controls="nav-mobile">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+  </div>
+  <div id="nav-mobile" class="hidden lg:hidden border-t border-border-subtle px-4 py-4 flex flex-col gap-4 bg-background/95">
+    <a href="#solutions" class="text-body-sm text-text-secondary">Fonctionnalités</a>
+    <a href="#process" class="text-body-sm text-text-secondary">Process</a>
+    <a href="#testimonials" class="text-body-sm text-text-secondary">Témoignages</a>
+    <a href="#cta-final" class="btn-primary rounded-md px-6 py-3 text-body-sm font-semibold text-center">Essai gratuit</a>
+  </div>
+</header>
+
+<main id="main-content">
+
+<!-- HERO -->
+<section class="relative hero-gradient overflow-hidden">
+  <div class="glow-orb-1"></div>
+  <div class="glow-orb-2"></div>
+  <div class="relative z-10 max-w-wide mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-24 lg:pt-32 lg:pb-32 text-center">
+    <span class="inline-flex items-center gap-2 rounded-full px-4 py-2 text-caption uppercase bg-primary-muted text-primary border border-primary/20 mb-8">
+      🎹 Automatisation IA pour producteurs de beats
+    </span>
+    <h1 class="text-[3rem] sm:text-display font-extrabold text-balance max-w-4xl mx-auto mb-6">
+      <span class="gradient-text text-glow">L'IA qui vend tes beats</span><br>
+      pendant que tu dors
+    </h1>
+    <p class="text-body-lg text-text-secondary max-w-prose mx-auto mb-10">
+      Fini de perdre des clients parce que tu réponds trop tard. BeatReply transforme tes DM en machine à ventes automatique, pendant que tu restes en studio.
+    </p>
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
+      <a href="#cta-final" class="btn-primary btn-glow-loop rounded-md px-8 py-4 text-body font-semibold w-full sm:w-auto">
+        Automatise tes DM maintenant
+      </a>
+      <a href="#process" class="btn-secondary rounded-md px-8 py-4 text-body font-semibold w-full sm:w-auto">
+        Voir comment ça marche
+      </a>
+    </div>
+
+    <div class="grid grid-cols-3 gap-4 sm:gap-8 max-w-2xl mx-auto mb-16">
+      <div>
+        <p class="text-h2 font-bold gradient-text-loop counter" style="animation-delay: 0s">3x</p>
+        <p class="text-body-sm text-text-muted mt-1">plus de ventes</p>
+      </div>
+      <div>
+        <p class="text-h2 font-bold gradient-text-loop counter" style="animation-delay: 0.7s">90%</p>
+        <p class="text-body-sm text-text-muted mt-1">temps économisé</p>
+      </div>
+      <div>
+        <p class="text-h2 font-bold gradient-text-loop counter" style="animation-delay: 1.4s">24/7</p>
+        <p class="text-body-sm text-text-muted mt-1">ton IA vend pour toi</p>
+      </div>
+    </div>
+
+    <div class="relative max-w-4xl mx-auto image-treatment rounded-lg overflow-hidden border border-border-primary shadow-lg">
+      <div class="glass-surface p-6 sm:p-10 text-left">
+        <div class="flex items-center gap-2 mb-6">
+          <span class="w-3 h-3 rounded-full bg-error/60"></span>
+          <span class="w-3 h-3 rounded-full bg-warning/60"></span>
+          <span class="w-3 h-3 rounded-full bg-success/60"></span>
+          <span class="ml-4 text-caption text-text-ghost">BeatReply — Instagram DM</span>
+        </div>
+        <div class="space-y-4">
+          <div class="flex justify-start">
+            <div class="rounded-lg rounded-tl-none bg-surface-elevated px-4 py-3 max-w-sm text-body-sm text-text-secondary">
+              Salut, t'as un type beat genre Travis Scott dispo ?
+            </div>
+          </div>
+          <div class="flex justify-end">
+            <div class="rounded-lg rounded-tr-none accent-gradient px-4 py-3 max-w-sm text-body-sm text-background font-medium">
+              Yes j'ai exactement ce qu'il te faut 🔥 Je t'envoie 3 exclusifs dans le style, tu me dis lequel tape le plus
+            </div>
+          </div>
+          <div class="flex justify-start">
+            <div class="rounded-lg rounded-tl-none bg-surface-elevated px-4 py-3 max-w-sm text-body-sm text-text-secondary loading-pulse">
+              en train d'écrire...
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider max-w-wide mx-auto"></div>
+
+<!-- PROBLEM -->
+<section class="section-padding py-16 lg:py-24">
+  <div class="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-prose mx-auto mb-16 scroll-reveal">
+      <span class="text-caption uppercase text-primary mb-4 inline-block">Le problème</span>
+      <h2 class="text-[2rem] sm:text-h2 font-semibold mb-4">Chaque DM sans réponse est une vente perdue</h2>
+      <p class="text-body-lg text-text-secondary">Chaque minute d'attente, c'est un client qui va voir ailleurs. Et pendant que tu es en session, ton téléphone explose.</p>
+    </div>
+    <div class="relative max-w-3xl mx-auto">
+      <!-- vertical spine: mobile (left) -->
+      <div class="sm:hidden absolute left-6 top-2 bottom-2 w-px bg-gradient-to-b from-primary/40 via-warning/30 to-error/40"></div>
+      <!-- vertical spine: desktop (centered) -->
+      <div class="hidden sm:block absolute left-1/2 top-2 bottom-2 w-px -translate-x-1/2 bg-gradient-to-b from-primary/40 via-warning/30 to-error/40"></div>
+
+      <div class="space-y-16 sm:space-y-20">
+
+      <!-- 0 min -->
+      <div class="relative scroll-reveal">
+        <span class="sm:hidden absolute left-6 top-1 -translate-x-1/2 w-4 h-4 rounded-full bg-primary shadow-glow z-10"></span>
+        <div class="flex sm:items-center">
+          <div class="pl-16 sm:pl-0 sm:w-1/2 sm:pr-10 sm:text-right">
+            <span class="text-caption uppercase text-primary font-semibold">0 min</span>
+            <h3 class="text-h4 font-semibold mt-2 mb-2">Le client te DM</h3>
+            <p class="text-body-sm text-text-muted">Il vient de repérer un beat qui lui plaît. Il est chaud, motivé, carte en main.</p>
+          </div>
+          <div class="hidden sm:flex sm:w-0 sm:justify-center relative z-10">
+            <span class="w-4 h-4 rounded-full bg-primary shadow-glow -ml-2"></span>
+          </div>
+          <div class="hidden sm:block sm:w-1/2"></div>
+        </div>
+      </div>
+
+      <!-- 15 min -->
+      <div class="relative scroll-reveal">
+        <span class="sm:hidden absolute left-6 top-1 -translate-x-1/2 w-4 h-4 rounded-full bg-secondary shadow-glow z-10"></span>
+        <div class="flex sm:items-center">
+          <div class="hidden sm:block sm:w-1/2"></div>
+          <div class="hidden sm:flex sm:w-0 sm:justify-center relative z-10">
+            <span class="w-4 h-4 rounded-full bg-secondary shadow-glow -ml-2"></span>
+          </div>
+          <div class="pl-16 sm:pl-10 sm:w-1/2">
+            <span class="text-caption uppercase text-secondary font-semibold">15 min</span>
+            <h3 class="text-h4 font-semibold mt-2 mb-2">Toujours pas de réponse</h3>
+            <p class="text-body-sm text-text-muted">T'es en session, le tel est sur silencieux. Le message dort au milieu de la pile.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 1h -->
+      <div class="relative scroll-reveal">
+        <span class="sm:hidden absolute left-6 top-1 -translate-x-1/2 w-4 h-4 rounded-full bg-warning shadow-glow z-10"></span>
+        <div class="flex sm:items-center">
+          <div class="pl-16 sm:pl-0 sm:w-1/2 sm:pr-10 sm:text-right">
+            <span class="text-caption uppercase text-warning font-semibold">1 h</span>
+            <h3 class="text-h4 font-semibold mt-2 mb-2">Il regarde ailleurs</h3>
+            <p class="text-body-sm text-text-muted">Il ouvre l'appli d'un autre producteur qui, lui, a répondu direct.</p>
+          </div>
+          <div class="hidden sm:flex sm:w-0 sm:justify-center relative z-10">
+            <span class="w-4 h-4 rounded-full bg-warning shadow-glow -ml-2"></span>
+          </div>
+          <div class="hidden sm:block sm:w-1/2"></div>
+        </div>
+      </div>
+
+      <!-- 24h+ -->
+      <div class="relative scroll-reveal">
+        <span class="sm:hidden absolute left-6 top-1 -translate-x-1/2 w-4 h-4 rounded-full bg-error shadow-glow z-10"></span>
+        <div class="flex sm:items-center">
+          <div class="hidden sm:block sm:w-1/2"></div>
+          <div class="hidden sm:flex sm:w-0 sm:justify-center relative z-10">
+            <span class="w-4 h-4 rounded-full bg-error shadow-glow -ml-2"></span>
+          </div>
+          <div class="pl-16 sm:pl-10 sm:w-1/2">
+            <span class="text-caption uppercase text-error font-semibold">24h+</span>
+            <h3 class="text-h4 font-semibold mt-2 mb-2">Vente perdue</h3>
+            <p class="text-body-sm text-text-muted">Sans relance, ce lead chaud est devenu client de la concurrence — pour de bon.</p>
+          </div>
+        </div>
+      </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider max-w-wide mx-auto"></div>
+
+<!-- SOLUTIONS -->
+<section id="solutions" class="relative section-padding py-16 lg:py-24">
+  <div class="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-prose mx-auto mb-16 scroll-reveal">
+      <span class="text-caption uppercase text-primary mb-4 inline-block">Notre solution</span>
+      <h2 class="text-[2rem] sm:text-h2 font-semibold mb-4">Ton IA vend tes beats, tu restes créatif</h2>
+      <p class="text-body-lg text-text-secondary">BeatReply répond, qualifie et relance à ta place — avec ton flow, ton style, ton vocabulaire.</p>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+      <div class="card glass-surface rounded-lg p-8 border border-border-primary scroll-reveal">
+        <div class="w-12 h-12 rounded-md accent-gradient flex items-center justify-center mb-6 shadow-glow">
+          <svg class="w-6 h-6 text-background" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+        </div>
+        <h3 class="text-h4 font-semibold mb-3">IA conversationnelle</h3>
+        <p class="text-body-sm text-text-muted">Elle discute comme toi, comprend le langage de tes clients et répond en quelques secondes, jour et nuit.</p>
+      </div>
+      <div class="card glass-surface rounded-lg p-8 border border-border-primary scroll-reveal">
+        <div class="w-12 h-12 rounded-md accent-gradient flex items-center justify-center mb-6 shadow-glow">
+          <svg class="w-6 h-6 text-background" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        </div>
+        <h3 class="text-h4 font-semibold mb-3">Qualification automatique</h3>
+        <p class="text-body-sm text-text-muted">Elle identifie le budget, le style recherché et l'usage, pour te ramener que des leads chauds prêts à acheter.</p>
+      </div>
+      <div class="card glass-surface rounded-lg p-8 border border-border-primary scroll-reveal">
+        <div class="w-12 h-12 rounded-md accent-gradient flex items-center justify-center mb-6 shadow-glow">
+          <svg class="w-6 h-6 text-background" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+        </div>
+        <h3 class="text-h4 font-semibold mb-3">Suivi & relance</h3>
+        <p class="text-body-sm text-text-muted">Elle relance automatiquement les clients silencieux, au bon moment, sans que tu aies à y penser.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider max-w-wide mx-auto"></div>
+
+<!-- PROCESS -->
+<section id="process" class="section-padding py-16 lg:py-24">
+  <div class="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-prose mx-auto mb-16 scroll-reveal">
+      <span class="text-caption uppercase text-primary mb-4 inline-block">Comment ça marche</span>
+      <h2 class="text-[2rem] sm:text-h2 font-semibold mb-4">3 étapes pour automatiser complètement tes ventes</h2>
+      <p class="text-body-lg text-text-secondary">Pas besoin d'être un expert tech. Lance ton IA en 10 minutes.</p>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8">
+      <div class="relative scroll-reveal">
+        <div class="text-h1 font-extrabold gradient-text mb-4">01</div>
+        <h3 class="text-h4 font-semibold mb-3">Connecte ton compte</h3>
+        <p class="text-body-sm text-text-muted">Instagram, WhatsApp ou ton site — connecte BeatReply à tes canaux en quelques clics.</p>
+      </div>
+      <div class="relative scroll-reveal">
+        <div class="text-h1 font-extrabold gradient-text mb-4">02</div>
+        <h3 class="text-h4 font-semibold mb-3">L'IA apprend ton style</h3>
+        <p class="text-body-sm text-text-muted">Elle s'entraîne sur tes beats, tes prix et ta façon de parler pour sonner exactement comme toi.</p>
+      </div>
+      <div class="relative scroll-reveal">
+        <div class="text-h1 font-extrabold gradient-text mb-4">03</div>
+        <h3 class="text-h4 font-semibold mb-3">Elle vend, tu crées</h3>
+        <p class="text-body-sm text-text-muted">Ton IA répond, qualifie et relance en continu, pendant que tu restes concentré sur ta musique.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider max-w-wide mx-auto"></div>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials" class="section-padding py-16 lg:py-24">
+  <div class="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-prose mx-auto mb-16 scroll-reveal">
+      <span class="text-caption uppercase text-primary mb-4 inline-block">Témoignages</span>
+      <h2 class="text-[2rem] sm:text-h2 font-semibold mb-4">Des résultats mesurables de créatifs comme toi</h2>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+      <div class="card glass-surface rounded-lg p-8 border border-border-primary scroll-reveal">
+        <p class="text-[1.5rem] sm:text-h3 font-bold gradient-text mb-4">+180%</p>
+        <p class="text-body-sm text-text-secondary mb-6">"Je répondais plus à la moitié de mes DM. Depuis BeatReply, mes ventes ont explosé sans que je touche à mon flow créatif."</p>
+        <p class="text-body-sm font-semibold text-text-primary">Kaïs M.</p>
+        <p class="text-caption text-text-muted">Producteur trap, Marseille</p>
+      </div>
+      <div class="card glass-surface rounded-lg p-8 border border-border-primary scroll-reveal">
+        <p class="text-[1.5rem] sm:text-h3 font-bold gradient-text mb-4">12h/sem</p>
+        <p class="text-body-sm text-text-secondary mb-6">"Le temps que je passais à négocier des licences en DM, je le passe maintenant en studio. Direct un truc de fou."</p>
+        <p class="text-body-sm font-semibold text-text-primary">Lya D.</p>
+        <p class="text-caption text-text-muted">Beatmaker afro/drill, Paris</p>
+      </div>
+      <div class="card glass-surface rounded-lg p-8 border border-border-primary scroll-reveal">
+        <p class="text-[1.5rem] sm:text-h3 font-bold gradient-text mb-4">x3</p>
+        <p class="text-body-sm text-text-secondary mb-6">"Mes ventes ont triplé en deux mois. L'IA relance les clients que j'aurais oubliés depuis longtemps."</p>
+        <p class="text-body-sm font-semibold text-text-primary">Noah R.</p>
+        <p class="text-caption text-text-muted">Producteur indé, Lyon</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section id="cta-final" class="relative hero-gradient overflow-hidden">
+  <div class="glow-orb-1"></div>
+  <div class="glow-orb-2"></div>
+  <div class="relative z-10 max-w-content mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24 text-center scroll-reveal">
+    <h2 class="text-[2rem] sm:text-h2 font-semibold mb-4">Récupère ton temps créatif dès aujourd'hui</h2>
+    <p class="text-body-lg text-text-secondary max-w-prose mx-auto mb-4">Chaque jour sans automatisation, c'est des ventes qui t'échappent. Lance ton IA en 10 minutes.</p>
+    <p class="text-body-sm text-primary mb-10">⚡ Essai gratuit, sans carte bancaire</p>
+    <!-- TODO: remplacer par l'URL réelle de signup dès qu'elle existe -->
+    <a href="mailto:hello@beatreply.io?subject=Je%20veux%20mon%20essai%20gratuit%20BeatReply" class="btn-primary rounded-md px-10 py-4 text-body font-semibold inline-flex">
+      Démarre ton essai gratuit
+    </a>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="border-t border-border-subtle">
+  <div class="max-w-wide mx-auto px-4 sm:px-6 lg:px-8 py-12 flex flex-col sm:flex-row items-center justify-between gap-6">
+    <a href="#" class="flex items-center gap-2">
+      <span class="w-8 h-8 rounded-md accent-gradient flex items-center justify-center text-h4 text-background font-bold">B</span>
+      <span class="text-h4 font-bold text-text-primary">BeatReply</span>
+    </a>
+    <p class="text-body-sm text-text-muted">Automatisation des DM pour le beatmaking.</p>
+    <p class="text-caption text-text-ghost">© 2026 BeatReply. Tous droits réservés.</p>
+  </div>
+</footer>
+
+<script>
+  // Navbar scroll state
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('navbar-scrolled', window.scrollY > 20);
+  });
+
+  // Mobile menu toggle
+  const navBurger = document.getElementById('nav-burger');
+  const navMobile = document.getElementById('nav-mobile');
+  navBurger.addEventListener('click', () => {
+    const isHidden = navMobile.classList.toggle('hidden');
+    navBurger.setAttribute('aria-expanded', String(!isHidden));
+  });
+
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.scroll-reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach((el) => observer.observe(el));
+</script>
+
+</body>
+</html>
