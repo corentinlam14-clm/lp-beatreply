@@ -329,27 +329,32 @@
     </div>
 
     <div class="relative max-w-4xl mx-auto image-treatment rounded-lg overflow-hidden border border-border-primary shadow-lg">
-      <div class="glass-surface p-6 sm:p-10 text-left">
+      <div class="glass-surface p-6 sm:p-10 text-left" id="hero-demo">
         <div class="flex items-center gap-2 mb-6">
           <span class="w-3 h-3 rounded-full bg-error/60"></span>
           <span class="w-3 h-3 rounded-full bg-warning/60"></span>
           <span class="w-3 h-3 rounded-full bg-success/60"></span>
           <span class="ml-4 text-caption text-text-ghost">BeatReply — Instagram DM</span>
         </div>
-        <div class="space-y-4">
+
+        <div class="flex flex-wrap gap-2 mb-6" role="group" aria-label="Choisir un style de beat">
+          <button type="button" class="badge" data-style="rnbswag" aria-pressed="false">R&amp;B/Swag</button>
+          <button type="button" class="badge" data-style="westcoast" aria-pressed="false">West Coast</button>
+          <button type="button" class="badge" data-style="trap" aria-pressed="false">Trap</button>
+        </div>
+
+        <div class="space-y-4" aria-live="polite">
           <div class="flex justify-start">
-            <div class="rounded-lg rounded-tl-none bg-surface-elevated px-4 py-3 max-w-sm text-body-sm text-text-secondary">
-              Salut, t'as un type beat genre Travis Scott dispo ?
-            </div>
+            <div class="rounded-lg rounded-tl-none bg-surface-elevated px-4 py-3 max-w-sm text-body-sm text-text-secondary" data-demo-client-message></div>
           </div>
           <div class="flex justify-end">
             <div class="rounded-lg rounded-tr-none accent-gradient px-4 py-3 max-w-sm text-body-sm text-background font-medium">
-              Yes j'ai exactement ce qu'il te faut 🔥 Je t'envoie 3 exclusifs dans le style, tu me dis lequel tape le plus
-            </div>
-          </div>
-          <div class="flex justify-start">
-            <div class="rounded-lg rounded-tl-none bg-surface-elevated px-4 py-3 max-w-sm text-body-sm text-text-secondary loading-pulse">
-              en train d'écrire...
+              <p class="mb-3">Yes j'ai exactement ce qu'il te faut 🔥</p>
+              <div class="space-y-2 mb-3" data-demo-track-cards></div>
+              <p class="text-caption mb-2" data-demo-count></p>
+              <div class="border-t border-background/20 pt-2 text-caption">
+                MP3 40&nbsp;€ · WAV 70&nbsp;€ · Stems 150&nbsp;€ · Exclu sur demande
+              </div>
             </div>
           </div>
         </div>
@@ -572,7 +577,11 @@
   </div>
 </footer>
 
+<script src="assets/js/catalog-demo.js"></script>
 <script>
+  // Interactive catalog demo
+  window.BeatReplyCatalogDemo.initCatalogDemo();
+
   // Navbar scroll state
   const navbar = document.getElementById('navbar');
   window.addEventListener('scroll', () => {
