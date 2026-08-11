@@ -53,6 +53,9 @@
       chips[i].setAttribute('aria-pressed', String(isActive));
       chips[i].classList.toggle('accent-gradient', isActive);
       chips[i].classList.toggle('text-background', isActive);
+      chips[i].classList.toggle('bg-primary-muted', !isActive);
+      chips[i].classList.toggle('text-primary', !isActive);
+      chips[i].classList.toggle('border-primary/20', !isActive);
     }
 
     var clientMessageEl = root.querySelector('[data-demo-client-message]');
