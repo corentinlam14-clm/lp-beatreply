@@ -339,19 +339,19 @@
 
         <div class="flex flex-wrap gap-2 mb-6" role="group" aria-label="Choisir un style de beat">
           <button type="button" class="inline-flex items-center gap-2 rounded-full px-4 py-2 text-caption uppercase bg-primary-muted text-primary border border-primary/20" data-style="rnbswag" aria-pressed="false">R&amp;B/Swag</button>
-          <button type="button" class="inline-flex items-center gap-2 rounded-full px-4 py-2 text-caption uppercase bg-primary-muted text-primary border border-primary/20" data-style="westcoast" aria-pressed="false">West Coast</button>
+          <button type="button" class="inline-flex items-center gap-2 rounded-full px-4 py-2 text-caption uppercase border accent-gradient text-background" data-style="westcoast" aria-pressed="true">West Coast</button>
           <button type="button" class="inline-flex items-center gap-2 rounded-full px-4 py-2 text-caption uppercase bg-primary-muted text-primary border border-primary/20" data-style="trap" aria-pressed="false">Trap</button>
         </div>
 
         <div class="space-y-4" aria-live="polite">
           <div class="flex justify-start">
-            <div class="rounded-lg rounded-tl-none bg-surface-elevated px-4 py-3 max-w-sm text-body-sm text-text-secondary" data-demo-client-message></div>
+            <div class="rounded-lg rounded-tl-none bg-surface-elevated px-4 py-3 max-w-sm text-body-sm text-text-secondary" data-demo-client-message>Yo t'as un type beat West Coast, tempo genre 100 ?</div>
           </div>
           <div class="flex justify-end">
             <div class="rounded-lg rounded-tr-none accent-gradient px-4 py-3 max-w-sm text-body-sm text-background font-medium">
               <p class="mb-3">Yes j'ai exactement ce qu'il te faut 🔥</p>
-              <div class="space-y-2 mb-3" data-demo-track-cards></div>
-              <p class="text-caption mb-2" data-demo-count></p>
+              <div class="space-y-2 mb-3" data-demo-track-cards><div class="rounded-md bg-background/10 px-3 py-2"><p class="text-body-sm font-semibold">Hood</p><p class="text-caption text-background/70">98 BPM · F Min</p></div><div class="rounded-md bg-background/10 px-3 py-2"><p class="text-body-sm font-semibold">San Andreas</p><p class="text-caption text-background/70">99 BPM · G Min</p></div><div class="rounded-md bg-background/10 px-3 py-2"><p class="text-body-sm font-semibold">Cali</p><p class="text-caption text-background/70">103 BPM · D# Min</p></div></div>
+              <p class="text-caption mb-2" data-demo-count>21 prods disponibles en West Coast</p>
               <div class="border-t border-background/20 pt-2 text-caption">
                 MP3 40&nbsp;€ · WAV 70&nbsp;€ · Stems 150&nbsp;€ · Exclu sur demande
               </div>
@@ -579,9 +579,6 @@
 
 <script src="assets/js/catalog-demo.js"></script>
 <script>
-  // Interactive catalog demo
-  window.BeatReplyCatalogDemo.initCatalogDemo();
-
   // Navbar scroll state
   const navbar = document.getElementById('navbar');
   window.addEventListener('scroll', () => {
@@ -607,6 +604,11 @@
     });
   }, { threshold: 0.15 });
   revealEls.forEach((el) => observer.observe(el));
+
+  // Interactive catalog demo
+  if (window.BeatReplyCatalogDemo) {
+    window.BeatReplyCatalogDemo.initCatalogDemo();
+  }
 </script>
 
 </body>
