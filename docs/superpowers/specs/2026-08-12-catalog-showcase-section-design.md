@@ -56,7 +56,7 @@ Cette séparation évite de faire grossir `catalog-demo.js` avec une deuxième r
 
 - Sélection de style par défaut : `westcoast` (cohérent avec le Hero).
 - Clic sur une pastille de style → swap des 3 cartes (contenu identique à celui déjà géré par `getStyleData`), pas d'animation sur ce swap (même règle que le Hero).
-- Clic sur play d'une carte → démarre l'animation de progression simulée sur cette carte, met en pause toute autre carte en cours de lecture. Clic sur pause → arrête l'animation à sa position actuelle. Fin de progression → retour automatique à l'état pause/zéro.
+- Clic sur play d'une carte → démarre l'animation de progression simulée sur cette carte, met en pause toute autre carte en cours de lecture. Clic sur pause (ou changement de style en cours de lecture) → arrête l'animation et remet la barre à zéro. Fin de progression → retour automatique au même état pause/zéro.
 
 ## Accessibilité
 
