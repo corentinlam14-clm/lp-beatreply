@@ -109,6 +109,10 @@
 
   .accent-gradient { background: linear-gradient(135deg, #00D9FF, #00C4E6); }
 
+  .showcase-cover-rnbswag { background: linear-gradient(135deg, #8B5CF6, #00D9FF); }
+  .showcase-cover-westcoast { background: linear-gradient(135deg, #00D9FF, #8B5CF6); }
+  .showcase-cover-trap { background: linear-gradient(160deg, #00D9FF 0%, #8B5CF6 55%, #0a0a0a 100%); }
+
   .surface-gradient {
     background: linear-gradient(to bottom, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
   }
@@ -488,6 +492,115 @@
 
 <div class="section-divider max-w-wide mx-auto"></div>
 
+<!-- CATALOG SHOWCASE -->
+<section id="catalog-showcase" class="section-padding py-16 lg:py-24">
+  <div class="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-prose mx-auto mb-16 scroll-reveal">
+      <span class="text-caption uppercase text-primary mb-4 inline-block">Le catalogue</span>
+      <h2 class="text-[2rem] sm:text-h2 font-semibold mb-4">Ce que voit ton client après sa demande</h2>
+      <p class="text-body-lg text-text-secondary">BeatReply cherche dans ton vrai catalogue et propose direct les bons beats.</p>
+    </div>
+
+    <div class="flex flex-wrap justify-center gap-2 mb-10" role="group" aria-label="Choisir un style de beat">
+      <button type="button" class="inline-flex items-center gap-2 rounded-full px-4 py-2 text-caption uppercase bg-primary-muted text-primary border border-primary/20" data-showcase-style="rnbswag" aria-pressed="false">R&amp;B/Swag</button>
+      <button type="button" class="inline-flex items-center gap-2 rounded-full px-4 py-2 text-caption uppercase border accent-gradient text-background" data-showcase-style="westcoast" aria-pressed="true">West Coast</button>
+      <button type="button" class="inline-flex items-center gap-2 rounded-full px-4 py-2 text-caption uppercase bg-primary-muted text-primary border border-primary/20" data-showcase-style="trap" aria-pressed="false">Trap</button>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+      <div class="glass-surface rounded-lg border border-border-primary p-5 scroll-reveal" data-showcase-card>
+        <div class="showcase-cover-westcoast relative rounded-md aspect-square mb-4" data-showcase-cover>
+          <span class="absolute top-2 left-2 text-caption font-bold text-background bg-background/20 rounded px-2 py-0.5">01</span>
+        </div>
+        <p class="text-body-sm font-semibold" data-showcase-title>Hood</p>
+        <p class="text-caption text-text-ghost mb-3" data-showcase-meta>West Coast · 98 BPM · F Min</p>
+        <div class="flex items-center gap-3 mb-3">
+          <button type="button" class="w-8 h-8 flex-shrink-0 rounded-full accent-gradient flex items-center justify-center" data-showcase-play aria-label="Écouter un extrait de Hood">
+            <svg class="w-3 h-3 text-background" data-showcase-icon-play viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+            <svg class="w-3 h-3 text-background hidden" data-showcase-icon-pause viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
+          </button>
+          <div class="flex-1 h-8 flex items-end gap-1">
+            <span class="w-1.5 rounded-full bg-primary/25" data-showcase-bar style="height: 40%"></span>
+            <span class="w-1.5 rounded-full bg-primary/25" data-showcase-bar style="height: 65%"></span>
+            <span class="w-1.5 rounded-full bg-primary/25" data-showcase-bar style="height: 45%"></span>
+            <span class="w-1.5 rounded-full bg-primary/25" data-showcase-bar style="height: 80%"></span>
+            <span class="w-1.5 rounded-full bg-primary/25" data-showcase-bar style="height: 55%"></span>
+            <span class="w-1.5 rounded-full bg-primary/25" data-showcase-bar style="height: 90%"></span>
+            <span class="w-1.5 rounded-full bg-primary/25" data-showcase-bar style="height: 60%"></span>
+            <span class="w-1.5 rounded-full bg-primary/25" data-showcase-bar style="height: 40%"></span>
+            <span class="w-1.5 rounded-full bg-primary/25" data-showcase-bar style="height: 75%"></span>
+            <span class="w-1.5 rounded-full bg-primary/25" data-showcase-bar style="height: 50%"></span>
+            <span class="w-1.5 rounded-full bg-primary/25" data-showcase-bar style="height: 65%"></span>
+            <span class="w-1.5 rounded-full bg-primary/25" data-showcase-bar style="height: 45%"></span>
+          </div>
+        </div>
+        <p class="text-caption text-text-muted mb-4">MP3 40&nbsp;€ · WAV 70&nbsp;€ · Stems 150&nbsp;€ · Exclu à négocier</p>
+        <a href="mailto:hello@beatreply.io?subject=Je%20veux%20mon%20essai%20gratuit%20BeatReply" class="btn-secondary rounded-md px-4 py-2 text-body-sm font-semibold w-full text-center inline-block">Je la veux</a>
+      </div>
+      <div class="glass-surface rounded-lg border border-border-primary p-5 scroll-reveal" data-showcase-card>
+        <div class="showcase-cover-westcoast relative rounded-md aspect-square mb-4" data-showcase-cover>
+          <span class="absolute top-2 left-2 text-caption font-bold text-background bg-background/20 rounded px-2 py-0.5">02</span>
+        </div>
+        <p class="text-body-sm font-semibold" data-showcase-title>San Andreas</p>
+        <p class="text-caption text-text-ghost mb-3" data-showcase-meta>West Coast · 99 BPM · G Min</p>
+        <div class="flex items-center gap-3 mb-3">
+          <button type="button" class="w-8 h-8 flex-shrink-0 rounded-full accent-gradient flex items-center justify-center" data-showcase-play aria-label="Écouter un extrait de San Andreas">
+            <svg class="w-3 h-3 text-background" data-showcase-icon-play viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+            <svg class="w-3 h-3 text-background hidden" data-showcase-icon-pause viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
+          </button>
+          <div class="flex-1 h-8 flex items-end gap-1">
+            <span class="w-1.5 rounded-full bg-primary/25" data-showcase-bar style="height: 40%"></span>
+            <span class="w-1.5 rounded-full bg-primary/25" data-showcase-bar style="height: 65%"></span>
+            <span class="w-1.5 rounded-full bg-primary/25" data-showcase-bar style="height: 45%"></span>
+            <span class="w-1.5 rounded-full bg-primary/25" data-showcase-bar style="height: 80%"></span>
+            <span class="w-1.5 rounded-full bg-primary/25" data-showcase-bar style="height: 55%"></span>
+            <span class="w-1.5 rounded-full bg-primary/25" data-showcase-bar style="height: 90%"></span>
+            <span class="w-1.5 rounded-full bg-primary/25" data-showcase-bar style="height: 60%"></span>
+            <span class="w-1.5 rounded-full bg-primary/25" data-showcase-bar style="height: 40%"></span>
+            <span class="w-1.5 rounded-full bg-primary/25" data-showcase-bar style="height: 75%"></span>
+            <span class="w-1.5 rounded-full bg-primary/25" data-showcase-bar style="height: 50%"></span>
+            <span class="w-1.5 rounded-full bg-primary/25" data-showcase-bar style="height: 65%"></span>
+            <span class="w-1.5 rounded-full bg-primary/25" data-showcase-bar style="height: 45%"></span>
+          </div>
+        </div>
+        <p class="text-caption text-text-muted mb-4">MP3 40&nbsp;€ · WAV 70&nbsp;€ · Stems 150&nbsp;€ · Exclu à négocier</p>
+        <a href="mailto:hello@beatreply.io?subject=Je%20veux%20mon%20essai%20gratuit%20BeatReply" class="btn-secondary rounded-md px-4 py-2 text-body-sm font-semibold w-full text-center inline-block">Je la veux</a>
+      </div>
+      <div class="glass-surface rounded-lg border border-border-primary p-5 scroll-reveal" data-showcase-card>
+        <div class="showcase-cover-westcoast relative rounded-md aspect-square mb-4" data-showcase-cover>
+          <span class="absolute top-2 left-2 text-caption font-bold text-background bg-background/20 rounded px-2 py-0.5">03</span>
+        </div>
+        <p class="text-body-sm font-semibold" data-showcase-title>Cali</p>
+        <p class="text-caption text-text-ghost mb-3" data-showcase-meta>West Coast · 103 BPM · D# Min</p>
+        <div class="flex items-center gap-3 mb-3">
+          <button type="button" class="w-8 h-8 flex-shrink-0 rounded-full accent-gradient flex items-center justify-center" data-showcase-play aria-label="Écouter un extrait de Cali">
+            <svg class="w-3 h-3 text-background" data-showcase-icon-play viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+            <svg class="w-3 h-3 text-background hidden" data-showcase-icon-pause viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
+          </button>
+          <div class="flex-1 h-8 flex items-end gap-1">
+            <span class="w-1.5 rounded-full bg-primary/25" data-showcase-bar style="height: 40%"></span>
+            <span class="w-1.5 rounded-full bg-primary/25" data-showcase-bar style="height: 65%"></span>
+            <span class="w-1.5 rounded-full bg-primary/25" data-showcase-bar style="height: 45%"></span>
+            <span class="w-1.5 rounded-full bg-primary/25" data-showcase-bar style="height: 80%"></span>
+            <span class="w-1.5 rounded-full bg-primary/25" data-showcase-bar style="height: 55%"></span>
+            <span class="w-1.5 rounded-full bg-primary/25" data-showcase-bar style="height: 90%"></span>
+            <span class="w-1.5 rounded-full bg-primary/25" data-showcase-bar style="height: 60%"></span>
+            <span class="w-1.5 rounded-full bg-primary/25" data-showcase-bar style="height: 40%"></span>
+            <span class="w-1.5 rounded-full bg-primary/25" data-showcase-bar style="height: 75%"></span>
+            <span class="w-1.5 rounded-full bg-primary/25" data-showcase-bar style="height: 50%"></span>
+            <span class="w-1.5 rounded-full bg-primary/25" data-showcase-bar style="height: 65%"></span>
+            <span class="w-1.5 rounded-full bg-primary/25" data-showcase-bar style="height: 45%"></span>
+          </div>
+        </div>
+        <p class="text-caption text-text-muted mb-4">MP3 40&nbsp;€ · WAV 70&nbsp;€ · Stems 150&nbsp;€ · Exclu à négocier</p>
+        <a href="mailto:hello@beatreply.io?subject=Je%20veux%20mon%20essai%20gratuit%20BeatReply" class="btn-secondary rounded-md px-4 py-2 text-body-sm font-semibold w-full text-center inline-block">Je la veux</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider max-w-wide mx-auto"></div>
+
 <!-- PROCESS -->
 <section id="process" class="section-padding py-16 lg:py-24">
   <div class="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
@@ -578,6 +691,7 @@
 </footer>
 
 <script src="assets/js/catalog-demo.js"></script>
+<script src="assets/js/catalog-showcase.js"></script>
 <script>
   // Navbar scroll state
   const navbar = document.getElementById('navbar');
@@ -608,6 +722,11 @@
   // Interactive catalog demo
   if (window.BeatReplyCatalogDemo) {
     window.BeatReplyCatalogDemo.initCatalogDemo();
+  }
+
+  // Catalog showcase section
+  if (window.BeatReplyCatalogShowcase) {
+    window.BeatReplyCatalogShowcase.initCatalogShowcase();
   }
 </script>
 
