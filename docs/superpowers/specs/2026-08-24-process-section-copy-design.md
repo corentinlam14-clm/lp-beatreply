@@ -2,7 +2,7 @@
 
 ## Contexte
 
-En comparant la landing page à un concurrent (dmforme.com, "How it works"), une relecture du texte actuel de la section Process ([index.html:604-630](../../../index.html#L604)) a révélé trois écarts entre ce qui est écrit et ce que le produit fait réellement aujourd'hui :
+En comparant la landing page à un concurrent (dmforme.com, "How it works"), une relecture du texte actuel de la section Process ([index.html:604-630](../../../index.html#L604)) a révélé trois écarts, plus deux instances des deux mêmes écarts repérées ensuite dans la section Solutions entre ce qui est écrit et ce que le produit fait réellement aujourd'hui :
 
 1. **Étape 1** promet Instagram, WhatsApp et "ton site" comme canaux connectables — seul Instagram est développé (`app/api/instagram/*` dans `beatreply-dashboard`). Le texte multi-canal date de la création initiale de la landing, avant que le périmètre ne se limite à Instagram.
 2. **Étape 2** affirme que l'IA "s'entraîne... sur ta façon de parler pour sonner exactement comme toi" — le bot a aujourd'hui un ton unique et fixe, codé en dur dans `buildSystemPrompt` (`beatreply-dashboard/lib/ai/respond.ts`). La personnalisation par beatmaker existe comme idée (mockup ChatGPT de Lucas : presets Chill/Pro/Énergique/Mon propre style + curseurs longueur/langage + toggles), mais rien n'est construit.
@@ -20,6 +20,7 @@ Corriger le texte des 3 étapes pour qu'il reste fidèle à ce qui existe aujour
 - Réécriture du texte des 3 cartes existantes dans `index.html` (titres + paragraphes), structure HTML/CSS inchangée (toujours 3 colonnes, numéro + titre + paragraphe)
 - Ajout d'une ligne secondaire "✨ Bientôt : ..." sous le paragraphe de l'étape 3 uniquement (relance automatique)
 - Retrait de toute mention WhatsApp/site dans l'étape 1
+- **Ajout après la revue finale** : les deux mêmes écarts existaient aussi dans la section Solutions ([index.html:465](../../../index.html#L465) et [index.html:486-487](../../../index.html#L486)) — trouvés par le relecteur final car non couverts par le grep initial, qui ne portait que sur la section Process. Corrigés dans la foulée pour que la page ne se contredise pas (Process dirait "bientôt" pendant que Solutions dirait "déjà là") : ligne 465 perd la mention "relance"/"ton style, ton vocabulaire" ; la carte "Suivi & relance" (465-487) est reformulée pour démarrer par "Bientôt :" puisque toute la carte décrit une fonctionnalité non construite (contrairement à l'étape 3 de Process, où seule la relance était fausse — ici c'est la totalité de la carte).
 
 **Explicitement hors scope (décidé pendant le brainstorming) :**
 - Pas de visuel/mockup/capture d'écran par étape — reporté (palette de marque en cours de réflexion, voir mémoire `beatreply-brand-color-pivot` ; dashboard pas encore assez rempli en données réelles pour de vraies captures pertinentes)
@@ -37,7 +38,9 @@ Corriger le texte des 3 étapes pour qu'il reste fidèle à ce qui existe aujour
 
 **03 — Elle vend, tu crées**
 > Elle répond et qualifie chaque acheteur, 24h/7j, pendant que tu restes en studio.
-> ✨ *Bientôt : les relances automatiques pour ne perdre aucune vente.*
+> ✨ Bientôt : les relances automatiques pour ne perdre aucune vente.
+
+*(Rendu en HTML sans balise `<em>` — le badge est en `text-caption text-primary`, pas en italique ; corrigé ici pour matcher exactement l'implémentation.)*
 
 ## Composants visuels
 
