@@ -5,20 +5,20 @@
 ```css
 :root {
   /* Primary */
-  --primary: #FF9D42;
+  --primary-rgb: 255 157 66;
+  --primary: rgb(var(--primary-rgb));
   --primary-hover: #F58B29;
-  --primary-muted: rgba(255, 157, 66, 0.1);
-  --primary-rgb: 255, 157, 66;
+  --primary-muted: rgb(var(--primary-rgb) / 0.1);
 
   /* Secondary */
-  --secondary: #C97B24;
+  --secondary-rgb: 201 123 36;
+  --secondary: rgb(var(--secondary-rgb));
   --secondary-hover: #B36A1C;
-  --secondary-rgb: 201, 123, 36;
 
   /* Accent & Glow */
-  --accent: #FF9D42;
+  --accent: rgb(var(--primary-rgb));
   --accent-hover: #F58B29;
-  --accent-muted: rgba(255, 157, 66, 0.15);
+  --accent-muted: rgb(var(--primary-rgb) / 0.15);
 
   /* Backgrounds */
   --background: #0a0a0a;
@@ -231,8 +231,8 @@ Mobile:
 
 .shadow-glow {
   box-shadow: 
-    0 0 30px rgba(0, 217, 255, 0.15),
-    0 0 60px rgba(0, 217, 255, 0.08);
+    0 0 30px rgb(var(--primary-rgb) / 0.15),
+    0 0 60px rgb(var(--primary-rgb) / 0.08);
 }
 ```
 
@@ -253,8 +253,8 @@ Mobile:
 ```css
 .hero-gradient {
   background: 
-    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(0, 217, 255, 0.15), transparent),
-    radial-gradient(ellipse 60% 40% at 80% 100%, rgba(139, 92, 246, 0.1), transparent),
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgb(var(--primary-rgb) / 0.15), transparent),
+    radial-gradient(ellipse 60% 40% at 80% 100%, rgb(var(--secondary-rgb) / 0.1), transparent),
     linear-gradient(180deg, var(--background) 0%, rgba(0, 0, 0, 0.95) 100%);
 }
 
@@ -273,8 +273,8 @@ Mobile:
 .glow-gradient {
   background: radial-gradient(
     circle at 50% 50%,
-    rgba(0, 217, 255, 0.15) 0%,
-    rgba(0, 217, 255, 0.05) 50%,
+    rgb(var(--primary-rgb) / 0.15) 0%,
+    rgb(var(--primary-rgb) / 0.05) 50%,
     transparent 100%
   );
 }
@@ -334,7 +334,7 @@ Mobile:
   right: 15%;
   width: 300px;
   height: 300px;
-  background: radial-gradient(circle, rgba(0, 217, 255, 0.15), transparent);
+  background: radial-gradient(circle, rgb(var(--primary-rgb) / 0.15), transparent);
   filter: blur(40px);
   border-radius: 50%;
   z-index: -1;
@@ -346,7 +346,7 @@ Mobile:
   left: 10%;
   width: 400px;
   height: 400px;
-  background: radial-gradient(circle, rgba(139, 92, 246, 0.1), transparent);
+  background: radial-gradient(circle, rgb(var(--secondary-rgb) / 0.1), transparent);
   filter: blur(60px);
   border-radius: 50%;
   z-index: -1;
@@ -360,7 +360,7 @@ Mobile:
   background: linear-gradient(
     to right,
     transparent,
-    rgba(0, 217, 255, 0.3),
+    rgb(var(--primary-rgb) / 0.3),
     transparent
   );
   margin: var(--space-20) 0;
@@ -393,8 +393,8 @@ Mobile:
   bottom: 0;
   background: linear-gradient(
     135deg,
-    rgba(0, 217, 255, 0.1),
-    rgba(139, 92, 246, 0.05)
+    rgb(var(--primary-rgb) / 0.1),
+    rgb(var(--secondary-rgb) / 0.05)
   );
 }
 ```
@@ -512,7 +512,7 @@ button:focus-visible,
 .card:hover {
   transform: translateY(-4px);
   box-shadow: var(--shadow-lg);
-  border-color: rgba(0, 217, 255, 0.3);
+  border-color: rgb(var(--primary-rgb) / 0.3);
 }
 
 .card::before {
@@ -539,7 +539,7 @@ button:focus-visible,
   font-weight: 500;
   background: var(--primary-muted);
   color: var(--primary);
-  border: 1px solid rgba(0, 217, 255, 0.2);
+  border: 1px solid rgb(var(--primary-rgb) / 0.2);
 }
 
 .badge-success {

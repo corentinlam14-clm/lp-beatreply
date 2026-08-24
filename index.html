@@ -26,12 +26,12 @@
     theme: {
       extend: {
         colors: {
-          primary: 'var(--primary)',
+          primary: 'rgb(var(--primary-rgb) / <alpha-value>)',
           'primary-hover': 'var(--primary-hover)',
           'primary-muted': 'var(--primary-muted)',
-          secondary: 'var(--secondary)',
+          secondary: 'rgb(var(--secondary-rgb) / <alpha-value>)',
           'secondary-hover': 'var(--secondary-hover)',
-          accent: 'var(--accent)',
+          accent: 'rgb(var(--primary-rgb) / <alpha-value>)',
           'accent-hover': 'var(--accent-hover)',
           'accent-muted': 'var(--accent-muted)',
           background: '#0a0a0a',
@@ -80,7 +80,7 @@
           sm: '0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.16)',
           md: '0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.08), 0 12px 20px rgba(0, 0, 0, 0.06)',
           lg: '0 8px 30px rgba(0, 0, 0, 0.15), 0 4px 10px rgba(0, 0, 0, 0.12), 0 20px 40px rgba(0, 0, 0, 0.08)',
-          glow: '0 0 30px rgba(var(--primary-rgb), 0.15), 0 0 60px rgba(var(--primary-rgb), 0.08)',
+          glow: '0 0 30px rgb(var(--primary-rgb) / 0.15), 0 0 60px rgb(var(--primary-rgb) / 0.08)',
         },
       },
     },
@@ -89,16 +89,16 @@
 
 <style>
   :root {
-    --primary: #FF9D42;
+    --primary-rgb: 255 157 66;
+    --primary: rgb(var(--primary-rgb));
     --primary-hover: #F58B29;
-    --primary-muted: rgba(255, 157, 66, 0.1);
-    --primary-rgb: 255, 157, 66;
-    --secondary: #C97B24;
+    --primary-muted: rgb(var(--primary-rgb) / 0.1);
+    --secondary-rgb: 201 123 36;
+    --secondary: rgb(var(--secondary-rgb));
     --secondary-hover: #B36A1C;
-    --secondary-rgb: 201, 123, 36;
-    --accent: #FF9D42;
+    --accent: rgb(var(--primary-rgb));
     --accent-hover: #F58B29;
-    --accent-muted: rgba(255, 157, 66, 0.15);
+    --accent-muted: rgb(var(--primary-rgb) / 0.15);
   }
 
   html { background: #0a0a0a; scroll-behavior: smooth; }
@@ -111,12 +111,12 @@
     background-clip: text;
   }
 
-  .text-glow { text-shadow: 0 0 20px rgba(var(--primary-rgb), 0.4); }
+  .text-glow { text-shadow: 0 0 20px rgb(var(--primary-rgb) / 0.4); }
 
   .hero-gradient {
     background:
-      radial-gradient(ellipse 80% 50% at 50% -20%, rgba(var(--primary-rgb), 0.15), transparent),
-      radial-gradient(ellipse 60% 40% at 80% 100%, rgba(var(--secondary-rgb), 0.1), transparent),
+      radial-gradient(ellipse 80% 50% at 50% -20%, rgb(var(--primary-rgb) / 0.15), transparent),
+      radial-gradient(ellipse 60% 40% at 80% 100%, rgb(var(--secondary-rgb) / 0.1), transparent),
       linear-gradient(180deg, #0a0a0a 0%, rgba(0, 0, 0, 0.95) 100%);
   }
 
@@ -149,18 +149,18 @@
 
   .glow-orb-1 {
     position: absolute; top: 10%; right: 15%; width: 300px; height: 300px;
-    background: radial-gradient(circle, rgba(var(--primary-rgb), 0.15), transparent);
+    background: radial-gradient(circle, rgb(var(--primary-rgb) / 0.15), transparent);
     filter: blur(40px); border-radius: 50%; z-index: 0; pointer-events: none;
   }
   .glow-orb-2 {
     position: absolute; bottom: 20%; left: 10%; width: 400px; height: 400px;
-    background: radial-gradient(circle, rgba(var(--secondary-rgb), 0.1), transparent);
+    background: radial-gradient(circle, rgb(var(--secondary-rgb) / 0.1), transparent);
     filter: blur(60px); border-radius: 50%; z-index: 0; pointer-events: none;
   }
 
   .section-divider {
     height: 1px;
-    background: linear-gradient(to right, transparent, rgba(var(--primary-rgb), 0.3), transparent);
+    background: linear-gradient(to right, transparent, rgb(var(--primary-rgb) / 0.3), transparent);
   }
 
   .btn-primary {
@@ -168,7 +168,7 @@
     color: #0a0a0a;
     transition: all 0.2s ease;
   }
-  .btn-primary:hover { transform: scale(1.02); box-shadow: 0 0 30px rgba(var(--primary-rgb), 0.15), 0 0 60px rgba(var(--primary-rgb), 0.08); }
+  .btn-primary:hover { transform: scale(1.02); box-shadow: 0 0 30px rgb(var(--primary-rgb) / 0.15), 0 0 60px rgb(var(--primary-rgb) / 0.08); }
   .btn-primary:active { transform: scale(0.98); }
 
   .btn-primary.btn-glow-loop {
@@ -197,7 +197,7 @@
     border: 1px solid rgba(255, 255, 255, 0.1);
     transition: all 0.2s ease;
   }
-  .btn-secondary:hover { border-color: var(--primary); background: rgba(var(--primary-rgb), 0.1); transform: scale(1.02); }
+  .btn-secondary:hover { border-color: var(--primary); background: rgb(var(--primary-rgb) / 0.1); transform: scale(1.02); }
 
   a:focus-visible, button:focus-visible {
     outline: 2px solid var(--primary);
@@ -221,7 +221,7 @@
   .skip-link:focus { top: 1rem; }
 
   .card { transition: all 0.3s ease; }
-  .card:hover { transform: translateY(-4px); box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15), 0 4px 10px rgba(0, 0, 0, 0.12), 0 20px 40px rgba(0, 0, 0, 0.08); border-color: rgba(var(--primary-rgb), 0.3); }
+  .card:hover { transform: translateY(-4px); box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15), 0 4px 10px rgba(0, 0, 0, 0.12), 0 20px 40px rgba(0, 0, 0, 0.08); border-color: rgb(var(--primary-rgb) / 0.3); }
 
   .hover-lift { transition: transform 0.3s ease, box-shadow 0.3s ease; }
   .hover-lift:hover { transform: translateY(-4px); box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15), 0 4px 10px rgba(0, 0, 0, 0.12), 0 20px 40px rgba(0, 0, 0, 0.08); }
