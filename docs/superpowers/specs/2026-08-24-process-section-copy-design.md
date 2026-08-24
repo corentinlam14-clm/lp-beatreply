@@ -52,3 +52,11 @@ Corriger le texte des 3 étapes pour qu'il reste fidèle à ce qui existe aujour
 Les visuels par étape (captures réelles ou mockups) restent un sujet ouvert, à reprendre soit après la session Lucas (quand le dashboard aura de vraies conversations à montrer), soit après que le pivot de palette noir/orange-doré soit tranché — pour éviter de construire un visuel à refaire deux fois. Voir mémoire `beatreply-auth-design-debt` et `beatreply-brand-color-pivot`.
 
 Le sujet "liquid glass" et les animations (mentionnés par Lucas) restent un brainstorming séparé, non traité ici.
+
+## Révision 2026-08-24 (après mise en ligne)
+
+En revoyant la page en ligne, Corentin a décidé de retirer la mention publique "✨ Bientôt : les relances automatiques" — aussi bien dans Process (étape 3) que dans la carte Solutions correspondante — le temps de trancher avec Lucas si "suivi & relance" fait partie du plan Standard ou Premium (voir mémoire `beatreply-pricing-model`). L'idée reste documentée en interne, plus affichée publiquement.
+
+La carte Solutions "Suivi & relance" ([index.html:486-487](../../../index.html#L486)) a été remplacée par un différenciateur déjà construit : **"Elle conclut, tu négocies"** — *"Vente au prix standard ? Elle la conclut seule. Dès qu'un client veut négocier, elle te transfère direct la conversation."* (reflète `beatreply-dashboard/lib/ai/respond.ts`'s escalation logic, voir mémoire `beatreply-product-vision`).
+
+L'étape 3 de Process perd sa ligne "✨ Bientôt" et se termine simplement sur *"Elle répond et qualifie chaque acheteur, 24h/7j, pendant que tu restes en studio."*
