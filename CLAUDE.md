@@ -106,6 +106,6 @@
 ## Guidelines Images  
 
 **Style :** Screenshots d'interface claire + ambiances studio sombres  
-**Palette d'ambiance :** Tons sombres avec éclats néon cyan, violet profond  
+**Palette d'ambiance :** Tons sombres avec éclats orange chaud, doré profond  
 **Éviter :** Stock photos génériques, visuels trop corporate  
 **Préférer :** Vraies interfaces, setup studio authentiques, graphiques de résultats
