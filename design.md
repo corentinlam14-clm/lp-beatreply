@@ -135,7 +135,7 @@ Mobile:
 }
 
 .text-glow {
-  text-shadow: 0 0 20px rgba(0, 217, 255, 0.4);
+  text-shadow: 0 0 20px rgb(var(--primary-rgb) / 0.4);
 }
 ```
 
