@@ -5,18 +5,20 @@
 ```css
 :root {
   /* Primary */
-  --primary: #00D9FF;
-  --primary-hover: #00C4E6;
-  --primary-muted: rgba(0, 217, 255, 0.1);
+  --primary: #FF9D42;
+  --primary-hover: #F58B29;
+  --primary-muted: rgba(255, 157, 66, 0.1);
+  --primary-rgb: 255, 157, 66;
 
   /* Secondary */
-  --secondary: #8B5CF6;
-  --secondary-hover: #7C3AED;
+  --secondary: #C97B24;
+  --secondary-hover: #B36A1C;
+  --secondary-rgb: 201, 123, 36;
 
   /* Accent & Glow */
-  --accent: #00D9FF;
-  --accent-hover: #00C4E6;
-  --accent-muted: rgba(0, 217, 255, 0.15);
+  --accent: #FF9D42;
+  --accent-hover: #F58B29;
+  --accent-muted: rgba(255, 157, 66, 0.15);
 
   /* Backgrounds */
   --background: #0a0a0a;
@@ -403,7 +405,7 @@ Mobile:
 ```css
 .btn-primary {
   background: var(--accent-gradient);
-  color: var(--background); /* corrigé le 06/08/2026 : blanc sur --accent (#00D9FF) ne fait que ~1.75:1, illisible. --background (#0a0a0a) sur --accent fait ~11:1. */
+  color: var(--background); /* corrigé le 06/08/2026 : blanc sur --accent (#00D9FF) ne fait que ~1.75:1, illisible. --background (#0a0a0a) sur --accent fait ~11:1. Revérifié le 24/08/2026 après le pivot orange/doré : --background sur --accent (#FF9D42) donne ~9.6:1, blanc sur --accent donnerait ~2.1:1 — le choix de --background comme couleur de texte reste correct. */
   border: none;
   border-radius: var(--radius-md);
   padding: var(--space-3) var(--space-6);
