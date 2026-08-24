@@ -7,7 +7,7 @@
 <meta name="description" content="Transforme tes DM en machine à ventes automatique. L'IA qui vend tes beats 24h/7j pendant que tu crées. Essai gratuit.">
 <meta name="keywords" content="automatisation DM beats, IA producteur musique, vente beats automatique, chatbot beatmaker, automatisation studio, IA musicale">
 
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230a0a0a'/%3E%3Ctext x='16' y='23' font-family='Arial, sans-serif' font-weight='800' font-size='20' fill='%2300D9FF' text-anchor='middle'%3EB%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230a0a0a'/%3E%3Ctext x='16' y='23' font-family='Arial, sans-serif' font-weight='800' font-size='20' fill='%23FF9D42' text-anchor='middle'%3EB%3C/text%3E%3C/svg%3E">
 
 <meta property="og:type" content="website">
 <meta property="og:title" content="BeatReply : Automatisation IA des DM pour Producteurs de Beats">
@@ -26,14 +26,14 @@
     theme: {
       extend: {
         colors: {
-          primary: '#00D9FF',
-          'primary-hover': '#00C4E6',
-          'primary-muted': 'rgba(0, 217, 255, 0.1)',
-          secondary: '#8B5CF6',
-          'secondary-hover': '#7C3AED',
-          accent: '#00D9FF',
-          'accent-hover': '#00C4E6',
-          'accent-muted': 'rgba(0, 217, 255, 0.15)',
+          primary: 'var(--primary)',
+          'primary-hover': 'var(--primary-hover)',
+          'primary-muted': 'var(--primary-muted)',
+          secondary: 'var(--secondary)',
+          'secondary-hover': 'var(--secondary-hover)',
+          accent: 'var(--accent)',
+          'accent-hover': 'var(--accent-hover)',
+          'accent-muted': 'var(--accent-muted)',
           background: '#0a0a0a',
           surface: 'rgba(255, 255, 255, 0.03)',
           'surface-elevated': 'rgba(255, 255, 255, 0.06)',
@@ -80,7 +80,7 @@
           sm: '0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.16)',
           md: '0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.08), 0 12px 20px rgba(0, 0, 0, 0.06)',
           lg: '0 8px 30px rgba(0, 0, 0, 0.15), 0 4px 10px rgba(0, 0, 0, 0.12), 0 20px 40px rgba(0, 0, 0, 0.08)',
-          glow: '0 0 30px rgba(0, 217, 255, 0.15), 0 0 60px rgba(0, 217, 255, 0.08)',
+          glow: '0 0 30px rgba(var(--primary-rgb), 0.15), 0 0 60px rgba(var(--primary-rgb), 0.08)',
         },
       },
     },
@@ -88,30 +88,43 @@
 </script>
 
 <style>
+  :root {
+    --primary: #FF9D42;
+    --primary-hover: #F58B29;
+    --primary-muted: rgba(255, 157, 66, 0.1);
+    --primary-rgb: 255, 157, 66;
+    --secondary: #C97B24;
+    --secondary-hover: #B36A1C;
+    --secondary-rgb: 201, 123, 36;
+    --accent: #FF9D42;
+    --accent-hover: #F58B29;
+    --accent-muted: rgba(255, 157, 66, 0.15);
+  }
+
   html { background: #0a0a0a; scroll-behavior: smooth; }
   body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; }
 
   .gradient-text {
-    background: linear-gradient(135deg, #00D9FF, #8B5CF6);
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
-  .text-glow { text-shadow: 0 0 20px rgba(0, 217, 255, 0.4); }
+  .text-glow { text-shadow: 0 0 20px rgba(var(--primary-rgb), 0.4); }
 
   .hero-gradient {
     background:
-      radial-gradient(ellipse 80% 50% at 50% -20%, rgba(0, 217, 255, 0.15), transparent),
-      radial-gradient(ellipse 60% 40% at 80% 100%, rgba(139, 92, 246, 0.1), transparent),
+      radial-gradient(ellipse 80% 50% at 50% -20%, rgba(var(--primary-rgb), 0.15), transparent),
+      radial-gradient(ellipse 60% 40% at 80% 100%, rgba(var(--secondary-rgb), 0.1), transparent),
       linear-gradient(180deg, #0a0a0a 0%, rgba(0, 0, 0, 0.95) 100%);
   }
 
-  .accent-gradient { background: linear-gradient(135deg, #00D9FF, #00C4E6); }
+  .accent-gradient { background: linear-gradient(135deg, var(--primary), var(--primary-hover)); }
 
-  .showcase-cover-rnbswag { background: linear-gradient(135deg, #8B5CF6, #00D9FF); }
-  .showcase-cover-westcoast { background: linear-gradient(135deg, #00D9FF, #8B5CF6); }
-  .showcase-cover-trap { background: linear-gradient(160deg, #00D9FF 0%, #8B5CF6 55%, #0a0a0a 100%); }
+  .showcase-cover-rnbswag { background: linear-gradient(135deg, var(--secondary), var(--primary)); }
+  .showcase-cover-westcoast { background: linear-gradient(135deg, var(--primary), var(--secondary)); }
+  .showcase-cover-trap { background: linear-gradient(160deg, var(--primary) 0%, var(--secondary) 55%, #0a0a0a 100%); }
 
   .surface-gradient {
     background: linear-gradient(to bottom, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
@@ -136,30 +149,30 @@
 
   .glow-orb-1 {
     position: absolute; top: 10%; right: 15%; width: 300px; height: 300px;
-    background: radial-gradient(circle, rgba(0, 217, 255, 0.15), transparent);
+    background: radial-gradient(circle, rgba(var(--primary-rgb), 0.15), transparent);
     filter: blur(40px); border-radius: 50%; z-index: 0; pointer-events: none;
   }
   .glow-orb-2 {
     position: absolute; bottom: 20%; left: 10%; width: 400px; height: 400px;
-    background: radial-gradient(circle, rgba(139, 92, 246, 0.1), transparent);
+    background: radial-gradient(circle, rgba(var(--secondary-rgb), 0.1), transparent);
     filter: blur(60px); border-radius: 50%; z-index: 0; pointer-events: none;
   }
 
   .section-divider {
     height: 1px;
-    background: linear-gradient(to right, transparent, rgba(0, 217, 255, 0.3), transparent);
+    background: linear-gradient(to right, transparent, rgba(var(--primary-rgb), 0.3), transparent);
   }
 
   .btn-primary {
-    background: linear-gradient(135deg, #00D9FF, #00C4E6);
+    background: linear-gradient(135deg, var(--primary), var(--primary-hover));
     color: #0a0a0a;
     transition: all 0.2s ease;
   }
-  .btn-primary:hover { transform: scale(1.02); box-shadow: 0 0 30px rgba(0, 217, 255, 0.15), 0 0 60px rgba(0, 217, 255, 0.08); }
+  .btn-primary:hover { transform: scale(1.02); box-shadow: 0 0 30px rgba(var(--primary-rgb), 0.15), 0 0 60px rgba(var(--primary-rgb), 0.08); }
   .btn-primary:active { transform: scale(0.98); }
 
   .btn-primary.btn-glow-loop {
-    background: linear-gradient(90deg, #00D9FF, #8B5CF6, #00C4E6, #00D9FF);
+    background: linear-gradient(90deg, var(--primary), var(--secondary), var(--primary-hover), var(--primary));
     background-size: 300% 100%;
     animation: gradient-loop 6s ease-in-out infinite;
   }
@@ -170,7 +183,7 @@
   }
 
   .gradient-text-loop {
-    background: linear-gradient(90deg, #00D9FF, #8B5CF6, #00C4E6, #00D9FF);
+    background: linear-gradient(90deg, var(--primary), var(--secondary), var(--primary-hover), var(--primary));
     background-size: 300% 100%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -184,10 +197,10 @@
     border: 1px solid rgba(255, 255, 255, 0.1);
     transition: all 0.2s ease;
   }
-  .btn-secondary:hover { border-color: #00D9FF; background: rgba(0, 217, 255, 0.1); transform: scale(1.02); }
+  .btn-secondary:hover { border-color: var(--primary); background: rgba(var(--primary-rgb), 0.1); transform: scale(1.02); }
 
   a:focus-visible, button:focus-visible {
-    outline: 2px solid #00D9FF;
+    outline: 2px solid var(--primary);
     outline-offset: 2px;
     border-radius: 4px;
   }
@@ -197,7 +210,7 @@
     top: -100%;
     left: 1rem;
     z-index: 100;
-    background: #00D9FF;
+    background: var(--primary);
     color: #0a0a0a;
     padding: 0.75rem 1.25rem;
     border-radius: 8px;
@@ -208,7 +221,7 @@
   .skip-link:focus { top: 1rem; }
 
   .card { transition: all 0.3s ease; }
-  .card:hover { transform: translateY(-4px); box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15), 0 4px 10px rgba(0, 0, 0, 0.12), 0 20px 40px rgba(0, 0, 0, 0.08); border-color: rgba(0, 217, 255, 0.3); }
+  .card:hover { transform: translateY(-4px); box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15), 0 4px 10px rgba(0, 0, 0, 0.12), 0 20px 40px rgba(0, 0, 0, 0.08); border-color: rgba(var(--primary-rgb), 0.3); }
 
   .hover-lift { transition: transform 0.3s ease, box-shadow 0.3s ease; }
   .hover-lift:hover { transform: translateY(-4px); box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15), 0 4px 10px rgba(0, 0, 0, 0.12), 0 20px 40px rgba(0, 0, 0, 0.08); }
