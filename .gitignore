@@ -1,3 +1,5 @@
 *.docx
 *.zip
 .superpowers/
+skill-observations/
+supabase/.temp/
