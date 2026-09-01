@@ -358,6 +358,7 @@
     box-shadow: var(--mat-structural-shadow), var(--mat-structural-inner);
   }
   #navbar.navbar-scrolled {
+    background: linear-gradient(var(--mat-structural-tint), var(--mat-structural-tint)), var(--mat-structural-bg) !important;
     box-shadow: 0 10px 34px rgba(0, 0, 0, 0.55), var(--mat-structural-inner);
   }
   #nav-mobile {
@@ -376,15 +377,18 @@
   }
 
   @media (prefers-reduced-transparency: reduce) {
-    #navbar, #nav-mobile {
-      background: rgba(10, 10, 10, 0.94);
+    #navbar,
+    #nav-mobile,
+    #navbar.navbar-scrolled {
+      background: rgba(10, 10, 10, 0.94) !important;
       -webkit-backdrop-filter: none;
       backdrop-filter: none;
     }
   }
   @media (prefers-contrast: more) {
-    #navbar {
-      background: rgba(8, 8, 8, 0.97);
+    #navbar,
+    #navbar.navbar-scrolled {
+      background: rgba(8, 8, 8, 0.97) !important;
       border-top-color: rgba(255, 255, 255, 0.5);
       -webkit-backdrop-filter: none;
       backdrop-filter: none;
