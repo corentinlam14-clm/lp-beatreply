@@ -90,6 +90,35 @@ const b = await chromium.launch();
   await p.close();
 }
 
+// ---- Task 5: glass buttons + cards ---------------------------------------------
+{
+  const p = await b.newPage({ viewport: { width: 1280, height: 900 } });
+  await p.goto(URL, { waitUntil: 'networkidle' });
+
+  const styles = await p.evaluate(() => {
+    const btn = document.querySelector('.btn-primary');
+    const card = document.querySelector('.glass-surface');
+    return {
+      btnBackdrop: btn && getComputedStyle(btn).backdropFilter,
+      cardBackdrop: card && getComputedStyle(card).backdropFilter,
+    };
+  });
+  ok('.btn-primary has a backdrop-filter', styles.btnBackdrop && styles.btnBackdrop !== 'none', styles.btnBackdrop);
+  ok('.glass-surface has a backdrop-filter (card weight)', styles.cardBackdrop && styles.cardBackdrop !== 'none', styles.cardBackdrop);
+
+  const sweepExists = await p.evaluate(() => {
+    for (const ss of document.styleSheets) {
+      let cr; try { cr = ss.cssRules; } catch (e) { continue; }
+      for (const r of cr) {
+        if (r.selectorText && /\.btn-primary::before/.test(r.selectorText)) return true;
+      }
+    }
+    return false;
+  });
+  ok('a ::before sweep rule targets .btn-primary', sweepExists);
+  await p.close();
+}
+
 await b.close();
 const wI = Math.max(...results.map(r => r.name.length));
 for (const r of results) console.log(`${r.pass ? 'PASS' : 'FAIL'}  ${r.name.padEnd(wI)}  ${r.detail}`);

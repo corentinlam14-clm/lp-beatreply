@@ -148,11 +148,12 @@
   }
 
   .glass-surface {
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    background: linear-gradient(var(--mat-card-tint), var(--mat-card-tint)), var(--mat-card-bg);
+    -webkit-backdrop-filter: blur(var(--mat-card-blur)) saturate(var(--mat-card-sat));
+    backdrop-filter: blur(var(--mat-card-blur)) saturate(var(--mat-card-sat));
+    border: 1px solid var(--mat-card-border);
+    border-top-color: var(--mat-card-edge);
+    box-shadow: var(--mat-card-shadow), var(--mat-card-inner);
   }
 
   .texture-grain { position: relative; }
@@ -196,7 +197,19 @@
   }
 
   .btn-primary {
-    background: linear-gradient(135deg, var(--primary), var(--primary-hover));
+    position: relative;
+    overflow: hidden;
+    /* Both gradient stops carry alpha (0.85) rather than being fully opaque — otherwise
+       the backdrop-filter blur below would have nothing to show through and would be
+       purely decorative CSS with no visible effect. 0.85 keeps the blue/magenta identity
+       clearly dominant while still letting a faint blur read through, per the spec's
+       "gradient visible through the translucency" requirement. */
+    background: linear-gradient(var(--mat-interactive-tint), var(--mat-interactive-tint)), linear-gradient(135deg, rgb(var(--primary-rgb) / 0.85), rgb(var(--primary-hover-rgb) / 0.85));
+    -webkit-backdrop-filter: blur(var(--mat-interactive-blur)) saturate(var(--mat-interactive-sat));
+    backdrop-filter: blur(var(--mat-interactive-blur)) saturate(var(--mat-interactive-sat));
+    border: 1px solid var(--mat-interactive-border);
+    border-top-color: var(--mat-interactive-edge);
+    box-shadow: var(--mat-interactive-shadow), var(--mat-interactive-inner);
     color: #0a0a0a;
     transition: all 0.2s ease;
   }
@@ -224,12 +237,25 @@
   }
 
   .btn-secondary {
-    background: transparent;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(var(--mat-interactive-tint), var(--mat-interactive-tint)), var(--mat-interactive-bg);
+    -webkit-backdrop-filter: blur(var(--mat-interactive-blur)) saturate(var(--mat-interactive-sat));
+    backdrop-filter: blur(var(--mat-interactive-blur)) saturate(var(--mat-interactive-sat));
     color: #ffffff;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--mat-interactive-border);
+    border-top-color: var(--mat-interactive-edge);
     transition: all 0.2s ease;
   }
   .btn-secondary:hover { border-color: var(--primary); background: rgb(var(--primary-rgb) / 0.1); transform: scale(1.02); }
+
+  .btn-primary::before, .btn-secondary::before {
+    content: ''; position: absolute; top: 0; left: -60%; width: 40%; height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255,255,255,0.35), transparent);
+    transform: skewX(-20deg);
+    transition: left 0.6s ease;
+  }
+  .btn-primary:hover::before, .btn-secondary:hover::before { left: 130%; }
 
   a:focus-visible, button:focus-visible {
     outline: 2px solid var(--primary);
@@ -299,6 +325,9 @@
     .btn-primary:hover,
     .btn-secondary:hover {
       transform: none !important;
+    }
+    .btn-primary::before, .btn-secondary::before {
+      transition: none !important;
     }
   }
 
