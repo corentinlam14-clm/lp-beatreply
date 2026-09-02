@@ -47,6 +47,17 @@ const b = await chromium.launch();
   await p.close();
 }
 
+// ---- Task 3: material tokens recolored -----------------------------------------
+{
+  const p = await b.newPage({ viewport: { width: 1280, height: 900 } });
+  await p.goto(URL, { waitUntil: 'networkidle' });
+  const tint = await p.evaluate(() =>
+    getComputedStyle(document.documentElement).getPropertyValue('--mat-structural-tint').trim()
+  );
+  ok('material tint is cool blue-violet, not warm orange', tint === 'rgba(90, 110, 255, 0.06)', tint);
+  await p.close();
+}
+
 await b.close();
 const wI = Math.max(...results.map(r => r.name.length));
 for (const r of results) console.log(`${r.pass ? 'PASS' : 'FAIL'}  ${r.name.padEnd(wI)}  ${r.detail}`);

@@ -290,30 +290,30 @@
 
   /* ===== Material token system (phase 1: defined; only `structural` applied) ===== */
   :root {
-    --mat-structural-bg:     rgba(12, 12, 14, 0.55);
-    --mat-structural-tint:   rgba(255, 190, 130, 0.06); /* warm veil = faux adaptive tint */
+    --mat-structural-bg:     var(--glass-bg);
+    --mat-structural-tint:   rgba(90, 110, 255, 0.06); /* cool blue-violet veil = faux adaptive tint */
     --mat-structural-blur:   24px;
     --mat-structural-sat:    160%;
-    --mat-structural-border: rgba(255, 255, 255, 0.06);
-    --mat-structural-edge:   rgba(255, 255, 255, 0.34); /* lensing: bright top arête */
+    --mat-structural-border: var(--hairline);
+    --mat-structural-edge:   var(--glass-border); /* lensing: bright top arête */
     --mat-structural-shadow: 0 8px 28px rgba(0, 0, 0, 0.45);
     --mat-structural-inner:  inset 0 1px 0 rgba(255, 255, 255, 0.22);
 
-    --mat-card-bg:     rgba(14, 14, 16, 0.5);
-    --mat-card-tint:   rgba(255, 190, 130, 0.04);
+    --mat-card-bg:     var(--glass-bg);
+    --mat-card-tint:   rgba(90, 110, 255, 0.04);
     --mat-card-blur:   16px;
     --mat-card-sat:    150%;
-    --mat-card-border: rgba(255, 255, 255, 0.05);
-    --mat-card-edge:   rgba(255, 255, 255, 0.22);
+    --mat-card-border: var(--hairline);
+    --mat-card-edge:   var(--glass-border);
     --mat-card-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
     --mat-card-inner:  inset 0 1px 0 rgba(255, 255, 255, 0.12);
 
-    --mat-interactive-bg:     rgba(255, 255, 255, 0.06);
-    --mat-interactive-tint:   rgba(255, 200, 140, 0.05);
+    --mat-interactive-bg:     var(--glass-bg);
+    --mat-interactive-tint:   rgba(90, 110, 255, 0.05);
     --mat-interactive-blur:   10px;
     --mat-interactive-sat:    140%;
-    --mat-interactive-border: rgba(255, 255, 255, 0.14);
-    --mat-interactive-edge:   rgba(255, 255, 255, 0.4);
+    --mat-interactive-border: var(--glass-border);
+    --mat-interactive-edge:   var(--glass-border);
     --mat-interactive-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
     --mat-interactive-inner:  inset 0 1px 0 rgba(255, 255, 255, 0.18);
   }
