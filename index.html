@@ -268,30 +268,6 @@
     }
   }
 
-  /* ===== Ambient background (phase 1) ===== */
-  #ambient-bg {
-    position: fixed;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-    pointer-events: none;
-    display: block;
-    background: #0a0a0a; /* shown before JS runs and when canvas is unsupported */
-  }
-  /* Lift the page's content above the fixed canvas WITHOUT changing layout.
-     #navbar (sticky, z-50) and .skip-link (absolute, z-100) already sit above a
-     z-index:0 element, so they are deliberately not listed here. */
-  #main-content,
-  body > footer {
-    position: relative;
-    z-index: 1;
-  }
-  /* Keep the existing film grain riding on top of the new canvas. */
-  .texture-grain::before {
-    z-index: 1;
-  }
-
   /* ===== Material token system (phase 1: defined; only `structural` applied) ===== */
   :root {
     --mat-structural-bg:     rgba(12, 12, 14, 0.55);
@@ -397,8 +373,6 @@
 </style>
 </head>
 <body class="bg-background text-text-primary antialiased texture-grain">
-
-<canvas id="ambient-bg" aria-hidden="true"></canvas>
 
 <a href="#main-content" class="skip-link">Aller au contenu principal</a>
 
@@ -799,7 +773,6 @@
 
 <script src="assets/js/catalog-demo.js"></script>
 <script src="assets/js/catalog-showcase.js"></script>
-<script src="assets/js/ambient-bg.js"></script>
 <script>
   // Navbar scroll state
   const navbar = document.getElementById('navbar');
@@ -835,11 +808,6 @@
   // Catalog showcase section
   if (window.BeatReplyCatalogShowcase) {
     window.BeatReplyCatalogShowcase.initCatalogShowcase();
-  }
-
-  // Ambient background
-  if (window.BeatReplyAmbientBg) {
-    window.BeatReplyAmbientBg.start();
   }
 </script>
 
