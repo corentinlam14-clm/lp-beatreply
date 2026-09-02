@@ -171,6 +171,84 @@ const b = await chromium.launch();
   await p.close();
 }
 
+// ---- Task 8: accessibility fallbacks + full regression --------------------------
+{
+  const p = await b.newPage({ viewport: { width: 1280, height: 900 } });
+  await p.goto(URL, { waitUntil: 'networkidle' });
+
+  // reduced transparency: buttons/cards go opaque, no blur
+  const rtRuleTargets = await p.evaluate(() => {
+    const found = { btn: false, card: false };
+    for (const ss of document.styleSheets) {
+      let cr; try { cr = ss.cssRules; } catch (e) { continue; }
+      for (const r of cr) {
+        if (r.type === CSSRule.MEDIA_RULE && /prefers-reduced-transparency:\s*reduce/.test(r.conditionText || r.media.mediaText)) {
+          if (/\.btn-primary/.test(r.cssText)) found.btn = true;
+          if (/\.glass-surface/.test(r.cssText)) found.card = true;
+        }
+      }
+    }
+    return found;
+  });
+  ok('prefers-reduced-transparency covers .btn-primary', rtRuleTargets.btn);
+  ok('prefers-reduced-transparency covers .glass-surface', rtRuleTargets.card);
+
+  await p.close();
+}
+
+// ---- Task 8: reduced motion — everything animated goes static -------------------
+{
+  const p = await b.newPage({ viewport: { width: 1280, height: 900 }, reducedMotion: 'reduce' });
+  await p.goto(URL, { waitUntil: 'networkidle' });
+  await p.waitForTimeout(300);
+
+  const sample = () => p.evaluate(() => ({
+    waveA: getComputedStyle(document.querySelector('.wave-loop-a')).transform,
+    marquee: getComputedStyle(document.querySelector('.marquee-track')).transform,
+    stat: getComputedStyle(document.querySelector('.hero-stat')).transform,
+  }));
+  const s1 = await sample();
+  await p.waitForTimeout(700);
+  const s2 = await sample();
+  ok('aurora is static under prefers-reduced-motion', s1.waveA === s2.waveA, `${s1.waveA} / ${s2.waveA}`);
+  ok('marquee is static under prefers-reduced-motion', s1.marquee === s2.marquee, `${s1.marquee} / ${s2.marquee}`);
+  ok('stat float is static under prefers-reduced-motion', s1.stat === s2.stat, `${s1.stat} / ${s2.stat}`);
+
+  const revealsVisible = await p.evaluate(() =>
+    Array.from(document.querySelectorAll('.scroll-reveal')).every(el => getComputedStyle(el).opacity === '1')
+  );
+  ok('all .scroll-reveal elements are visible under prefers-reduced-motion', revealsVisible);
+
+  await p.close();
+}
+
+// ---- Task 8: no-regression sweep over every remaining section -------------------
+{
+  const p = await b.newPage({ viewport: { width: 1280, height: 900 } });
+  await p.goto(URL, { waitUntil: 'networkidle' });
+
+  const sections = await p.evaluate(() => {
+    const ids = ['solutions', 'catalog-showcase', 'process', 'cta-final'];
+    return ids.map((id) => {
+      const el = document.getElementById(id);
+      return { id, height: el ? el.getBoundingClientRect().height : 0 };
+    });
+  });
+  for (const s of sections) {
+    ok(`#${s.id} renders with height > 40px`, s.height > 40, s.height);
+  }
+
+  for (const width of [390, 768, 1440]) {
+    const p2 = await b.newPage({ viewport: { width, height: 900 } });
+    await p2.goto(URL, { waitUntil: 'networkidle' });
+    const hasHScroll = await p2.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth + 1);
+    ok(`no horizontal scroll at ${width}px`, !hasHScroll);
+    await p2.close();
+  }
+
+  await p.close();
+}
+
 await b.close();
 const wI = Math.max(...results.map(r => r.name.length));
 for (const r of results) console.log(`${r.pass ? 'PASS' : 'FAIL'}  ${r.name.padEnd(wI)}  ${r.detail}`);
