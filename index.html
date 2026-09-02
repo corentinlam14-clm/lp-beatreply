@@ -18,7 +18,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800;900&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
@@ -31,24 +31,27 @@
           'primary-muted': 'var(--primary-muted)',
           secondary: 'rgb(var(--secondary-rgb) / <alpha-value>)',
           'secondary-hover': 'var(--secondary-hover)',
+          cyan: 'rgb(var(--cyan-rgb) / <alpha-value>)',
           accent: 'rgb(var(--primary-rgb) / <alpha-value>)',
           'accent-hover': 'var(--accent-hover)',
           'accent-muted': 'var(--accent-muted)',
-          background: '#0a0a0a',
-          surface: 'rgba(255, 255, 255, 0.03)',
-          'surface-elevated': 'rgba(255, 255, 255, 0.06)',
-          'text-primary': '#ffffff',
-          'text-secondary': 'rgba(255, 255, 255, 0.85)',
-          'text-muted': 'rgba(255, 255, 255, 0.6)',
-          'text-ghost': 'rgba(255, 255, 255, 0.5)',
-          'border-primary': 'rgba(255, 255, 255, 0.1)',
-          'border-subtle': 'rgba(255, 255, 255, 0.05)',
+          background: '#0A0A0F',
+          surface: '#121218',
+          'surface-elevated': '#191922',
+          'text-primary': '#F4F3F7',
+          'text-secondary': 'rgba(244, 243, 247, 0.85)',
+          'text-muted': '#8D8B9B',
+          'text-ghost': 'rgba(244, 243, 247, 0.5)',
+          'border-primary': 'rgba(244, 243, 247, 0.10)',
+          'border-subtle': 'rgba(244, 243, 247, 0.06)',
           success: '#10B981',
           error: '#EF4444',
           warning: '#F59E0B',
         },
         fontFamily: {
-          sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
+          sans: ['IBM Plex Sans', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
+          display: ['Unbounded', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+          mono: ['IBM Plex Mono', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace'],
         },
         fontSize: {
           display: ['4.5rem', { lineHeight: '1.1', letterSpacing: '-0.02em', fontWeight: '800' }],
@@ -89,20 +92,37 @@
 
 <style>
   :root {
-    --primary-rgb: 255 157 66;
+    --primary-rgb: 61 107 255;
     --primary: rgb(var(--primary-rgb));
-    --primary-hover: #F58B29;
-    --primary-muted: rgb(var(--primary-rgb) / 0.1);
-    --secondary-rgb: 201 123 36;
+    --primary-hover: #6689FF;
+    --primary-hover-rgb: 102 137 255; /* same color as a triplet, so Task 5 can carry alpha on it */
+    --primary-muted: rgb(var(--primary-rgb) / 0.12);
+    --secondary-rgb: 255 46 154;
     --secondary: rgb(var(--secondary-rgb));
-    --secondary-hover: #B36A1C;
-    --accent: rgb(var(--primary-rgb));
-    --accent-hover: #F58B29;
-    --accent-muted: rgb(var(--primary-rgb) / 0.15);
+    --secondary-hover: #FF5CB1;
+    --secondary-muted: rgb(var(--secondary-rgb) / 0.12);
+    --cyan-rgb: 142 217 255;
+    --cyan: rgb(var(--cyan-rgb));
+    --accent: var(--primary);
+    --accent-hover: var(--primary-hover);
+    --accent-muted: var(--primary-muted);
+    --hairline: rgba(244, 243, 247, 0.10);
+    --glass-bg: rgba(255, 255, 255, 0.055);
+    --glass-border: rgba(255, 255, 255, 0.14);
   }
 
-  html { background: #0a0a0a; scroll-behavior: smooth; }
-  body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; }
+  html { background: #0A0A0F; scroll-behavior: smooth; }
+  body { font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; }
+
+  h1, h2, h3, h4,
+  .gradient-text-loop.counter {
+    font-family: 'Unbounded', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+
+  #hero-demo [data-demo-track-cards] .text-caption,
+  #hero-demo .border-t.border-background\/20 {
+    font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
 
   .gradient-text {
     background: linear-gradient(135deg, var(--primary), var(--secondary));

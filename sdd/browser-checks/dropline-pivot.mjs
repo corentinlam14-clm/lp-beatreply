@@ -20,6 +20,33 @@ const b = await chromium.launch();
   await p.close();
 }
 
+// ---- Task 2: palette + fonts ---------------------------------------------------
+{
+  const p = await b.newPage({ viewport: { width: 1280, height: 900 } });
+  await p.goto(URL, { waitUntil: 'networkidle' });
+
+  const palette = await p.evaluate(() => {
+    const root = getComputedStyle(document.documentElement);
+    const h1 = document.querySelector('h1');
+    const body = document.body;
+    return {
+      htmlBg: getComputedStyle(document.documentElement).backgroundColor,
+      primaryRgb: root.getPropertyValue('--primary-rgb').trim(),
+      secondaryRgb: root.getPropertyValue('--secondary-rgb').trim(),
+      cyanRgb: root.getPropertyValue('--cyan-rgb').trim(),
+      h1Font: h1 && getComputedStyle(h1).fontFamily,
+      bodyFont: getComputedStyle(body).fontFamily,
+    };
+  });
+  ok('html background is the Dropline near-black', palette.htmlBg === 'rgb(10, 10, 15)', palette.htmlBg);
+  ok('--primary-rgb is the Dropline blue', palette.primaryRgb === '61 107 255', palette.primaryRgb);
+  ok('--secondary-rgb is the Dropline magenta', palette.secondaryRgb === '255 46 154', palette.secondaryRgb);
+  ok('--cyan-rgb is defined (Dropline pale cyan)', palette.cyanRgb === '142 217 255', palette.cyanRgb);
+  ok('h1 uses Unbounded', palette.h1Font && palette.h1Font.includes('Unbounded'), palette.h1Font);
+  ok('body uses IBM Plex Sans', palette.bodyFont && palette.bodyFont.includes('IBM Plex Sans'), palette.bodyFont);
+  await p.close();
+}
+
 await b.close();
 const wI = Math.max(...results.map(r => r.name.length));
 for (const r of results) console.log(`${r.pass ? 'PASS' : 'FAIL'}  ${r.name.padEnd(wI)}  ${r.detail}`);
