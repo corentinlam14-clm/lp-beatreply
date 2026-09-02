@@ -451,12 +451,30 @@
       -webkit-backdrop-filter: none;
       backdrop-filter: none;
     }
+    .btn-primary, .btn-secondary {
+      background: rgba(20, 20, 26, 0.98);
+      -webkit-backdrop-filter: none;
+      backdrop-filter: none;
+    }
+    .btn-primary::before, .btn-secondary::before {
+      display: none;
+    }
+    .glass-surface {
+      background: rgba(20, 20, 26, 0.98);
+      -webkit-backdrop-filter: none;
+      backdrop-filter: none;
+    }
   }
   @media (prefers-contrast: more) {
     #navbar,
     #navbar.navbar-scrolled {
       background: rgba(8, 8, 8, 0.97) !important;
       border-top-color: rgba(255, 255, 255, 0.5);
+      -webkit-backdrop-filter: none;
+      backdrop-filter: none;
+    }
+    .btn-primary, .btn-secondary, .glass-surface {
+      border-color: rgba(255, 255, 255, 0.5);
       -webkit-backdrop-filter: none;
       backdrop-filter: none;
     }
