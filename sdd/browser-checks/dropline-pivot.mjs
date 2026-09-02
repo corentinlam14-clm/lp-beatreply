@@ -119,6 +119,25 @@ const b = await chromium.launch();
   await p.close();
 }
 
+// ---- Task 6: scroll-driven reveals ----------------------------------------------
+{
+  const p = await b.newPage({ viewport: { width: 1280, height: 900 } });
+  await p.goto(URL, { waitUntil: 'networkidle' });
+
+  const usesViewTimeline = await p.evaluate(() => {
+    const el = document.querySelector('.scroll-reveal');
+    return el && getComputedStyle(el).animationTimeline !== 'auto' && getComputedStyle(el).animationTimeline !== 'normal';
+  });
+  ok('.scroll-reveal uses animation-timeline: view()', usesViewTimeline);
+
+  const noObserverScript = await p.evaluate(() => !window.IntersectionObserver || !document.querySelector('.scroll-reveal.is-visible'));
+  // is-visible is only ever added by the old IO script — its absence after a normal
+  // page load (no scrolling triggered) indicates the IO script no longer runs.
+  ok('no element carries the old IO-driven is-visible class on load', noObserverScript);
+
+  await p.close();
+}
+
 await b.close();
 const wI = Math.max(...results.map(r => r.name.length));
 for (const r of results) console.log(`${r.pass ? 'PASS' : 'FAIL'}  ${r.name.padEnd(wI)}  ${r.detail}`);
