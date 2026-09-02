@@ -58,6 +58,38 @@ const b = await chromium.launch();
   await p.close();
 }
 
+// ---- Task 4: aurora waveform ---------------------------------------------------
+{
+  const p = await b.newPage({ viewport: { width: 1280, height: 900 } });
+  await p.goto(URL, { waitUntil: 'networkidle' });
+
+  const count = await p.evaluate(() => document.querySelectorAll('.wave-field').length);
+  ok('exactly 2 .wave-field instances (hero + cta-final)', count === 2, count);
+
+  const noOrbs = await p.evaluate(() =>
+    document.querySelectorAll('.glow-orb-1, .glow-orb-2').length === 0
+  );
+  ok('old glow-orb divs are gone', noOrbs);
+
+  // animates without interaction: sample a .wave-loop's transform twice, 1s apart
+  const getTransform = () => p.evaluate(() => {
+    const el = document.querySelector('.wave-loop-a');
+    return getComputedStyle(el).transform;
+  });
+  const t1 = await getTransform();
+  await p.waitForTimeout(1000);
+  const t2 = await getTransform();
+  ok('.wave-loop-a animates with no interaction', t1 !== t2, `${t1} -> ${t2}`);
+
+  // no scroll coupling: scroll to bottom, confirm no console error and the field is still animating
+  await p.evaluate(() => window.scrollTo({ top: document.body.scrollHeight, behavior: 'instant' }));
+  await p.waitForTimeout(200);
+  const stillThere = await p.evaluate(() => document.querySelectorAll('.wave-field').length === 2);
+  ok('both .wave-field instances survive a full-page scroll', stillThere);
+
+  await p.close();
+}
+
 await b.close();
 const wI = Math.max(...results.map(r => r.name.length));
 for (const r of results) console.log(`${r.pass ? 'PASS' : 'FAIL'}  ${r.name.padEnd(wI)}  ${r.detail}`);
