@@ -138,6 +138,39 @@ const b = await chromium.launch();
   await p.close();
 }
 
+// ---- Task 7: floating stats + marquee -------------------------------------------
+{
+  const p = await b.newPage({ viewport: { width: 1280, height: 900 } });
+  await p.goto(URL, { waitUntil: 'networkidle' });
+
+  const statCount = await p.evaluate(() => document.querySelectorAll('.hero-stat').length);
+  ok('all 3 hero stats carry .hero-stat', statCount === 3, statCount);
+
+  const marquee = await p.evaluate(() => {
+    const band = document.querySelector('.marquee-band');
+    const track = document.querySelector('.marquee-track');
+    return {
+      hasBand: !!band,
+      ariaHidden: band && band.getAttribute('aria-hidden'),
+      itemCount: track ? track.querySelectorAll('span').length : 0,
+    };
+  });
+  ok('.marquee-band exists and is aria-hidden', marquee.hasBand && marquee.ariaHidden === 'true', JSON.stringify(marquee));
+  ok('.marquee-track content is duplicated for seamless looping (even, >= 16 spans)',
+     marquee.itemCount >= 16 && marquee.itemCount % 2 === 0, marquee.itemCount);
+
+  const getTransform = () => p.evaluate(() => {
+    const el = document.querySelector('.marquee-track');
+    return el ? getComputedStyle(el).transform : 'missing';
+  });
+  const m1 = await getTransform();
+  await p.waitForTimeout(1000);
+  const m2 = await getTransform();
+  ok('.marquee-track animates with no interaction', m1 !== m2 && m1 !== 'missing', `${m1} -> ${m2}`);
+
+  await p.close();
+}
+
 await b.close();
 const wI = Math.max(...results.map(r => r.name.length));
 for (const r of results) console.log(`${r.pass ? 'PASS' : 'FAIL'}  ${r.name.padEnd(wI)}  ${r.detail}`);

@@ -308,6 +308,24 @@
 
   .counter { font-variant-numeric: tabular-nums; }
 
+  .hero-stat { animation: statFloat 5s ease-in-out infinite; }
+  @keyframes statFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+
+  .marquee-band {
+    overflow: hidden; background: #121218;
+    border-top: 1px solid var(--hairline);
+    mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  }
+  .marquee-track {
+    display: flex; gap: 3rem; width: max-content;
+    padding: 1rem 0; white-space: nowrap;
+    font-family: 'IBM Plex Mono', monospace; font-size: 0.8rem; letter-spacing: 0.08em;
+    text-transform: uppercase; color: #8D8B9B;
+    animation: marqueeScroll 24s linear infinite;
+  }
+  @keyframes marqueeScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     .scroll-reveal {
@@ -324,7 +342,9 @@
     .btn-secondary,
     .gradient-text-loop,
     .wave-loop-a,
-    .wave-loop-b {
+    .wave-loop-b,
+    .hero-stat,
+    .marquee-track {
       animation: none !important;
       transition: opacity 0.2s ease !important;
     }
@@ -516,15 +536,15 @@
     </div>
 
     <div class="grid grid-cols-3 gap-4 sm:gap-8 max-w-2xl mx-auto mb-16">
-      <div>
+      <div class="hero-stat" style="animation-delay: 0s">
         <p class="text-h2 font-bold gradient-text-loop counter" style="animation-delay: 0s">3x</p>
         <p class="text-body-sm text-text-muted mt-1">plus de ventes</p>
       </div>
-      <div>
+      <div class="hero-stat" style="animation-delay: 0.5s">
         <p class="text-h2 font-bold gradient-text-loop counter" style="animation-delay: 0.7s">90%</p>
         <p class="text-body-sm text-text-muted mt-1">temps économisé</p>
       </div>
-      <div>
+      <div class="hero-stat" style="animation-delay: 1s">
         <p class="text-h2 font-bold gradient-text-loop counter" style="animation-delay: 1.4s">24/7</p>
         <p class="text-body-sm text-text-muted mt-1">ton IA vend pour toi</p>
       </div>
@@ -564,6 +584,16 @@
     </div>
   </div>
 </section>
+
+<!-- MARQUEE -->
+<div class="marquee-band" aria-hidden="true">
+  <div class="marquee-track">
+    <span>R&amp;B/Swag</span><span>West Coast</span><span>Trap</span><span>Drill</span>
+    <span>Boom Bap</span><span>Afro</span><span>Cloud</span><span>Detroit</span>
+    <span>R&amp;B/Swag</span><span>West Coast</span><span>Trap</span><span>Drill</span>
+    <span>Boom Bap</span><span>Afro</span><span>Cloud</span><span>Detroit</span>
+  </div>
+</div>
 
 <div class="section-divider max-w-wide mx-auto"></div>
 
