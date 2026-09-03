@@ -183,12 +183,16 @@ const b = await chromium.launch();
       let cr; try { cr = ss.cssRules; } catch (e) { continue; }
       for (const r of cr) {
         if (r.type === CSSRule.MEDIA_RULE && /prefers-reduced-transparency:\s*reduce/.test(r.conditionText || r.media.mediaText)) {
-          if (/\.btn-primary/.test(r.cssText)) {
-            found.btn = true;
-            if (/(?:^|[^-\w])color:\s*(?:#fff(?:fff)?\b|rgb\(\s*255\s*,\s*255\s*,\s*255\s*\))/i.test(r.cssText)) found.btnColor = true;
-            if (/background:[^;]*!important/.test(r.cssText)) found.btnImportant = true;
+          for (const inner of r.cssRules) {
+            if (inner.type !== CSSRule.STYLE_RULE) continue;
+            if (/\.btn-primary/.test(inner.selectorText)) {
+              found.btn = true;
+              const color = inner.style.getPropertyValue('color').trim();
+              if (/^(#fff(fff)?|rgb\(\s*255\s*,\s*255\s*,\s*255\s*\))$/i.test(color)) found.btnColor = true;
+              if (inner.style.getPropertyPriority('background') === 'important') found.btnImportant = true;
+            }
+            if (/\.glass-surface/.test(inner.selectorText)) found.card = true;
           }
-          if (/\.glass-surface/.test(r.cssText)) found.card = true;
         }
       }
     }
