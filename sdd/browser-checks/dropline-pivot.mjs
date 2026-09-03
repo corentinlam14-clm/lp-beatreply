@@ -206,6 +206,46 @@ const b = await chromium.launch();
   await p.close();
 }
 
+// ---- Regression check: computed (not just source) button text color under accessibility media states ----
+{
+  const p = await b.newPage({ viewport: { width: 1280, height: 900 } });
+  const cdp = await p.context().newCDPSession(p);
+  await cdp.send('Emulation.setEmulatedMedia', { features: [{ name: 'prefers-reduced-transparency', value: 'reduce' }] });
+  await p.goto(URL, { waitUntil: 'networkidle' });
+
+  const colors = await p.evaluate(() => {
+    const glow = document.querySelector('.btn-primary.btn-glow-loop');
+    const nav = document.querySelector('#navbar .btn-primary:not(.btn-glow-loop)');
+    return {
+      glow: glow ? getComputedStyle(glow).color : 'missing',
+      nav: nav ? getComputedStyle(nav).color : 'missing',
+    };
+  });
+  ok('glow-loop CTA computed color stays white under prefers-reduced-transparency', colors.glow === 'rgb(255, 255, 255)', colors.glow);
+  ok('plain nav .btn-primary computed color stays white under prefers-reduced-transparency', colors.nav === 'rgb(255, 255, 255)', colors.nav);
+
+  await p.close();
+}
+
+{
+  const p = await b.newPage({ viewport: { width: 1280, height: 900 } });
+  await p.emulateMedia({ contrast: 'more' });
+  await p.goto(URL, { waitUntil: 'networkidle' });
+
+  const colors = await p.evaluate(() => {
+    const glow = document.querySelector('.btn-primary.btn-glow-loop');
+    const nav = document.querySelector('#navbar .btn-primary:not(.btn-glow-loop)');
+    return {
+      glow: glow ? getComputedStyle(glow).color : 'missing',
+      nav: nav ? getComputedStyle(nav).color : 'missing',
+    };
+  });
+  ok('glow-loop CTA computed color stays white under prefers-contrast: more', colors.glow === 'rgb(255, 255, 255)', colors.glow);
+  ok('plain nav .btn-primary computed color stays white under prefers-contrast: more', colors.nav === 'rgb(255, 255, 255)', colors.nav);
+
+  await p.close();
+}
+
 // ---- Task 8: reduced motion — everything animated goes static -------------------
 {
   const p = await b.newPage({ viewport: { width: 1280, height: 900 }, reducedMotion: 'reduce' });
