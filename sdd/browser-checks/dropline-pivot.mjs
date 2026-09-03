@@ -178,12 +178,16 @@ const b = await chromium.launch();
 
   // reduced transparency: buttons/cards go opaque, no blur
   const rtRuleTargets = await p.evaluate(() => {
-    const found = { btn: false, card: false };
+    const found = { btn: false, card: false, btnColor: false, btnImportant: false };
     for (const ss of document.styleSheets) {
       let cr; try { cr = ss.cssRules; } catch (e) { continue; }
       for (const r of cr) {
         if (r.type === CSSRule.MEDIA_RULE && /prefers-reduced-transparency:\s*reduce/.test(r.conditionText || r.media.mediaText)) {
-          if (/\.btn-primary/.test(r.cssText)) found.btn = true;
+          if (/\.btn-primary/.test(r.cssText)) {
+            found.btn = true;
+            if (/(?:^|[^-\w])color:\s*(?:#fff(?:fff)?\b|rgb\(\s*255\s*,\s*255\s*,\s*255\s*\))/i.test(r.cssText)) found.btnColor = true;
+            if (/background:[^;]*!important/.test(r.cssText)) found.btnImportant = true;
+          }
           if (/\.glass-surface/.test(r.cssText)) found.card = true;
         }
       }
@@ -192,6 +196,8 @@ const b = await chromium.launch();
   });
   ok('prefers-reduced-transparency covers .btn-primary', rtRuleTargets.btn);
   ok('prefers-reduced-transparency covers .glass-surface', rtRuleTargets.card);
+  ok('prefers-reduced-transparency .btn-primary rule sets a readable text color', rtRuleTargets.btnColor);
+  ok('prefers-reduced-transparency .btn-primary background wins over .btn-glow-loop specificity (!important)', rtRuleTargets.btnImportant);
 
   await p.close();
 }
