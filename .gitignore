@@ -3,3 +3,6 @@
 .superpowers/
 skill-observations/
 supabase/.temp/
+
+# Dev-only Playwright harness symlink (machine-specific absolute path, never meant to be committed)
+sdd/browser-checks/node_modules
