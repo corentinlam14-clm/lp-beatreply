@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Politique de confidentialité — BeatReply</title>
+<meta name="description" content="Politique de confidentialité de BeatReply : données collectées, finalités, hébergement et droits RGPD.">
+<meta name="robots" content="noindex">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230a0a0a'/%3E%3Ctext x='16' y='23' font-family='Arial, sans-serif' font-weight='800' font-size='20' fill='%233D6BFF' text-anchor='middle'%3EB%3C/text%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700;800&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #0A0A0F;
+    --surface: #121218;
+    --text: #F4F3F7;
+    --text-secondary: rgba(244, 243, 247, 0.85);
+    --text-muted: #8D8B9B;
+    --border: rgba(244, 243, 247, 0.10);
+    --primary: #3D6BFF;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text-secondary);
+    font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.65;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 4rem 1.5rem 6rem; }
+  a { color: var(--primary); text-decoration: underline; }
+  .back { display: inline-block; margin-bottom: 2.5rem; font-size: 0.9rem; color: var(--text-muted); text-decoration: none; }
+  .back:hover { color: var(--text); }
+  h1 {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 800;
+    font-size: 2rem;
+    color: var(--text);
+    letter-spacing: -0.01em;
+    margin: 0 0 0.5rem;
+  }
+  .updated { color: var(--text-muted); font-size: 0.875rem; margin-bottom: 3rem; }
+  h2 {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 700;
+    font-size: 1.15rem;
+    color: var(--text);
+    margin: 2.75rem 0 1rem;
+    letter-spacing: -0.005em;
+  }
+  p, li { font-size: 0.975rem; }
+  ul { padding-left: 1.25rem; }
+  li { margin-bottom: 0.5rem; }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+    margin-top: 3rem;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="/lp-beatreply/">← Retour à BeatReply</a>
+
+  <h1>Politique de confidentialité</h1>
+  <p class="updated">Dernière mise à jour : 13 septembre 2026</p>
+
+  <p>BeatReply est un service d'automatisation des messages directs (DM) Instagram destiné aux producteurs de beats. Cette page explique quelles données sont collectées via ce service, pourquoi, et comment les faire supprimer.</p>
+
+  <h2>Qui édite ce service</h2>
+  <p>BeatReply est édité par Corentin Lamarlere. Pour toute question relative à vos données, contact : <a href="mailto:corentinlmrlr14@gmail.com">corentinlmrlr14@gmail.com</a>.</p>
+
+  <h2>Données collectées</h2>
+  <p>Selon que vous êtes un producteur de beats utilisant BeatReply ou une personne qui échange avec un compte Instagram connecté à BeatReply :</p>
+  <ul>
+    <li><strong>Producteur de beats (compte connecté)</strong> : identifiant et nom d'utilisateur Instagram, informations de profil professionnel Instagram (via l'API Meta), jetons d'accès nécessaires à l'envoi/réception de messages, adresse email de connexion.</li>
+    <li><strong>Personnes échangeant en DM avec un compte connecté</strong> : identifiant Instagram, contenu des messages échangés avec le bot, horodatage des échanges.</li>
+  </ul>
+
+  <h2>Finalité du traitement</h2>
+  <ul>
+    <li>Répondre automatiquement aux messages Instagram reçus par le producteur de beats connecté (qualification, réponses aux questions fréquentes, transmission des demandes de vente).</li>
+    <li>Permettre au producteur de beats de suivre ses conversations depuis son tableau de bord.</li>
+    <li>Assurer la sécurité et le bon fonctionnement du service (détection d'erreurs techniques).</li>
+  </ul>
+
+  <h2>Sous-traitants et hébergement</h2>
+  <p>Les données sont traitées par les prestataires suivants, dans le cadre strict des finalités ci-dessus :</p>
+  <ul>
+    <li><strong>Meta / Instagram (Graph API)</strong> — réception et envoi des messages Instagram.</li>
+    <li><strong>Supabase</strong> — hébergement de la base de données (comptes, conversations, messages).</li>
+    <li><strong>Vercel</strong> — hébergement de l'application web.</li>
+    <li><strong>Anthropic (Claude)</strong> — génération des réponses automatiques du bot à partir du contenu des messages.</li>
+    <li><strong>Sentry</strong> — supervision technique des erreurs applicatives (données techniques, pas le contenu des messages).</li>
+  </ul>
+
+  <h2>Durée de conservation</h2>
+  <p>Les conversations et messages sont conservés pendant la durée d'utilisation active du service par le producteur de beats concerné, puis supprimés sur demande ou après une période d'inactivité prolongée du compte.</p>
+
+  <h2>Vos droits</h2>
+  <p>Conformément au RGPD, vous disposez d'un droit d'accès, de rectification et de suppression de vos données. Pour l'exercer, écrivez à <a href="mailto:corentinlmrlr14@gmail.com">corentinlmrlr14@gmail.com</a> en précisant votre identifiant Instagram.</p>
+
+  <h2>Cookies</h2>
+  <p>BeatReply n'utilise aucun cookie de suivi ou publicitaire. Seuls des cookies strictement nécessaires au fonctionnement (session de connexion, protection CSRF) sont utilisés.</p>
+
+  <h2>Sécurité</h2>
+  <p>Les accès aux données sont restreints par des règles de sécurité au niveau de la base de données, les échanges sont chiffrés en transit (HTTPS), et les identifiants d'accès aux API tierces sont stockés de façon sécurisée et non exposés publiquement.</p>
+
+  <div class="card">
+    <p style="margin:0; font-size:0.875rem; color: var(--text-muted);">Ce document est amené à évoluer avec le service. Pour toute question, contactez-nous directement à l'adresse ci-dessus.</p>
+  </div>
+</div>
+</body>
+</html>
