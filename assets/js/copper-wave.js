@@ -1,18 +1,6 @@
 (function (root) {
   'use strict';
 
-  // Copper family, hardcoded to match the :root tokens in index.html
-  // (--primary, --primary-hover, --secondary) — same approach catalog-demo.js
-  // already used for its own data, kept consistent rather than reading
-  // computed CSS custom properties at runtime.
-  var STROKE_CORE = '#E87C3A';
-  var STROKE_HIGHLIGHT = '#FFD9AE';
-  var GLOW_COLOR = '#FFA568';
-  var IMPULSE_COLOR = '255, 197, 140';
-
-  var LINE_COUNT = 9;
-  var CENTER_LINE_INDEX = 4;
-
   function init(options) {
     options = options || {};
     var canvas = options.canvas;
@@ -26,42 +14,47 @@
     var ctx = canvas.getContext('2d');
     var reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-    var w = container.clientWidth || 1200;
-    var h = container.clientHeight || 700;
-    var time = 0;
-    var last = 0;
+    var w = 1200, h = 850, time = 0, last = 0;
     var paused = reduced.matches;
     var impulses = [];
-    var mx = 0.5, my = 0.5, px = 0.5, py = 0.5;
+    var mx = 0.7, my = 0.5, px = 0.7, py = 0.5;
 
     function resize() {
       w = container.clientWidth;
       h = container.clientHeight;
-      var density = Math.min(window.devicePixelRatio || 1, 1.5);
-      canvas.width = w * density;
-      canvas.height = h * density;
-      ctx.setTransform(density, 0, 0, density, 0, 0);
+      var d = Math.min(window.devicePixelRatio || 1, 1.5);
+      canvas.width = w * d;
+      canvas.height = h * d;
+      ctx.setTransform(d, 0, 0, d, 0, 0);
       draw();
     }
 
     function draw() {
       ctx.clearRect(0, 0, w, h);
-      ctx.globalCompositeOperation = 'screen';
+      ctx.fillStyle = '#0b0a09';
+      ctx.fillRect(0, 0, w, h);
 
-      for (var i = 0; i < LINE_COUNT; i++) {
+      var glow = ctx.createRadialGradient(w * 0.75, h * 0.6, 0, w * 0.75, h * 0.6, w * 0.7);
+      glow.addColorStop(0, '#8d421a35');
+      glow.addColorStop(1, '#0b0a0900');
+      ctx.fillStyle = glow;
+      ctx.fillRect(0, 0, w, h);
+
+      ctx.globalCompositeOperation = 'screen';
+      for (var i = 0; i < 11; i++) {
         var path = new Path2D();
-        for (var x = -10; x < w + 12; x += 6) {
+        for (var x = -10; x < w + 12; x += 5) {
           var u = x / w;
-          var y = h * 0.56 + (i - 4) * 11
-            + Math.sin(u * 7.2 - time * 0.5 + i * 0.12) * h * 0.16
-            + Math.sin(u * 12 + time * 0.3) * h * 0.03;
-          y += Math.exp(-Math.pow((u - px) * 4, 2)) * (py - 0.5) * 60;
+          var y = h * 0.64 + (i - 5) * 13
+            + Math.sin(u * 7.5 - time * 0.55 + i * 0.105) * h * 0.19
+            + Math.sin(u * 13 + time * 0.35) * h * 0.035;
+          y += Math.exp(-Math.pow((u - px) * 4, 2)) * (py - 0.5) * 70;
           for (var b = 0; b < impulses.length; b++) {
             var imp = impulses[b];
             var dist = Math.abs(u - imp.x);
-            y += Math.sin(dist * 22 - imp.age * 9)
-              * Math.exp(-imp.age * 1.4)
-              * Math.exp(-Math.pow((dist - imp.age * 0.2) * 5, 2)) * 48;
+            y += Math.sin(dist * 24 - imp.age * 10)
+              * Math.exp(-imp.age * 1.5)
+              * Math.exp(-Math.pow((dist - imp.age * 0.2) * 5, 2)) * 55;
           }
           if (x === -10) {
             path.moveTo(x, y);
@@ -69,56 +62,34 @@
             path.lineTo(x, y);
           }
         }
-
-        ctx.strokeStyle = STROKE_CORE;
-        ctx.shadowColor = GLOW_COLOR;
-        ctx.shadowBlur = 24;
-        ctx.lineWidth = 10;
-        ctx.globalAlpha = 0.14;
+        ctx.strokeStyle = '#e17e40';
+        ctx.shadowColor = '#ff863e';
+        ctx.shadowBlur = 22;
+        ctx.lineWidth = 9;
+        ctx.globalAlpha = 0.075;
         ctx.stroke(path);
 
         ctx.lineWidth = 3;
-        ctx.globalAlpha = 0.32;
+        ctx.globalAlpha = 0.2;
         ctx.stroke(path);
 
-        ctx.shadowBlur = 6;
-        ctx.lineWidth = i === CENTER_LINE_INDEX ? 2 : 1.3;
-        ctx.globalAlpha = i === CENTER_LINE_INDEX ? 1 : 0.55;
-        ctx.strokeStyle = STROKE_HIGHLIGHT;
+        ctx.shadowBlur = 5;
+        ctx.lineWidth = i === 5 ? 1.7 : 1;
+        ctx.globalAlpha = i === 5 ? 0.95 : 0.4;
+        ctx.strokeStyle = '#ffdab3';
         ctx.stroke(path);
       }
-
       ctx.globalAlpha = 1;
       ctx.shadowBlur = 0;
       for (var k = 0; k < impulses.length; k++) {
         var imp2 = impulses[k];
         ctx.beginPath();
-        ctx.ellipse(imp2.x * w, imp2.y * h, 10 + imp2.age * 140, 8 + imp2.age * 70, 0, 0, Math.PI * 2);
-        ctx.strokeStyle = 'rgba(' + IMPULSE_COLOR + ', ' + Math.max(0, 0.22 - imp2.age * 0.09) + ')';
+        ctx.ellipse(imp2.x * w, imp2.y * h, 10 + imp2.age * 150, 8 + imp2.age * 80, 0, 0, Math.PI * 2);
+        ctx.strokeStyle = 'rgba(255, 185, 126, ' + Math.max(0, 0.25 - imp2.age * 0.1) + ')';
         ctx.stroke();
       }
       ctx.globalCompositeOperation = 'source-over';
     }
-
-    function setPaused(value) {
-      paused = value;
-      if (pauseButton) {
-        pauseButton.setAttribute('aria-pressed', String(paused));
-        pauseButton.textContent = paused ? 'Animer le fond' : 'Mettre en pause';
-      }
-      if (paused) {
-        draw();
-      }
-    }
-
-    if (pauseButton) {
-      pauseButton.addEventListener('click', function () {
-        setPaused(!paused);
-      });
-    }
-    reduced.addEventListener('change', function (event) {
-      setPaused(event.matches);
-    });
 
     container.addEventListener('pointermove', function (event) {
       var rect = container.getBoundingClientRect();
@@ -142,6 +113,25 @@
       if (paused) {
         draw();
       }
+    });
+
+    function pauseLabel() {
+      if (!pauseButton) {
+        return;
+      }
+      pauseButton.textContent = paused ? 'Animer le fond' : 'Mettre en pause';
+      pauseButton.setAttribute('aria-pressed', String(paused));
+    }
+
+    if (pauseButton) {
+      pauseButton.addEventListener('click', function () {
+        paused = !paused;
+        pauseLabel();
+      });
+    }
+    reduced.addEventListener('change', function (event) {
+      paused = event.matches;
+      pauseLabel();
     });
 
     function frame(now) {
@@ -168,7 +158,7 @@
       window.addEventListener('resize', resize);
     }
     resize();
-    setPaused(paused);
+    pauseLabel();
     requestAnimationFrame(frame);
   }
 
