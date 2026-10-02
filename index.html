@@ -92,16 +92,17 @@
 
 <style>
   :root {
-    --primary-rgb: 61 107 255;
+    /* Copper/black identity (2026-10-02 pivot, supersedes the Sep 1 Dropline blue/magenta) */
+    --primary-rgb: 232 124 58;
     --primary: rgb(var(--primary-rgb));
-    --primary-hover: #6689FF;
-    --primary-hover-rgb: 102 137 255; /* same color as a triplet, so Task 5 can carry alpha on it */
+    --primary-hover: #FFA568;
+    --primary-hover-rgb: 255 165 104; /* same color as a triplet, so Task 5 can carry alpha on it */
     --primary-muted: rgb(var(--primary-rgb) / 0.12);
-    --secondary-rgb: 255 46 154;
+    --secondary-rgb: 245 185 134;
     --secondary: rgb(var(--secondary-rgb));
-    --secondary-hover: #FF5CB1;
+    --secondary-hover: #FFD4B0;
     --secondary-muted: rgb(var(--secondary-rgb) / 0.12);
-    --cyan-rgb: 142 217 255;
+    --cyan-rgb: 255 196 140;
     --cyan: rgb(var(--cyan-rgb));
     --accent: var(--primary);
     --accent-hover: var(--primary-hover);
@@ -118,11 +119,6 @@
   .gradient-text-loop.counter,
   .brand-wordmark {
     font-family: 'Unbounded', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  }
-
-  #hero-demo [data-demo-track-cards] .text-caption,
-  #hero-demo .border-t.border-background\/20 {
-    font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
   }
 
   .gradient-text {
@@ -177,19 +173,24 @@
     filter: blur(60px); border-radius: 50%; z-index: 0; pointer-events: none;
   }
 
-  .wave-field {
+  /* Copper wave: ambient canvas backdrop (hero only — drawn/animated in
+     assets/js/copper-wave.js), kept soft/blurred so it reads as atmosphere
+     behind the centered hero column rather than competing with it. */
+  .copper-wave {
     position: absolute; inset: 0; overflow: hidden;
-    filter: blur(58px) saturate(150%);
-    opacity: 0.55;
+    filter: blur(22px) saturate(140%);
+    opacity: 0.75;
     pointer-events: none;
     z-index: 0;
   }
-  .wave-loop { position: absolute; inset: -20% -10%; width: 120%; }
-  .wave-loop-a { animation: waveDrift 34s linear infinite; }
-  .wave-loop-b { animation: waveDrift 48s linear infinite reverse; }
-  @keyframes waveDrift {
-    from { transform: translateX(0); }
-    to   { transform: translateX(-400px); }
+  .copper-wave canvas { display: block; width: 100%; height: 100%; }
+
+  /* CTA final: same warm backdrop without a second animation loop. */
+  .copper-glow {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 50% 40%, rgb(var(--primary-rgb) / 0.16), transparent 72%);
+    pointer-events: none;
+    z-index: 0;
   }
 
   .section-divider {
@@ -211,7 +212,10 @@
     border: 1px solid var(--mat-interactive-border);
     border-top-color: var(--mat-interactive-edge);
     box-shadow: var(--mat-interactive-shadow), var(--mat-interactive-inner);
-    color: #ffffff;
+    /* Copper is a light accent (unlike the old blue) — white text on it fails
+       contrast at both gradient stops. Dark brown text, same move the mockup
+       made on its own copper CTA. */
+    color: #1C130B;
     transition: all 0.2s ease;
   }
   .btn-primary:hover { transform: scale(1.02); box-shadow: 0 0 30px rgb(var(--primary-rgb) / 0.15), 0 0 60px rgb(var(--primary-rgb) / 0.08); }
@@ -343,8 +347,6 @@
     .btn-primary,
     .btn-secondary,
     .gradient-text-loop,
-    .wave-loop-a,
-    .wave-loop-b,
     .hero-stat,
     .marquee-track {
       animation: none !important;
@@ -467,7 +469,7 @@
       -webkit-backdrop-filter: none;
       backdrop-filter: none;
     }
-    .wave-field {
+    .copper-wave {
       opacity: 0.2;
     }
   }
@@ -486,7 +488,7 @@
       -webkit-backdrop-filter: none;
       backdrop-filter: none;
     }
-    .wave-field {
+    .copper-wave {
       opacity: 0.2;
     }
   }
@@ -508,6 +510,7 @@
       <a href="#process" class="text-body-sm text-text-secondary hover:text-text-primary transition-colors">Process</a>
     </nav>
     <div class="flex items-center gap-3">
+      <span class="hidden xl:inline-block text-caption uppercase tracking-widest text-text-ghost">L’assistant IA du beatmaker</span>
       <a href="https://beatreply-dashboard.vercel.app/login" class="hidden sm:inline-flex btn-primary rounded-md px-6 py-3 text-body-sm font-semibold">
         Essai gratuit
       </a>
@@ -528,25 +531,13 @@
 <main id="main-content">
 
 <!-- HERO -->
-<section class="relative hero-gradient overflow-hidden">
-  <div class="wave-field" aria-hidden="true">
-    <svg class="wave-loop wave-loop-a" viewBox="0 0 1600 500" preserveAspectRatio="none">
-      <defs>
-        <linearGradient id="auroraGradHero" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0%"  stop-color="#FF2E9A"/>
-          <stop offset="50%" stop-color="#3D6BFF"/>
-          <stop offset="100%" stop-color="#8ED9FF"/>
-        </linearGradient>
-      </defs>
-      <path d="M0,250 C50,190 150,190 200,250 C250,310 350,310 400,250 C450,190 550,190 600,250 C650,310 750,310 800,250 C850,190 950,190 1000,250 C1050,310 1150,310 1200,250 C1250,190 1350,190 1400,250 C1450,310 1550,310 1600,250 L1600,500 L0,500 Z" fill="url(#auroraGradHero)"/>
-    </svg>
-    <svg class="wave-loop wave-loop-b" viewBox="0 0 1600 500" preserveAspectRatio="none">
-      <path d="M0,320 C50,270 150,270 200,320 C250,370 350,370 400,320 C450,270 550,270 600,320 C650,370 750,370 800,320 C850,270 950,270 1000,320 C1050,370 1150,370 1200,320 C1250,270 1350,270 1400,320 C1450,370 1550,370 1600,320 L1600,0 L0,0 Z" fill="url(#auroraGradHero)" opacity="0.6"/>
-    </svg>
+<section class="hero relative hero-gradient overflow-hidden">
+  <div class="copper-wave" aria-hidden="true">
+    <canvas id="copper-wave-canvas"></canvas>
   </div>
   <div class="relative z-10 max-w-wide mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-24 lg:pt-32 lg:pb-32 text-center">
     <span class="inline-flex items-center gap-2 rounded-full px-4 py-2 text-caption uppercase bg-primary-muted text-primary border border-primary/20 mb-8">
-      🎹 Automatisation IA pour producteurs de beats
+      🎹 L’assistant IA du beatmaker
     </span>
     <h1 class="text-[3rem] sm:text-display font-extrabold text-balance max-w-4xl mx-auto mb-6">
       <span class="gradient-text text-glow">L'IA qui vend tes beats</span><br>
@@ -580,36 +571,35 @@
     </div>
 
     <div class="relative max-w-4xl mx-auto image-treatment rounded-lg overflow-hidden border border-border-primary shadow-lg">
-      <div class="glass-surface p-6 sm:p-10 text-left" id="hero-demo">
-        <div class="flex items-center gap-2 mb-6">
-          <span class="w-3 h-3 rounded-full bg-error/60"></span>
-          <span class="w-3 h-3 rounded-full bg-warning/60"></span>
-          <span class="w-3 h-3 rounded-full bg-success/60"></span>
-          <span class="ml-4 text-caption text-text-ghost">BeatReply — Instagram DM</span>
+      <div class="grid sm:grid-cols-[260px_1fr] text-left" id="hero-demo">
+        <div class="glass-surface flex flex-row flex-wrap sm:flex-col sm:flex-nowrap gap-2 p-6 sm:border-r sm:border-border-subtle">
+          <p class="w-full text-caption uppercase text-text-ghost mb-1 sm:mb-2">Essaie un échange</p>
+          <button type="button" class="rounded-lg px-4 py-3 text-left text-body-sm bg-primary/10 text-text-primary" data-scenario="0" aria-pressed="true">Une question de tarif</button>
+          <button type="button" class="rounded-lg px-4 py-3 text-left text-body-sm text-text-secondary hover:bg-primary/10" data-scenario="1" aria-pressed="false">Une recherche de prod</button>
+          <button type="button" class="rounded-lg px-4 py-3 text-left text-body-sm text-text-secondary hover:bg-primary/10" data-scenario="2" aria-pressed="false">Une exclusivité</button>
+          <p class="w-full text-caption text-text-muted mt-2 sm:mt-6">Démonstration interactive.<br>Aucun message envoyé sur Instagram.</p>
         </div>
-
-        <div class="flex flex-wrap gap-2 mb-6" role="group" aria-label="Choisir un style de beat">
-          <button type="button" class="inline-flex items-center gap-2 rounded-full px-4 py-2 text-caption uppercase bg-primary-muted text-primary border border-primary/20" data-style="rnbswag" aria-pressed="false">R&amp;B/Swag</button>
-          <button type="button" class="inline-flex items-center gap-2 rounded-full px-4 py-2 text-caption uppercase border accent-gradient text-background" data-style="westcoast" aria-pressed="true">West Coast</button>
-          <button type="button" class="inline-flex items-center gap-2 rounded-full px-4 py-2 text-caption uppercase bg-primary-muted text-primary border border-primary/20" data-style="trap" aria-pressed="false">Trap</button>
-        </div>
-
-        <div class="space-y-4" aria-live="polite">
-          <div class="flex justify-start">
-            <div class="rounded-lg rounded-tl-none bg-surface-elevated px-4 py-3 max-w-sm text-body-sm text-text-secondary" data-demo-client-message>Yo t'as un type beat West Coast, tempo genre 100 ?</div>
-          </div>
-          <div class="flex justify-end">
-            <div class="rounded-lg rounded-tr-none accent-gradient px-4 py-3 max-w-sm text-body-sm text-background font-medium">
-              <p class="mb-3">Yes j'ai exactement ce qu'il te faut 🔥</p>
-              <div class="space-y-2 mb-3" data-demo-track-cards><div class="rounded-md bg-background/10 px-3 py-2"><p class="text-body-sm font-semibold">Hood</p><p class="text-caption text-background/70">98 BPM · F Min</p></div><div class="rounded-md bg-background/10 px-3 py-2"><p class="text-body-sm font-semibold">San Andreas</p><p class="text-caption text-background/70">99 BPM · G Min</p></div><div class="rounded-md bg-background/10 px-3 py-2"><p class="text-body-sm font-semibold">Cali</p><p class="text-caption text-background/70">103 BPM · D# Min</p></div></div>
-              <p class="text-caption mb-2" data-demo-count>21 prods disponibles en West Coast</p>
-              <div class="border-t border-background/20 pt-2 text-caption">
-                MP3 40&nbsp;€ · WAV 70&nbsp;€ · Stems 150&nbsp;€ · Exclu sur demande
-              </div>
+        <div class="glass-surface flex flex-col">
+          <div class="flex flex-wrap items-center justify-between gap-3 border-b border-border-subtle px-6 py-5">
+            <div>
+              <p class="text-body-sm font-semibold">@alex.west</p>
+              <p class="text-caption text-text-muted" id="hero-demo-status">L’assistant répond</p>
             </div>
+            <button type="button" id="hero-demo-take" class="btn-secondary rounded-md px-4 py-2 text-caption font-semibold">Prendre la main</button>
           </div>
+          <div class="flex min-h-[220px] flex-1 flex-col gap-4 px-6 py-6" id="hero-demo-messages" aria-live="polite"></div>
+          <form class="flex gap-2 border-t border-border-subtle px-6 py-4" id="hero-demo-composer">
+            <input id="hero-demo-input" aria-label="Message de démonstration" placeholder="Reprends la main pour répondre" disabled class="min-w-0 flex-1 rounded-md border border-border-primary bg-surface-elevated px-3 py-2 text-body-sm text-text-primary placeholder:text-text-ghost">
+            <button type="submit" id="hero-demo-send" disabled class="btn-primary rounded-md px-4 py-2 text-body-sm font-semibold disabled:opacity-40">Envoyer</button>
+          </form>
+          <p class="px-6 pb-4 text-caption text-text-muted" id="hero-demo-control">La prise en main suspend l’assistant uniquement dans cet échange.</p>
         </div>
       </div>
+    </div>
+
+    <div class="relative z-10 mt-8 flex flex-wrap items-center justify-center gap-3 text-caption text-text-ghost">
+      <span>Clique dans le fond pour créer une impulsion</span>
+      <button type="button" id="copper-wave-pause" aria-pressed="false" class="btn-secondary rounded-full px-4 py-1.5 text-caption">Mettre en pause</button>
     </div>
   </div>
 </section>
@@ -888,21 +878,7 @@
 
 <!-- CTA FINAL -->
 <section id="cta-final" class="relative hero-gradient overflow-hidden">
-  <div class="wave-field" aria-hidden="true">
-    <svg class="wave-loop wave-loop-a" viewBox="0 0 1600 500" preserveAspectRatio="none">
-      <defs>
-        <linearGradient id="auroraGradCta" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0%"  stop-color="#FF2E9A"/>
-          <stop offset="50%" stop-color="#3D6BFF"/>
-          <stop offset="100%" stop-color="#8ED9FF"/>
-        </linearGradient>
-      </defs>
-      <path d="M0,250 C50,190 150,190 200,250 C250,310 350,310 400,250 C450,190 550,190 600,250 C650,310 750,310 800,250 C850,190 950,190 1000,250 C1050,310 1150,310 1200,250 C1250,190 1350,190 1400,250 C1450,310 1550,310 1600,250 L1600,500 L0,500 Z" fill="url(#auroraGradCta)"/>
-    </svg>
-    <svg class="wave-loop wave-loop-b" viewBox="0 0 1600 500" preserveAspectRatio="none">
-      <path d="M0,320 C50,270 150,270 200,320 C250,370 350,370 400,320 C450,270 550,270 600,320 C650,370 750,370 800,320 C850,270 950,270 1000,320 C1050,370 1150,370 1200,320 C1250,270 1350,270 1400,320 C1450,370 1550,370 1600,320 L1600,0 L0,0 Z" fill="url(#auroraGradCta)" opacity="0.6"/>
-    </svg>
-  </div>
+  <div class="copper-glow" aria-hidden="true"></div>
   <div class="relative z-10 max-w-content mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24 text-center scroll-reveal">
     <h2 class="text-[2rem] sm:text-h2 font-semibold mb-4">Récupère ton temps créatif dès aujourd'hui</h2>
     <p class="text-body-lg text-text-secondary max-w-prose mx-auto mb-4">Chaque jour sans automatisation, c'est des ventes qui t'échappent. Lance ton IA en 10 minutes.</p>
@@ -932,7 +908,8 @@
   </div>
 </footer>
 
-<script src="assets/js/catalog-demo.js"></script>
+<script src="assets/js/copper-wave.js"></script>
+<script src="assets/js/hero-demo-chat.js"></script>
 <script src="assets/js/catalog-showcase.js"></script>
 <script>
   // Navbar scroll state
@@ -949,9 +926,18 @@
     navBurger.setAttribute('aria-expanded', String(!isHidden));
   });
 
-  // Interactive catalog demo
-  if (window.BeatReplyCatalogDemo) {
-    window.BeatReplyCatalogDemo.initCatalogDemo();
+  // Copper wave hero backdrop (mouse-reactive, click impulses, pause control)
+  if (window.BeatReplyCopperWave) {
+    window.BeatReplyCopperWave.init({
+      canvas: document.getElementById('copper-wave-canvas'),
+      container: document.querySelector('.hero'),
+      pauseButton: document.getElementById('copper-wave-pause'),
+    });
+  }
+
+  // Hero scenario-chat demo
+  if (window.BeatReplyHeroDemoChat) {
+    window.BeatReplyHeroDemoChat.initHeroDemoChat();
   }
 
   // Catalog showcase section
