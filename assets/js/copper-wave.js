@@ -12,6 +12,8 @@
     }
 
     var ctx = canvas.getContext('2d');
+    var bg = document.createElement('canvas');
+    var bgCtx = bg.getContext('2d');
     var reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
 
     var w = 1200, h = 850, time = 0, last = 0;
@@ -26,21 +28,33 @@
       canvas.width = w * d;
       canvas.height = h * d;
       ctx.setTransform(d, 0, 0, d, 0, 0);
+      bg.width = canvas.width;
+      bg.height = canvas.height;
+      bgCtx.setTransform(d, 0, 0, d, 0, 0);
+      paintBackground();
       draw();
     }
 
-    function draw() {
-      ctx.clearRect(0, 0, w, h);
-      ctx.fillStyle = '#0b0a09';
-      ctx.fillRect(0, 0, w, h);
+    // The base fill and radial glow never change, so they are painted once per
+    // resize and blitted each frame instead of being recreated every frame.
+    function paintBackground() {
+      bgCtx.fillStyle = '#0b0a09';
+      bgCtx.fillRect(0, 0, w, h);
 
-      var glow = ctx.createRadialGradient(w * 0.75, h * 0.6, 0, w * 0.75, h * 0.6, w * 0.7);
+      var glow = bgCtx.createRadialGradient(w * 0.75, h * 0.6, 0, w * 0.75, h * 0.6, w * 0.7);
       glow.addColorStop(0, '#8d421a35');
       glow.addColorStop(1, '#0b0a0900');
-      ctx.fillStyle = glow;
-      ctx.fillRect(0, 0, w, h);
+      bgCtx.fillStyle = glow;
+      bgCtx.fillRect(0, 0, w, h);
+    }
+
+    function draw() {
+      ctx.globalAlpha = 1;
+      ctx.globalCompositeOperation = 'source-over';
+      ctx.drawImage(bg, 0, 0, w, h);
 
       ctx.globalCompositeOperation = 'screen';
+      ctx.lineJoin = 'round';
       for (var i = 0; i < 11; i++) {
         var path = new Path2D();
         for (var x = -10; x < w + 12; x += 5) {
@@ -62,32 +76,23 @@
             path.lineTo(x, y);
           }
         }
-        ctx.strokeStyle = '#e17e40';
-        ctx.shadowColor = '#ff863e';
-        ctx.shadowBlur = 22;
-        ctx.lineWidth = 9;
-        ctx.globalAlpha = 0.075;
+        // Soft halo as two wide translucent strokes. shadowBlur on every line
+        // every frame was the main cost behind the stutter.
+        ctx.strokeStyle = '#ff863e';
+        ctx.lineWidth = 12;
+        ctx.globalAlpha = 0.05;
         ctx.stroke(path);
 
-        ctx.lineWidth = 3;
-        ctx.globalAlpha = 0.2;
+        ctx.lineWidth = 4;
+        ctx.globalAlpha = 0.14;
         ctx.stroke(path);
 
-        ctx.shadowBlur = 5;
+        ctx.strokeStyle = '#ffdab3';
         ctx.lineWidth = i === 5 ? 1.7 : 1;
         ctx.globalAlpha = i === 5 ? 0.95 : 0.4;
-        ctx.strokeStyle = '#ffdab3';
         ctx.stroke(path);
       }
       ctx.globalAlpha = 1;
-      ctx.shadowBlur = 0;
-      for (var k = 0; k < impulses.length; k++) {
-        var imp2 = impulses[k];
-        ctx.beginPath();
-        ctx.ellipse(imp2.x * w, imp2.y * h, 10 + imp2.age * 150, 8 + imp2.age * 80, 0, 0, Math.PI * 2);
-        ctx.strokeStyle = 'rgba(255, 185, 126, ' + Math.max(0, 0.25 - imp2.age * 0.1) + ')';
-        ctx.stroke();
-      }
       ctx.globalCompositeOperation = 'source-over';
     }
 
