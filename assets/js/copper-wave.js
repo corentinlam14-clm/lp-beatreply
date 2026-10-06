@@ -50,7 +50,17 @@
       bgCtx.fillRect(0, 0, w, h);
     }
 
+    // The wave drifts down slowly as the page scrolls, capped so it never
+    // leaves the viewport. Reduced motion keeps it still.
+    function scrollShift() {
+      if (reduced.matches) {
+        return 0;
+      }
+      return Math.min(window.scrollY * 0.25, h * 0.2);
+    }
+
     function draw() {
+      var baseY = h * 0.64 + scrollShift();
       ctx.globalAlpha = 1;
       ctx.globalCompositeOperation = 'source-over';
       ctx.drawImage(bg, 0, 0, w, h);
@@ -61,7 +71,7 @@
         var path = new Path2D();
         for (var x = -10; x < w + 12; x += 5) {
           var u = x / w;
-          var y = h * 0.64 + (i - 5) * 13
+          var y = baseY + (i - 5) * 13
             + Math.sin(u * 7.5 - time * 0.55 + i * 0.105) * h * 0.19 * (1 + level * 0.6)
             + Math.sin(u * 13 + time * 0.35) * h * 0.035;
           y += Math.exp(-Math.pow((u - px) * 4, 2)) * (py - 0.5) * 70;
@@ -98,19 +108,25 @@
       ctx.globalCompositeOperation = 'source-over';
     }
 
-    container.addEventListener('pointermove', function (event) {
-      var rect = container.getBoundingClientRect();
-      mx = (event.clientX - rect.left) / w;
-      my = (event.clientY - rect.top) / h;
+    // Listen on the window: the layer behind the page takes no pointer events,
+    // and the wave reacts wherever the visitor moves or clicks.
+    window.addEventListener('pointermove', function (event) {
+      mx = event.clientX / w;
+      my = event.clientY / h;
     });
 
-    container.addEventListener('click', function (event) {
-      if (event.target.closest('a, button')) {
+    window.addEventListener('click', function (event) {
+      if (event.target.closest && event.target.closest('a, button, input, textarea, select, label')) {
         return;
       }
-      var rect = container.getBoundingClientRect();
-      addImpulse((event.clientX - rect.left) / w, 1);
+      addImpulse(event.clientX / w, 1);
     });
+
+    window.addEventListener('scroll', function () {
+      if (paused) {
+        draw();
+      }
+    }, { passive: true });
 
     function addImpulse(x, strength) {
       impulses.push({
@@ -133,7 +149,7 @@
     function frame(now) {
       var dt = last ? Math.min((now - last) / 1000, 0.04) : 0;
       last = now;
-      if (!paused && document.visibilityState !== 'hidden' && container.getBoundingClientRect().bottom > 0) {
+      if (!paused && document.visibilityState !== 'hidden') {
         time += dt;
         px += (mx - px) * 0.04;
         py += (my - py) * 0.04;
