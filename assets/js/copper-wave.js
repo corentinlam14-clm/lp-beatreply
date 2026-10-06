@@ -5,7 +5,6 @@
     options = options || {};
     var canvas = options.canvas;
     var container = options.container;
-    var pauseButton = options.pauseButton;
 
     if (!canvas || !container || !canvas.getContext) {
       return;
@@ -127,23 +126,8 @@
       }
     }
 
-    function pauseLabel() {
-      if (!pauseButton) {
-        return;
-      }
-      pauseButton.textContent = paused ? 'Animer le fond' : 'Mettre en pause';
-      pauseButton.setAttribute('aria-pressed', String(paused));
-    }
-
-    if (pauseButton) {
-      pauseButton.addEventListener('click', function () {
-        paused = !paused;
-        pauseLabel();
-      });
-    }
     reduced.addEventListener('change', function (event) {
       paused = event.matches;
-      pauseLabel();
     });
 
     function frame(now) {
@@ -171,7 +155,6 @@
       window.addEventListener('resize', resize);
     }
     resize();
-    pauseLabel();
     requestAnimationFrame(frame);
 
     return {

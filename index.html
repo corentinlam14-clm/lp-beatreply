@@ -51,7 +51,6 @@ h1 em{font-style:normal;color:var(--copper)}
 .actions{display:flex;gap:13px;flex-wrap:wrap}
 .hero-bottom{position:absolute;bottom:24px;left:0;right:0;display:flex;justify-content:space-between;align-items:center;gap:15px;color:#b79c87;font-size:12px}
 .hero-bottom button{padding:7px 15px;font-size:12px}
-.hero-controls{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}
 .strip{border-block:1px solid var(--line);padding:24px 0}
 .strip .wrap{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;color:#ccbeb1;font-size:14px}
 .strip span:before{content:'✦';color:var(--copper);margin-right:12px}
@@ -176,10 +175,7 @@ footer nav a:hover{color:var(--copper)}
   </div>
   <div class="hero-bottom wrap">
     <span>Clique sur le fond. Fais résonner ton univers.</span>
-    <div class="hero-controls">
-      <button type="button" id="copper-music-toggle" aria-pressed="false">Activer le son</button>
-      <button type="button" id="copper-wave-pause" aria-pressed="false">Mettre en pause</button>
-    </div>
+    <button type="button" id="copper-music-toggle" aria-pressed="false">Activer le son</button>
   </div>
 </header>
 
@@ -308,7 +304,7 @@ footer nav a:hover{color:var(--copper)}
     </details>
     <details>
       <summary>Le fond animé utilise mon micro ?</summary>
-      <p>Non. Le mouvement est généré visuellement et réagit à tes clics. Il n’écoute aucun son. Tu peux mettre l’animation en pause en haut de page.</p>
+      <p>Non. Le micro n’est jamais utilisé. Le mouvement réagit à tes clics, et si tu actives le son en haut de page, il suit le rythme du morceau de démonstration. Aucun son n’est enregistré.</p>
     </details>
   </div>
 </section>
@@ -344,7 +340,6 @@ footer nav a:hover{color:var(--copper)}
     copperWave = window.BeatReplyCopperWave.init({
       canvas: document.getElementById('copper-wave-canvas'),
       container: document.querySelector('.hero'),
-      pauseButton: document.getElementById('copper-wave-pause'),
     });
   }
   if (window.BeatReplyMusicSync && copperWave) {
