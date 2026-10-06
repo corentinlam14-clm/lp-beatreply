@@ -50,17 +50,9 @@
       bgCtx.fillRect(0, 0, w, h);
     }
 
-    // The wave drifts down slowly as the page scrolls, capped so it never
-    // leaves the viewport. Reduced motion keeps it still.
-    function scrollShift() {
-      if (reduced.matches) {
-        return 0;
-      }
-      return Math.min(window.scrollY * 0.25, h * 0.2);
-    }
-
     function draw() {
-      var baseY = h * 0.64 + scrollShift();
+      // Fixed at the vertical centre of the viewport: it does not move on scroll.
+      var baseY = h * 0.5;
       ctx.globalAlpha = 1;
       ctx.globalCompositeOperation = 'source-over';
       ctx.drawImage(bg, 0, 0, w, h);
@@ -122,11 +114,6 @@
       addImpulse(event.clientX / w, 1);
     });
 
-    window.addEventListener('scroll', function () {
-      if (paused) {
-        draw();
-      }
-    }, { passive: true });
 
     function addImpulse(x, strength) {
       impulses.push({
