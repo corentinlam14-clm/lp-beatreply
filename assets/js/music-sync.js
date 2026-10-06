@@ -104,12 +104,16 @@
       if (reduced.matches) {
         wave.setLevel(0);
       } else {
-        wave.setLevel(Math.min(1, bass * 1.5));
+        // Kept low: a loud bass held the wave at full amplitude all the time.
+        wave.setLevel(bass * 0.3);
         if (bpm) {
           var index = Math.floor((audio.currentTime - offset) / (60 / bpm));
           if (index >= 0 && index !== gridIndex) {
             gridIndex = index;
-            wave.pulse(1);
+            // Every beat gets a faint nudge; every second beat (a half-note
+            // at 4/4) gets the larger move, so the wave breathes instead of
+            // reacting to every kick.
+            wave.pulse(index % 2 === 0 ? 0.5 : 0.2);
           }
         } else if (detectBeat(beatState, bass, now)) {
           wave.pulse(0.6 + bass * 0.8);
