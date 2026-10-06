@@ -20,7 +20,10 @@
 :root{--bg:#0b0a09;--text:#f6eee7;--muted:#b9ada2;--copper:#f5b986;--line:#302720}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:30px}
-body{margin:0;background:var(--bg);color:var(--text);font:16px/1.6 Arial,sans-serif}
+html{background:var(--bg)}
+body{margin:0;background:transparent;color:var(--text);font:16px/1.6 Arial,sans-serif}
+.wave-layer{position:fixed;inset:0;z-index:-1;pointer-events:none}
+.wave-layer canvas{display:block;width:100%;height:100%}
 a{color:inherit;text-decoration:none}
 button,input{font:inherit}
 button,a{-webkit-tap-highlight-color:transparent}
@@ -41,7 +44,6 @@ nav{padding:26px 0;display:flex;align-items:center;justify-content:space-between
 .navlinks a:hover{color:var(--copper)}
 .nav-actions{display:flex;gap:10px;align-items:center}
 .hero{position:relative;isolation:isolate;overflow:hidden;min-height:800px}
-.hero canvas{position:absolute;inset:0;width:100%;height:100%;z-index:-2}
 .hero:after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,#0b0a09aa,transparent 70%);z-index:-1;pointer-events:none}
 .hero-copy{padding:105px 0 175px;max-width:900px}
 .eyebrow{font-size:12px;letter-spacing:2.4px;text-transform:uppercase;color:var(--copper)}
@@ -145,11 +147,11 @@ footer nav a:hover{color:var(--copper)}
 </style>
 </head>
 <body>
+<div class="wave-layer" aria-hidden="true"><canvas id="copper-wave-canvas"></canvas></div>
 
 <a href="#main-content" class="skip-link">Aller au contenu principal</a>
 
 <header class="hero" id="accueil">
-  <canvas id="copper-wave-canvas" aria-label="Onde cuivrée animée, réactive au curseur"></canvas>
   <div class="wrap">
     <nav aria-label="Navigation principale">
       <a class="logo" href="#accueil"><span aria-hidden="true">∞</span>BeatReply</a>
@@ -339,7 +341,7 @@ footer nav a:hover{color:var(--copper)}
   if (window.BeatReplyCopperWave) {
     copperWave = window.BeatReplyCopperWave.init({
       canvas: document.getElementById('copper-wave-canvas'),
-      container: document.querySelector('.hero'),
+      container: document.querySelector('.wave-layer'),
     });
   }
   if (window.BeatReplyMusicSync && copperWave) {
