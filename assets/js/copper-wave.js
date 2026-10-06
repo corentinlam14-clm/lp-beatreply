@@ -20,6 +20,9 @@
     var paused = reduced.matches;
     var impulses = [];
     var mx = 0.7, my = 0.5, px = 0.7, py = 0.5;
+    // Driven by the music (see music-sync.js): level swells the wave's
+    // amplitude, pulses are kick impulses spawned at a random horizontal spot.
+    var level = 0, levelTarget = 0;
 
     function resize() {
       w = container.clientWidth;
@@ -60,7 +63,7 @@
         for (var x = -10; x < w + 12; x += 5) {
           var u = x / w;
           var y = h * 0.64 + (i - 5) * 13
-            + Math.sin(u * 7.5 - time * 0.55 + i * 0.105) * h * 0.19
+            + Math.sin(u * 7.5 - time * 0.55 + i * 0.105) * h * 0.19 * (1 + level * 0.6)
             + Math.sin(u * 13 + time * 0.35) * h * 0.035;
           y += Math.exp(-Math.pow((u - px) * 4, 2)) * (py - 0.5) * 70;
           for (var b = 0; b < impulses.length; b++) {
@@ -68,7 +71,7 @@
             var dist = Math.abs(u - imp.x);
             y += Math.sin(dist * 24 - imp.age * 10)
               * Math.exp(-imp.age * 1.5)
-              * Math.exp(-Math.pow((dist - imp.age * 0.2) * 5, 2)) * 55;
+              * Math.exp(-Math.pow((dist - imp.age * 0.2) * 5, 2)) * 55 * imp.strength;
           }
           if (x === -10) {
             path.moveTo(x, y);
@@ -107,10 +110,14 @@
         return;
       }
       var rect = container.getBoundingClientRect();
+      addImpulse((event.clientX - rect.left) / w, 1);
+    });
+
+    function addImpulse(x, strength) {
       impulses.push({
-        x: (event.clientX - rect.left) / w,
-        y: (event.clientY - rect.top) / h,
+        x: x,
         age: 0,
+        strength: strength,
       });
       if (impulses.length > 5) {
         impulses.shift();
@@ -118,7 +125,7 @@
       if (paused) {
         draw();
       }
-    });
+    }
 
     function pauseLabel() {
       if (!pauseButton) {
@@ -146,6 +153,7 @@
         time += dt;
         px += (mx - px) * 0.04;
         py += (my - py) * 0.04;
+        level += (levelTarget - level) * 0.2;
         for (var i = 0; i < impulses.length; i++) {
           impulses[i].age += dt;
         }
@@ -165,6 +173,15 @@
     resize();
     pauseLabel();
     requestAnimationFrame(frame);
+
+    return {
+      pulse: function (strength) {
+        addImpulse(0.15 + Math.random() * 0.7, strength);
+      },
+      setLevel: function (value) {
+        levelTarget = Math.max(0, Math.min(1, value));
+      },
+    };
   }
 
   var api = { init: init };
