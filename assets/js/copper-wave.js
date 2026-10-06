@@ -50,6 +50,10 @@
       bgCtx.fillRect(0, 0, w, h);
     }
 
+    function smooth(t) {
+      return t * t * (3 - 2 * t);
+    }
+
     function draw() {
       // Fixed at the vertical centre of the viewport: it does not move on scroll.
       var baseY = h * 0.5;
@@ -61,6 +65,7 @@
       ctx.lineJoin = 'round';
       for (var i = 0; i < 11; i++) {
         var path = new Path2D();
+        var points = [];
         for (var x = -10; x < w + 12; x += 5) {
           var u = x / w;
           var y = baseY + (i - 5) * 13
@@ -70,16 +75,25 @@
           for (var b = 0; b < impulses.length; b++) {
             var imp = impulses[b];
             var dist = Math.abs(u - imp.x);
-            y += Math.sin(dist * 24 - imp.age * 10)
+            // Eased in over the first moments so a click swells instead of
+            // snapping to full height.
+            var ease = smooth(Math.min(1, imp.age / 0.4));
+            y += Math.sin(dist * 14 - imp.age * 8)
               * Math.exp(-imp.age * 1.5)
-              * Math.exp(-Math.pow((dist - imp.age * 0.2) * 5, 2)) * 55 * imp.strength;
+              * Math.exp(-Math.pow((dist - imp.age * 0.2) * 3.5, 2)) * 55 * imp.strength * ease;
           }
-          if (x === -10) {
-            path.moveTo(x, y);
-          } else {
-            path.lineTo(x, y);
-          }
+          points.push([x, y]);
         }
+        // Joins the samples with curves through their midpoints, so the line
+        // has no corners between samples.
+        path.moveTo(points[0][0], points[0][1]);
+        for (var k = 1; k < points.length - 1; k++) {
+          var mx2 = (points[k][0] + points[k + 1][0]) / 2;
+          var my2 = (points[k][1] + points[k + 1][1]) / 2;
+          path.quadraticCurveTo(points[k][0], points[k][1], mx2, my2);
+        }
+        var last = points[points.length - 1];
+        path.lineTo(last[0], last[1]);
         // Soft halo as two wide translucent strokes. shadowBlur on every line
         // every frame was the main cost behind the stutter.
         ctx.strokeStyle = '#ff863e';
