@@ -157,21 +157,10 @@
       }
     });
 
-    // Sound stops with the tab and resumes when the visitor comes back, as
-    // long as they had switched it on.
-    document.addEventListener('visibilitychange', function () {
-      if (document.visibilityState === 'hidden' && playing) {
-        playing = false;
-        cancelAnimationFrame(frameId);
-        audio.pause();
-        wave.setLevel(0);
-      } else if (document.visibilityState === 'visible' && wanted && !playing) {
-        audio.play().then(function () {
-          playing = true;
-          frameId = requestAnimationFrame(loop);
-        }).catch(function () {});
-      }
-    });
+    // No visibility handler on purpose: the sound keeps playing when the
+    // visitor switches tab. Browsers pause the animation loop in a hidden
+    // tab, which is harmless: kicks are placed from audio.currentTime, so
+    // the wave catches up on the next visible frame.
 
     setLabel();
   }
