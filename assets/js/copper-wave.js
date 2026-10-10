@@ -19,9 +19,6 @@
     var paused = reduced.matches;
     var impulses = [];
     var mx = 0.7, my = 0.5, px = 0.7, py = 0.5;
-    // Driven by the music (see music-sync.js): level swells the wave's
-    // amplitude, pulses are kick impulses spawned at a random horizontal spot.
-    var level = 0, levelTarget = 0;
 
     function resize() {
       w = container.clientWidth;
@@ -69,7 +66,7 @@
         for (var x = -10; x < w + 12; x += 5) {
           var u = x / w;
           var y = baseY + (i - 5) * 13
-            + Math.sin(u * 7.5 - time * 0.55 + i * 0.105) * h * 0.19 * (1 + level * 0.6)
+            + Math.sin(u * 7.5 - time * 0.55 + i * 0.105) * h * 0.19
             + Math.sin(u * 13 + time * 0.35) * h * 0.035;
           y += Math.exp(-Math.pow((u - px) * 4, 2)) * (py - 0.5) * 70;
           for (var b = 0; b < impulses.length; b++) {
@@ -154,7 +151,6 @@
         time += dt;
         px += (mx - px) * 0.04;
         py += (my - py) * 0.04;
-        level += (levelTarget - level) * 0.2;
         for (var i = 0; i < impulses.length; i++) {
           impulses[i].age += dt;
         }
@@ -174,14 +170,6 @@
     resize();
     requestAnimationFrame(frame);
 
-    return {
-      pulse: function (strength) {
-        addImpulse(0.15 + Math.random() * 0.7, strength);
-      },
-      setLevel: function (value) {
-        levelTarget = Math.max(0, Math.min(1, value));
-      },
-    };
   }
 
   var api = { init: init };
