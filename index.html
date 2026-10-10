@@ -332,24 +332,21 @@ footer nav a:hover{color:var(--copper)}
   </div>
 </footer>
 
-<script src="assets/js/copper-wave.js?v=4"></script>
-<script src="assets/js/music-sync.js?v=4"></script>
+<script src="assets/js/copper-wave.js?v=5"></script>
+<script src="assets/js/music-toggle.js?v=5"></script>
 <script src="assets/js/hero-demo-chat.js"></script>
 <script src="assets/js/tone-preview.js"></script>
 <script>
-  var copperWave = null;
   if (window.BeatReplyCopperWave) {
-    copperWave = window.BeatReplyCopperWave.init({
+    window.BeatReplyCopperWave.init({
       canvas: document.getElementById('copper-wave-canvas'),
       container: document.querySelector('.wave-layer'),
     });
   }
-  if (window.BeatReplyMusicSync && copperWave) {
-    window.BeatReplyMusicSync.init({
+  if (window.BeatReplyMusicToggle) {
+    window.BeatReplyMusicToggle.init({
       src: 'assets/audio/beat.mp3',
-      bpm: 98,
       button: document.getElementById('copper-music-toggle'),
-      wave: copperWave,
     });
   }
   if (window.BeatReplyHeroDemoChat) {
