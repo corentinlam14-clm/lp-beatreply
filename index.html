@@ -38,6 +38,8 @@ button:hover:not(:disabled),.button:hover{background:#4b3020;transform:translate
 .skip-link{position:absolute;top:-100%;left:1rem;z-index:100;background:var(--copper);color:#24170e;padding:.75rem 1.25rem;border-radius:8px;font-weight:700;font-size:.875rem;transition:top .2s ease}
 .skip-link:focus{top:1rem}
 nav{padding:26px 0;display:flex;align-items:center;justify-content:space-between;gap:25px;position:relative;z-index:2}
+.brand{display:flex;align-items:center;gap:18px}
+.brand button{padding:7px 15px;font-size:12px}
 .logo{font-size:24px;font-weight:600;letter-spacing:-1px}
 .logo span{font-size:34px;vertical-align:-3px;color:var(--copper);margin-right:8px}
 .navlinks{display:flex;gap:28px;font-size:14px;color:#c0b5ac}
@@ -52,7 +54,6 @@ h1 em{font-style:normal;color:var(--copper)}
 .lead{color:#c9bcb0;font-size:18px;max-width:520px;margin:28px 0 32px}
 .actions{display:flex;gap:13px;flex-wrap:wrap}
 .hero-bottom{position:absolute;bottom:24px;left:0;right:0;display:flex;justify-content:space-between;align-items:center;gap:15px;color:#b79c87;font-size:12px}
-.hero-bottom button{padding:7px 15px;font-size:12px}
 .strip{border-block:1px solid var(--line);padding:24px 0}
 .strip .wrap{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;color:#ccbeb1;font-size:14px}
 .strip span:before{content:'✦';color:var(--copper);margin-right:12px}
@@ -125,6 +126,7 @@ footer nav a:hover{color:var(--copper)}
 }
 @media(max-width:520px){
   .logo{font-size:20px}
+  .brand{flex-direction:column;align-items:flex-start;gap:8px}
   .hero-copy{padding-top:70px}
   .hero{min-height:750px}
   .hero-bottom span{max-width:210px}
@@ -154,7 +156,10 @@ footer nav a:hover{color:var(--copper)}
 <header class="hero" id="accueil">
   <div class="wrap">
     <nav aria-label="Navigation principale">
-      <a class="logo" href="#accueil"><span aria-hidden="true">∞</span>BeatReply</a>
+      <div class="brand">
+        <a class="logo" href="#accueil"><span aria-hidden="true">∞</span>BeatReply</a>
+        <button type="button" id="copper-music-toggle" aria-pressed="false">Activer le son</button>
+      </div>
       <div class="navlinks">
         <a href="#assistant">L’assistant</a>
         <a href="#personnalite">Ton style</a>
@@ -177,7 +182,6 @@ footer nav a:hover{color:var(--copper)}
   </div>
   <div class="hero-bottom wrap">
     <span>Clique sur le fond. Fais résonner ton univers.</span>
-    <button type="button" id="copper-music-toggle" aria-pressed="false">Activer le son</button>
   </div>
 </header>
 
