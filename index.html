@@ -353,6 +353,21 @@ footer nav a:hover{color:var(--copper)}
       button: document.getElementById('copper-music-toggle'),
     });
   }
+  // Close the FAQ whenever the visitor leaves the page or switches tab, so it
+  // is folded again on return (including pages restored from the back-forward cache).
+  (function () {
+    function closeFaq() {
+      document.querySelectorAll('#questions details').forEach(function (item) {
+        item.open = false;
+      });
+    }
+    document.addEventListener('visibilitychange', function () {
+      if (document.visibilityState === 'hidden') {
+        closeFaq();
+      }
+    });
+    window.addEventListener('pagehide', closeFaq);
+  })();
   if (window.BeatReplyHeroDemoChat) {
     window.BeatReplyHeroDemoChat.initHeroDemoChat();
   }
