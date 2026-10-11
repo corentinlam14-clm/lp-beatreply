@@ -1,0 +1,10 @@
+{
+  "name": "lp-beatreply",
+  "private": true,
+  "scripts": {
+    "shot": "node scripts/shot.mjs"
+  },
+  "devDependencies": {
+    "playwright": "~1.63.0"
+  }
+}
