@@ -45,6 +45,7 @@ nav{padding:26px 0;display:flex;align-items:center;justify-content:space-between
 .navlinks{display:flex;gap:28px;font-size:14px;color:#c0b5ac}
 .navlinks a:hover{color:var(--copper)}
 .nav-actions{display:flex;gap:10px;align-items:center}
+.nav-prix{display:none}
 .hero{position:relative;isolation:isolate;overflow:hidden;min-height:800px}
 .hero:after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,#0b0a09aa,transparent 70%);z-index:-1;pointer-events:none}
 .hero-copy{padding:105px 0 175px;max-width:900px}
@@ -110,6 +111,7 @@ footer nav a:hover{color:var(--copper)}
 @media(max-width:800px){
   .wrap{width:calc(100% - 40px)}
   .navlinks,.nav-demo{display:none}
+  .nav-prix{display:inline-flex}
   .hero{min-height:740px}
   .hero-copy{padding-top:95px}
   h1{letter-spacing:-2px}
@@ -163,9 +165,11 @@ footer nav a:hover{color:var(--copper)}
       <div class="navlinks">
         <a href="#assistant">L’assistant</a>
         <a href="#personnalite">Ton style</a>
+        <a href="tarifs.html">Prix</a>
         <a href="#questions">Questions</a>
       </div>
       <div class="nav-actions">
+        <a class="button nav-prix" href="tarifs.html">Prix</a>
         <a class="button nav-demo" href="#demo">Voir la démo</a>
         <a class="button primary" href="https://beatreply-dashboard.vercel.app/login">Dashboard</a>
       </div>
