@@ -5,8 +5,8 @@
 En comparant la landing page à un concurrent (dmforme.com, "How it works"), une relecture du texte actuel de la section Process ([index.html:604-630](../../../index.html#L604)) a révélé trois écarts, plus deux instances des deux mêmes écarts repérées ensuite dans la section Solutions entre ce qui est écrit et ce que le produit fait réellement aujourd'hui :
 
 1. **Étape 1** promet Instagram, WhatsApp et "ton site" comme canaux connectables — seul Instagram est développé (`app/api/instagram/*` dans `beatreply-dashboard`). Le texte multi-canal date de la création initiale de la landing, avant que le périmètre ne se limite à Instagram.
-2. **Étape 2** affirme que l'IA "s'entraîne... sur ta façon de parler pour sonner exactement comme toi" — le bot a aujourd'hui un ton unique et fixe, codé en dur dans `buildSystemPrompt` (`beatreply-dashboard/lib/ai/respond.ts`). La personnalisation par beatmaker existe comme idée (mockup ChatGPT de le partenaire : presets Chill/Pro/Énergique/Mon propre style + curseurs longueur/langage + toggles), mais rien n'est construit.
-3. **Étape 3** affirme que l'IA "relance en continu" — aucune fonctionnalité de relance/follow-up automatique dans le code (vérifié par recherche dans `beatreply-dashboard/app` et `lib`). La relance automatique est listée comme feature Premium future dans le modèle de pricing de le partenaire, pas construite.
+2. **Étape 2** affirme que l'IA "s'entraîne... sur ta façon de parler pour sonner exactement comme toi" — le bot a aujourd'hui un ton unique et fixe, codé en dur dans `buildSystemPrompt` (`beatreply-dashboard/lib/ai/respond.ts`). La personnalisation par beatmaker existe comme idée (mockup ChatGPT du beatmaker partenaire : presets Chill/Pro/Énergique/Mon propre style + curseurs longueur/langage + toggles), mais rien n'est construit.
+3. **Étape 3** affirme que l'IA "relance en continu" — aucune fonctionnalité de relance/follow-up automatique dans le code (vérifié par recherche dans `beatreply-dashboard/app` et `lib`). La relance automatique est listée comme feature Premium future dans le modèle de pricing du beatmaker partenaire, pas construite.
 
 Décision de Corentin sur le traitement de ces deux idées non construites : la **personnalisation du bot n'est pas une fonctionnalité secondaire ni "premium"** — c'est une idée centrale du produit, qui va être construite directement (pas un "peut-être un jour"). La **relance automatique**, elle, reste correctement positionnée comme une évolution future liée à l'offre payante — mais sans nommer "Premium" publiquement puisque le modèle de tarification (Standard/Premium) n'est pas encore verrouillé (voir mémoire `beatreply-pricing-model`).
 
@@ -24,7 +24,7 @@ Corriger le texte des 3 étapes pour qu'il reste fidèle à ce qui existe aujour
 
 **Explicitement hors scope (décidé pendant le brainstorming) :**
 - Pas de visuel/mockup/capture d'écran par étape — reporté (palette de marque en cours de réflexion, voir mémoire `beatreply-brand-color-pivot` ; dashboard pas encore assez rempli en données réelles pour de vraies captures pertinentes)
-- Pas de changement de palette de couleurs (reste cyan/violet actuel — le pivot noir/orange-doré évoqué par le partenaire n'est pas encore acté)
+- Pas de changement de palette de couleurs (reste cyan/violet actuel — le pivot noir/orange-doré évoqué par le beatmaker partenaire n'est pas encore acté)
 - Pas de refonte du vrai flow d'onboarding fonctionnel (connexion Instagram réelle, prérequis Page Facebook) — c'est un chantier produit séparé, cette section reste au niveau marketing/conceptuel
 - Le mot "Premium" n'apparaît pas publiquement (tarification non verrouillée)
 
@@ -49,13 +49,13 @@ Corriger le texte des 3 étapes pour qu'il reste fidèle à ce qui existe aujour
 
 ## Suite
 
-Les visuels par étape (captures réelles ou mockups) restent un sujet ouvert, à reprendre soit après la session le partenaire (quand le dashboard aura de vraies conversations à montrer), soit après que le pivot de palette noir/orange-doré soit tranché — pour éviter de construire un visuel à refaire deux fois. Voir mémoire `beatreply-auth-design-debt` et `beatreply-brand-color-pivot`.
+Les visuels par étape (captures réelles ou mockups) restent un sujet ouvert, à reprendre soit après la session avec le beatmaker partenaire (quand le dashboard aura de vraies conversations à montrer), soit après que le pivot de palette noir/orange-doré soit tranché — pour éviter de construire un visuel à refaire deux fois. Voir mémoire `beatreply-auth-design-debt` et `beatreply-brand-color-pivot`.
 
-Le sujet "liquid glass" et les animations (mentionnés par le partenaire) restent un brainstorming séparé, non traité ici.
+Le sujet "liquid glass" et les animations (mentionnés par le beatmaker partenaire) restent un brainstorming séparé, non traité ici.
 
 ## Révision 2026-08-24 (après mise en ligne)
 
-En revoyant la page en ligne, Corentin a décidé de retirer la mention publique "✨ Bientôt : les relances automatiques" — aussi bien dans Process (étape 3) que dans la carte Solutions correspondante — le temps de trancher avec le partenaire si "suivi & relance" fait partie du plan Standard ou Premium (voir mémoire `beatreply-pricing-model`). L'idée reste documentée en interne, plus affichée publiquement.
+En revoyant la page en ligne, Corentin a décidé de retirer la mention publique "✨ Bientôt : les relances automatiques" — aussi bien dans Process (étape 3) que dans la carte Solutions correspondante — le temps de trancher avec le beatmaker partenaire si "suivi & relance" fait partie du plan Standard ou Premium (voir mémoire `beatreply-pricing-model`). L'idée reste documentée en interne, plus affichée publiquement.
 
 La carte Solutions "Suivi & relance" ([index.html:486-487](../../../index.html#L486)) a été remplacée par un différenciateur déjà construit : **"Elle conclut, tu négocies"** — *"Vente au prix standard ? Elle la conclut seule. Dès qu'un client veut négocier, elle te transfère direct la conversation."* (reflète `beatreply-dashboard/lib/ai/respond.ts`'s escalation logic, voir mémoire `beatreply-product-vision`).
 

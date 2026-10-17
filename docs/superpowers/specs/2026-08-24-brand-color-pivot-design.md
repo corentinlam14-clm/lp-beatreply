@@ -2,9 +2,9 @@
 
 ## Contexte
 
-le partenaire (le beatmaker partenaire) souhaite que l'identité visuelle de BeatReply passe du cyan/violet néon actuel à un noir + orange/doré. Cette décision était déjà notée en mémoire (`beatreply-brand-color-pivot`) sans être scopée ni implémentée.
+Le beatmaker partenaire souhaite que l'identité visuelle de BeatReply passe du cyan/violet néon actuel à un noir + orange/doré. Cette décision était déjà notée en mémoire (`beatreply-brand-color-pivot`) sans être scopée ni implémentée.
 
-le partenaire a ensuite envoyé un concept de logo généré (symbole infini ∞, dégradé orange chaud → doré sur fond noir, métaphore de la "boucle d'échange" question/réponse). Ce logo introduit deux sujets distincts :
+Il a ensuite envoyé un concept de logo généré (symbole infini ∞, dégradé orange chaud → doré sur fond noir, métaphore de la "boucle d'échange" question/réponse). Ce logo introduit deux sujets distincts :
 1. Une direction couleur concrète (orange chaud → doré), utilisée ici comme référence pour choisir les codes hex.
 2. Un asset logo réel + un wordmark "Beat Reply" en deux mots (vs "BeatReply" actuel) — **explicitement hors scope**, chantier séparé, en attendant le vrai fichier (SVG) plutôt qu'une capture d'écran compressée.
 
@@ -12,7 +12,7 @@ Le fond est déjà quasi noir (`#0a0a0a`) des deux côtés du projet (landing + 
 
 ## Objectif
 
-Remplacer la palette cyan/violet par orange/doré sur la landing page (`lp-beatreply`), en refactorant au passage les couleurs dupliquées en dur vers des variables CSS — pour que le prochain ajustement de teinte (ex: une fois le vrai fichier logo de le partenaire disponible) soit un changement de 2 lignes plutôt qu'un nouveau sweep complet du fichier.
+Remplacer la palette cyan/violet par orange/doré sur la landing page (`lp-beatreply`), en refactorant au passage les couleurs dupliquées en dur vers des variables CSS — pour que le prochain ajustement de teinte (ex: une fois le vrai fichier logo du beatmaker partenaire disponible) soit un changement de 2 lignes plutôt qu'un nouveau sweep complet du fichier.
 
 ## Périmètre
 
@@ -22,9 +22,9 @@ Remplacer la palette cyan/violet par orange/doré sur la landing page (`lp-beatr
 - `~/CLAUDE.md` — section "Guidelines Images" (palette d'ambiance) mise à jour pour refléter noir + orange/doré au lieu de cyan/violet
 
 **Explicitement hors scope :**
-- Le dashboard (`beatreply-dashboard`) — même palette actuellement (`--color-primary`/`--color-secondary` dans `globals.css`), mais chantier séparé décidé par Corentin (moins risqué de commencer par la landing, pas de risque de casser l'app que le partenaire utilise activement)
-- Le nouveau logo (asset SVG/PNG + wordmark "Beat Reply" à deux mots vs "BeatReply" à un mot) — Corentin veut le vrai fichier de le partenaire avant d'y toucher
-- "Liquid glass" et animations mentionnés par le partenaire — brainstorming séparé, non traité ici
+- Le dashboard (`beatreply-dashboard`) — même palette actuellement (`--color-primary`/`--color-secondary` dans `globals.css`), mais chantier séparé décidé par Corentin (moins risqué de commencer par la landing, pas de risque de casser l'app que le beatmaker partenaire utilise activement)
+- Le nouveau logo (asset SVG/PNG + wordmark "Beat Reply" à deux mots vs "BeatReply" à un mot) — Corentin veut le vrai fichier du beatmaker partenaire avant d'y toucher
+- "Liquid glass" et animations mentionnés par le beatmaker partenaire — brainstorming séparé, non traité ici
 
 ## Palette finale
 
@@ -38,7 +38,7 @@ Remplacer la palette cyan/violet par orange/doré sur la landing page (`lp-beatr
 | `--primary-rgb` (nouveau) | — | `255, 157, 66` |
 | `--secondary-rgb` (nouveau) | — | `201, 123, 36` |
 
-Valeurs orange/doré estimées à l'œil sur la capture du logo de le partenaire (pas de fichier source exact) — à raffiner plus tard si besoin, une fois ce chantier de refactor en place, ce sera un changement de 2 lignes.
+Valeurs orange/doré estimées à l'œil sur la capture de son logo (pas de fichier source exact) — à raffiner plus tard si besoin, une fois ce chantier de refactor en place, ce sera un changement de 2 lignes.
 
 Toutes les autres couleurs (`background`, `surface`, `text-*`, `border-*`, `success`, `error`, `warning`) restent inchangées — elles ne font pas partie du pivot cyan/violet → orange/doré.
 
@@ -94,6 +94,6 @@ Les classes Tailwind générées (`text-primary`, `bg-primary`, `border-primary`
 
 ## Suite
 
-Une fois ce refactor en place, l'ajustement futur des teintes exactes (si le partenaire fournit le fichier logo réel avec des valeurs précises) se limite à modifier les 7 valeurs du bloc `:root` — voir mémoire `beatreply-brand-color-pivot`.
+Une fois ce refactor en place, l'ajustement futur des teintes exactes (si le beatmaker partenaire fournit le fichier logo réel avec des valeurs précises) se limite à modifier les 7 valeurs du bloc `:root` — voir mémoire `beatreply-brand-color-pivot`.
 
 Le dashboard (`beatreply-dashboard`), le logo/wordmark, et le "liquid glass"/animations restent des chantiers séparés, non planifiés ici.

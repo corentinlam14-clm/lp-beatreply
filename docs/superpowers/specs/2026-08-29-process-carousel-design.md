@@ -6,7 +6,7 @@
 
 ## 1. Goal
 
-Replace the static "Comment ça marche" / Process section (5 phone-shaped step cards, currently static per the 2026-08-24 mockup) with an animated, interactive carousel that matches the partner's reference: cards rotate on interaction, ghost neighbors imply depth, and a "magic" animated background sits behind everything — reinterpreted here as a waveform, since it fits BeatReply's beatmaking identity far better than generic particle effects.
+Replace the static "Comment ça marche" / Process section (5 phone-shaped step cards, currently static per the 2026-08-24 mockup) with an animated, interactive carousel that matches the partner beatmaker's reference: cards rotate on interaction, ghost neighbors imply depth, and a "magic" animated background sits behind everything — reinterpreted here as a waveform, since it fits BeatReply's beatmaking identity far better than generic particle effects.
 
 ## 2. Scope
 
@@ -16,7 +16,7 @@ Replace the static "Comment ça marche" / Process section (5 phone-shaped step c
 - Site-wide liquid-glass treatment on other sections of the landing page
 - Hover/click particle-burst micro-interactions elsewhere on the site
 - The Hero section's animated 3D background object
-- The animated logo (`liquid-logo`) — blocked on a real logo asset from le partenaire/Claude Design
+- The animated logo (`liquid-logo`) — blocked on a real logo asset from the partner beatmaker / Claude Design
 
 ## 3. Tech stack
 
@@ -58,10 +58,10 @@ Each card's glass surface hosts its own step content (icon/number + title), same
 
 ## 6. Carousel structure & navigation
 
-5 steps, unchanged from the partner's original mockup: **1. Connecter Instagram, 2. Ajouter ton catalogue, 3. Tarifs & licences, 4. Personnaliser ton agent, 5. C'est prêt !**
+5 steps, unchanged from the partner beatmaker's original mockup: **1. Connecter Instagram, 2. Ajouter ton catalogue, 3. Tarifs & licences, 4. Personnaliser ton agent, 5. C'est prêt !**
 
 - Circular/infinite loop — no dead end at step 1 or step 5.
-- Rotate via hover and via left/right arrow controls (both, per the partner's original spec).
+- Rotate via hover and via left/right arrow controls (both, per the partner beatmaker's original spec).
 - Enter/exit motion should follow the same path in both directions (a card advancing right should retreat left the same way, not via a different path) — general spatial-consistency principle, not yet reduced to exact values.
 
 **Not decided yet — implementation-phase detail, not a brainstorming decision:** exact spring/easing parameters for the rotation transition itself. Default to a critically-damped spring (no overshoot) for the base rotation, matching this project's general motion approach; reserve any bounce/overshoot only if the interaction itself carries momentum (e.g., a fast drag/flick, if that's added later) — resolve exact values during planning/implementation, not here.
