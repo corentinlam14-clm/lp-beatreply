@@ -110,6 +110,48 @@ footer{padding:25px 0;border-top:1px solid var(--line);color:#a79281;font-size:1
 footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
 footer nav{padding:0;gap:16px;display:flex}
 footer nav a:hover{color:var(--copper)}
+/* Prix */
+h2 em{font-style:normal;color:var(--copper)}
+#tarifs .lead{margin:0 0 50px;max-width:560px}
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch}
+.card{border:1px solid #4c3727;border-radius:20px;padding:30px;background:linear-gradient(145deg,#17130f,#11100e);position:relative;display:flex;flex-direction:column}
+.card.featured{border-color:#b27a52;background:radial-gradient(ellipse at 100% 0,#7a4a2c33,transparent 65%),#17130f;box-shadow:0 0 90px #b16a2418}
+.plan-tag{font-size:12px;letter-spacing:1.6px;text-transform:uppercase;color:#bca28c}
+.badge{position:absolute;right:22px;top:24px;background:var(--copper);color:#24170e;border-radius:20px;font-size:11px;padding:5px 11px;font-weight:700}
+.card h3{font-size:28px;letter-spacing:-.8px;font-weight:500;margin:16px 0 8px}
+.desc{color:var(--muted);font-size:14px;margin:0;min-height:68px}
+.price{font-size:42px;letter-spacing:-1.8px;margin:18px 0 22px}
+.price small{font-size:14px;letter-spacing:0;color:var(--muted)}
+.card .button,.card button{width:100%}
+.divider{height:1px;background:var(--line);margin:26px 0 20px}
+.include{font-size:12px;letter-spacing:1px;text-transform:uppercase;color:#bca28c;margin-bottom:14px}
+.list{padding:0;margin:0;list-style:none;display:grid;gap:12px;font-size:14px}
+.list li{padding-left:24px;position:relative}
+.list li:before{content:'✓';position:absolute;left:0;color:var(--copper)}
+.soon{font-size:10px;white-space:nowrap;border:1px solid #75604f;color:#e7bc99;border-radius:5px;padding:2px 6px;margin-left:4px}
+.note{font-size:12px;color:#a79281;margin:20px 0 0}
+.under{text-align:center;color:#a79281;font-size:13px;margin:26px 0 0}
+.compare{margin-top:90px}
+.compare h3{font-size:clamp(26px,3vw,36px);line-height:1.15;letter-spacing:-1.2px;font-weight:500;margin:17px 0 25px}
+.table-shell{overflow-x:auto;border:1px solid #4c3727;border-radius:18px;background:#11100e}
+table{border-collapse:collapse;width:100%;min-width:700px;text-align:left;font-size:14px}
+th,td{padding:18px 22px;border-bottom:1px solid var(--line)}
+thead th{background:#17130f;font-size:13px;font-weight:600;color:var(--text)}
+thead th.hl{color:var(--copper)}
+td:not(:first-child),th:not(:first-child){text-align:center}
+td:first-child{color:#d9cfc6}
+tbody tr:last-child td{border-bottom:0}
+.sub{display:block;font-size:12px;color:#a79281;margin-top:4px;max-width:340px}
+.yes{color:var(--copper)}
+.no{color:#6f625a}
+@media(max-width:900px){
+  .plans{grid-template-columns:1fr;max-width:520px;margin:auto}
+  .desc{min-height:0}
+  .compare{margin-top:60px}
+}
+@media(max-width:520px){
+  .card{padding:24px}
+}
 @media(max-width:800px){
   .wrap{width:calc(100% - 40px)}
   .topbar{padding:0 20px}
@@ -168,11 +210,11 @@ footer nav a:hover{color:var(--copper)}
       <div class="navlinks">
         <a href="#assistant">L’assistant</a>
         <a href="#personnalite">Ton style</a>
-        <a href="tarifs.html">Prix</a>
+        <a href="#tarifs">Prix</a>
         <a href="#questions">Questions</a>
       </div>
       <div class="nav-actions">
-        <a class="button nav-prix" href="tarifs.html">Prix</a>
+        <a class="button nav-prix" href="#tarifs">Prix</a>
         <a class="button nav-demo" href="#demo">Voir la démo</a>
         <a class="button primary" href="https://beatreply-dashboard.vercel.app/login">Dashboard</a>
       </div>
@@ -298,6 +340,110 @@ footer nav a:hover{color:var(--copper)}
       <li>Connecte Instagram depuis les paramètres de ton dashboard.</li>
     </ol>
     <p class="note">* Une page Facebook est distincte de ton profil personnel. C'est elle qui se relie à ton compte Instagram. Sans page Facebook liée, BeatReply ne peut pas lire tes messages. C'est l'étape la plus souvent oubliée.</p>
+  </div>
+</section>
+
+<section class="content" id="tarifs">
+  <div class="wrap">
+    <div class="eyebrow">Les prix</div>
+    <h2>Moins de DM à gérer.<br><em>Plus de temps pour créer.</em></h2>
+    <p class="lead">Commence par l’essai gratuit, puis choisis la formule qui suit ton rythme. Pas de limite sur le nombre de conversations que l’assistant gère.</p>
+
+    <div class="plans" id="offres">
+      <article class="card">
+        <span class="plan-tag">Pour découvrir</span>
+        <h3>Essai gratuit</h3>
+        <p class="desc">Deux semaines pour voir BeatReply à l’œuvre dans tes DM.</p>
+        <div class="price">0 € <small>/ 14 jours</small></div>
+        <a class="button primary" href="https://beatreply-dashboard.vercel.app/login">Démarre ton essai gratuit</a>
+        <div class="divider"></div>
+        <div class="include">Pour faire tes premiers pas</div>
+        <ul class="list">
+          <li>5 discussions au total pendant l’essai</li>
+          <li>Assistant IA de la formule Standard</li>
+          <li>Statistique « conversations gérées »</li>
+          <li>Statistique « temps gagné »</li>
+        </ul>
+        <p class="note">L’essai prend fin au bout de 14 jours.</p>
+      </article>
+
+      <article class="card">
+        <span class="plan-tag">L’essentiel</span>
+        <h3>Standard</h3>
+        <p class="desc">L’essentiel pour que l’assistant tienne tes DM et que tu suives ton activité.</p>
+        <div class="price">19,99 € <small>/ mois</small></div>
+        <button type="button" disabled>Bientôt disponible</button>
+        <div class="divider"></div>
+        <div class="include">Ce qui est inclus</div>
+        <ul class="list">
+          <li>Assistant IA qui répond à tes DM</li>
+          <li>Conversations illimitées</li>
+          <li>2 relances automatiques par mois</li>
+          <li>Statistique « conversations gérées »</li>
+          <li>Statistique « temps gagné »</li>
+        </ul>
+        <p class="note">Les relances non utilisées s’ajoutent au mois suivant.</p>
+      </article>
+
+      <article class="card featured">
+        <span class="badge">Le plus complet</span>
+        <span class="plan-tag">Aller plus loin</span>
+        <h3>Premium</h3>
+        <p class="desc">Un assistant plus poussé pour prospecter, échanger en profondeur et comprendre précisément chaque demande.</p>
+        <div class="price">29,99 € <small>/ mois</small></div>
+        <button type="button" disabled>Bientôt disponible</button>
+        <div class="divider"></div>
+        <div class="include">Tout Standard, et plus encore</div>
+        <ul class="list">
+          <li>Tout ce qui est inclus en Standard</li>
+          <li>Prospection plus poussée</li>
+          <li>Échanges plus approfondis</li>
+          <li>Compréhension plus précise des demandes</li>
+          <li>Reconnaît la prod exacte d’un reel que l’acheteur te partage</li>
+          <li>15 relances automatiques par mois</li>
+          <li>Suivi des ventes conclues</li>
+          <li>Acheteurs qui attendent ta réponse</li>
+          <li>Prods et styles les plus demandés</li>
+          <li>Analyse des demandes récurrentes</li>
+          <li>Bilan des relances</li>
+          <li>Alerte quand un artiste à 10 000 abonnés ou plus t’écrit <span class="soon">Envisagé</span></li>
+        </ul>
+        <p class="note">Les relances non utilisées s’ajoutent au mois suivant. L’alerte artiste est envisagée, pas encore incluse.</p>
+      </article>
+    </div>
+    <p class="under">Standard et Premium ouvriront après l’essai. Les prix sont mensuels, sans engagement annoncé à ce stade.</p>
+
+
+    <div class="compare" id="comparatif">
+      <div class="eyebrow">À chaque besoin, sa formule</div>
+      <h3>Les différences, en un coup d’œil.</h3>
+      <div class="table-shell">
+        <table>
+          <thead>
+            <tr><th scope="col">Fonctionnalités</th><th scope="col">Essai gratuit</th><th scope="col">Standard</th><th scope="col" class="hl">Premium</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Prix</td><td>Gratuit</td><td>19,99 €/mois</td><td>29,99 €/mois</td></tr>
+            <tr><td>Durée</td><td>14 jours</td><td>Mensuel</td><td>Mensuel</td></tr>
+            <tr><td>Conversations gérées par l’assistant</td><td>5 au total</td><td>Illimitées</td><td>Illimitées</td></tr>
+            <tr><td>Assistant IA<span class="sub">Niveau d’accompagnement dans tes échanges.</span></td><td>Standard</td><td>Standard</td><td class="yes">Plus poussé</td></tr>
+            <tr><td>Prospection et échanges</td><td>Standard</td><td>Standard</td><td class="yes">Plus approfondis</td></tr>
+            <tr><td>Compréhension des demandes</td><td>Standard</td><td>Standard</td><td class="yes">Plus précise</td></tr>
+            <tr><td>Reel ou post partagé par l’acheteur<span class="sub">Quand un acheteur t’envoie un de tes reels pour demander la prod.</span></td><td>Repère le style (hashtags)</td><td>Repère le style (hashtags)</td><td class="yes">Reconnaît la prod exacte</td></tr>
+            <tr><td>Relances automatiques<span class="sub">Les relances non utilisées s’ajoutent au mois suivant.</span></td><td>À préciser</td><td>2 par mois</td><td>15 par mois</td></tr>
+            <tr><td>Conversations gérées<span class="sub">Suivi des échanges pris en charge, par semaine ou par mois.</span></td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+            <tr><td>Temps gagné<span class="sub">Messages traités et estimation des heures économisées.</span></td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+            <tr><td>Suivi des ventes conclues<span class="sub">Conversations qui ont abouti à une vente confirmée.</span></td><td class="no">—</td><td class="no">—</td><td class="yes">✓</td></tr>
+            <tr><td>Acheteurs qui t’attendent<span class="sub">Négociations en cours ou acheteurs prêts à payer.</span></td><td class="no">—</td><td class="no">—</td><td class="yes">✓</td></tr>
+            <tr><td>Prods et styles les plus demandés<span class="sub">Pour savoir quelles prods mettre en avant.</span></td><td class="no">—</td><td class="no">—</td><td class="yes">✓</td></tr>
+            <tr><td>Demandes récurrentes<span class="sub">Type beat, ambiances, BPM, beat sur mesure, mix, collaboration.</span></td><td class="no">—</td><td class="no">—</td><td class="yes">✓</td></tr>
+            <tr><td>Bilan des relances<span class="sub">Conversations réactivées après une relance.</span></td><td class="no">—</td><td class="no">—</td><td class="yes">✓</td></tr>
+            <tr><td>Alerte artiste à 10 000 abonnés ou plus</td><td class="no">—</td><td class="no">—</td><td><span class="soon">Envisagé</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">Le temps gagné est une estimation. Une vente compte comme conclue seulement une fois confirmée.</p>
+    </div>
   </div>
 </section>
 
