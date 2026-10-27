@@ -231,18 +231,22 @@ footer nav a:hover{color:var(--copper)}
       submit.textContent = 'Envoi…';
       setStatus('', '');
 
+      // Sent as FormData (a "simple" request): a JSON body would make the
+      // browser send a CORS preflight first, an extra round trip that
+      // Web3Forms' bot protection can refuse.
+      var data = new FormData();
+      data.append('access_key', WEB3FORMS_KEY);
+      data.append('subject', 'BeatReply — nouveau message de ' + fields.name.input.value.trim());
+      data.append('from_name', 'Site BeatReply');
+      data.append('name', fields.name.input.value.trim());
+      data.append('email', fields.email.input.value.trim());
+      data.append('message', fields.message.input.value.trim());
+      if (form.elements.botcheck.checked) data.append('botcheck', 'on');
+
       fetch('https://api.web3forms.com/submit', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({
-          access_key: WEB3FORMS_KEY,
-          subject: 'BeatReply — nouveau message de ' + fields.name.input.value.trim(),
-          from_name: 'Site BeatReply',
-          name: fields.name.input.value.trim(),
-          email: fields.email.input.value.trim(),
-          message: fields.message.input.value.trim(),
-          botcheck: form.elements.botcheck.checked,
-        }),
+        headers: { Accept: 'application/json' },
+        body: data,
       })
         .then(function (response) {
           return response.json().then(function (data) {
