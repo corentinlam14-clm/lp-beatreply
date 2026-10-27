@@ -48,6 +48,9 @@ nav{padding:26px 0;display:flex;align-items:center;justify-content:space-between
 .navlinks a:hover{color:var(--copper)}
 .nav-actions{display:flex;gap:10px;align-items:center}
 .nav-prix{display:none}
+.navlinks a,.nav-actions .button{white-space:nowrap}
+@media(max-width:1100px){.nav-demo{display:none}}
+@media(max-width:960px){.navlinks{display:none}.nav-prix{display:inline-flex}}
 .hero{position:relative;isolation:isolate;overflow:hidden;min-height:800px}
 .hero:after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,#0b0a09aa,transparent 70%);z-index:-1;pointer-events:none}
 .hero-copy{padding:105px 0 175px;max-width:900px}
@@ -157,6 +160,8 @@ tbody tr:last-child td{border-bottom:0}
   .topbar{padding:0 20px}
   .navlinks,.nav-demo{display:none}
   .nav-prix{display:inline-flex}
+  nav{flex-wrap:wrap;row-gap:16px}
+  .nav-actions .button{padding:10px 16px}
   .hero{min-height:740px}
   .hero-copy{padding-top:95px}
   h1{letter-spacing:-2px}
@@ -212,9 +217,11 @@ tbody tr:last-child td{border-bottom:0}
         <a href="#personnalite">Ton style</a>
         <a href="#tarifs">Prix</a>
         <a href="#questions">Questions</a>
+        <a href="contact.html">Contact</a>
       </div>
       <div class="nav-actions">
         <a class="button nav-prix" href="#tarifs">Prix</a>
+        <a class="button nav-prix" href="contact.html">Contact</a>
         <a class="button nav-demo" href="#demo">Voir la démo</a>
         <a class="button primary" href="https://beatreply-dashboard.vercel.app/login">Dashboard</a>
       </div>
@@ -487,6 +494,7 @@ tbody tr:last-child td{border-bottom:0}
   <div class="wrap">
     <span><span aria-hidden="true">∞</span> BeatReply — Automatisation des DM pour le beatmaking</span>
     <nav aria-label="Liens légaux">
+      <a href="contact.html">Contact</a>
       <a href="/lp-beatreply/politique-de-confidentialite.html">Confidentialité</a>
       <a href="/lp-beatreply/mentions-legales.html">Mentions légales</a>
       <a href="/lp-beatreply/cgu.html">CGU</a>
