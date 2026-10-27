@@ -28,10 +28,11 @@ button:hover:not(:disabled),.button:hover{background:#4b3020;transform:translate
 .primary{background:var(--copper);color:#24170e;border-color:var(--copper)}
 .primary:hover{background:#ffd4b0;color:#24170e}
 .wrap{width:min(1160px,calc(100% - 64px));margin:auto}
+.topbar{padding:0 32px}
 .skip-link{position:absolute;top:-100%;left:1rem;z-index:100;background:var(--copper);color:#24170e;padding:.75rem 1.25rem;border-radius:8px;font-weight:700;font-size:.875rem;transition:top .2s ease}
 .skip-link:focus{top:1rem}
 nav{padding:26px 0;display:flex;align-items:center;justify-content:space-between;gap:25px;position:relative;z-index:2}
-.logo{display:inline-flex;align-items:center;gap:10px;font-size:24px;font-weight:600;letter-spacing:-1px}
+.logo{display:inline-flex;align-items:center;gap:10px;font-size:24px;font-weight:500;letter-spacing:-1px}
 .logo img{height:30px;width:auto;display:block}
 .navlinks{display:flex;gap:28px;font-size:14px;color:#c0b5ac}
 .navlinks a:hover,.navlinks a[aria-current]{color:var(--copper)}
@@ -84,6 +85,7 @@ footer nav a:hover{color:var(--copper)}
 }
 @media(max-width:800px){
   .wrap{width:calc(100% - 40px)}
+  .topbar{padding:0 20px}
   .navlinks{display:none}
   .intro{padding-top:40px}
   h1{letter-spacing:-1.6px}
@@ -108,7 +110,7 @@ footer nav a:hover{color:var(--copper)}
 <a href="#main-content" class="skip-link">Aller au contenu principal</a>
 
 <header>
-  <div class="wrap">
+  <div class="topbar">
     <nav aria-label="Navigation principale">
       <a class="logo" href="index.html#accueil"><img src="assets/beatreply-mark.png" alt="" width="52" height="30">BeatReply</a>
       <div class="navlinks">
