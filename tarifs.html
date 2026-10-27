@@ -31,8 +31,8 @@ button:hover:not(:disabled),.button:hover{background:#4b3020;transform:translate
 .skip-link{position:absolute;top:-100%;left:1rem;z-index:100;background:var(--copper);color:#24170e;padding:.75rem 1.25rem;border-radius:8px;font-weight:700;font-size:.875rem;transition:top .2s ease}
 .skip-link:focus{top:1rem}
 nav{padding:26px 0;display:flex;align-items:center;justify-content:space-between;gap:25px;position:relative;z-index:2}
-.logo{font-size:24px;font-weight:600;letter-spacing:-1px}
-.logo span{font-size:34px;vertical-align:-3px;color:var(--copper);margin-right:8px}
+.logo{display:inline-flex;align-items:center;gap:10px;font-size:24px;font-weight:600;letter-spacing:-1px}
+.logo img{height:30px;width:auto;display:block}
 .navlinks{display:flex;gap:28px;font-size:14px;color:#c0b5ac}
 .navlinks a:hover,.navlinks a[aria-current]{color:var(--copper)}
 .nav-actions{display:flex;gap:10px;align-items:center}
@@ -110,7 +110,7 @@ footer nav a:hover{color:var(--copper)}
 <header>
   <div class="wrap">
     <nav aria-label="Navigation principale">
-      <a class="logo" href="index.html#accueil"><span aria-hidden="true">∞</span>BeatReply</a>
+      <a class="logo" href="index.html#accueil"><img src="assets/beatreply-mark.png" alt="" width="52" height="30">BeatReply</a>
       <div class="navlinks">
         <a href="index.html#assistant">L’assistant</a>
         <a href="index.html#personnalite">Ton style</a>

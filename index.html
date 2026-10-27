@@ -40,8 +40,8 @@ button:hover:not(:disabled),.button:hover{background:#4b3020;transform:translate
 nav{padding:26px 0;display:flex;align-items:center;justify-content:space-between;gap:25px;position:relative;z-index:2}
 .brand{display:flex;align-items:center;gap:18px}
 .brand button{padding:7px 15px;font-size:12px}
-.logo{font-size:24px;font-weight:600;letter-spacing:-1px}
-.logo span{font-size:34px;vertical-align:-3px;color:var(--copper);margin-right:8px}
+.logo{display:inline-flex;align-items:center;gap:10px;font-size:24px;font-weight:600;letter-spacing:-1px}
+.logo img{height:30px;width:auto;display:block}
 .navlinks{display:flex;gap:28px;font-size:14px;color:#c0b5ac}
 .navlinks a:hover{color:var(--copper)}
 .nav-actions{display:flex;gap:10px;align-items:center}
@@ -159,7 +159,7 @@ footer nav a:hover{color:var(--copper)}
   <div class="wrap">
     <nav aria-label="Navigation principale">
       <div class="brand">
-        <a class="logo" href="#accueil"><span aria-hidden="true">∞</span>BeatReply</a>
+        <a class="logo" href="#accueil"><img src="assets/beatreply-mark.png" alt="" width="52" height="30">BeatReply</a>
         <button type="button" id="copper-music-toggle" aria-pressed="false">Activer le son</button>
       </div>
       <div class="navlinks">
