@@ -20,13 +20,13 @@ test('getScenario returns the exclusivity scenario that escalates to the beatmak
   assert.match(scenario.bot, /beatmaker/);
 });
 
-test('getScenario returns the reel scenario: prod link plus unrequested catalogue link', () => {
+test('getScenario returns the listening scenario: the shop link comes unasked, with its section', () => {
   const scenario = getScenario(3);
-  assert.match(scenario.client, /reel/);
-  assert.doesNotMatch(scenario.client, /catalogue/);
-  assert.match(scenario.bot, /Midnight\sSoul/);
-  assert.match(scenario.bot, /catalogue/);
-  assert.equal(scenario.bot.match(/beatstars\.com\/\S+/g).length, 2);
+  assert.match(scenario.client, /écouter/);
+  assert.doesNotMatch(scenario.client, /lien|catalogue|boutique/);
+  assert.match(scenario.bot, /Midnight\sSoul, 140 BPM en C Minor/);
+  assert.match(scenario.bot, /rubrique "Trap"/);
+  assert.equal(scenario.bot.match(/beatstars\.com\/\S+/g).length, 1);
 });
 
 test('getScenario throws on an unknown index', () => {

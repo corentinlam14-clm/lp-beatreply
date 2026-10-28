@@ -18,16 +18,17 @@
       client: 'Je voudrais négocier une exclusivité.',
       bot: 'Bien sûr. Je laisse le beatmaker reprendre la conversation pour en discuter avec toi.',
     },
-    // The assistant shares the catalogue without being asked (Lucas's idea).
-    // Fictional prod title and links: nothing on this public page points to a
-    // real beatmaker.   and ‑ (non-breaking space and hyphen) keep
-    // "! :" and the links on one line on phones.
+    // The assistant shares the shop link without being asked for it (Lucas's
+    // idea), as the real bot does: a buyer who wants to listen to a catalogue
+    // prod with no link of its own gets the shop link plus the section to look
+    // in (respond.ts). Fictional prod and link: nothing on this public page
+    // points to a real beatmaker.   and ‑ (non-breaking space and
+    // hyphen) keep "! :", the title and the link on one line on phones.
     {
-      client: 'J’adore la prod que tu as faite sur ce reel, j’aimerais l’écouter !',
+      client: 'Salut ! T’aurais de la trap à me faire écouter ?',
       bot:
-        'Merci beaucoup ! Voici « Midnight Soul » :\n' +
-        'beatstars.com/ton‑nom/midnight‑soul\n' +
-        'Et si tu veux voir ce que je propose d’autre, tout mon catalogue est ici :\n' +
+        'Grave ! J’ai de la trap avec Midnight Soul, 140 BPM en C Minor.\n' +
+        'Tu peux l’écouter sur ma boutique, dans la rubrique "Trap" :\n' +
         'beatstars.com/ton‑nom',
     },
   ];
