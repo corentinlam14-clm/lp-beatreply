@@ -18,6 +18,17 @@
       client: 'Je voudrais négocier une exclusivité.',
       bot: 'Bien sûr. Je laisse le beatmaker reprendre la conversation pour en discuter avec toi.',
     },
+    {
+      client: 'Tu peux m’envoyer ton catalogue ?',
+      bot:
+        //   and ‑ (non-breaking space and hyphen) keep "moment :" and
+        // the shop link on one line on phones.
+        'Avec plaisir ! Trois prods du moment :\n' +
+        '• Night Drive · 92 BPM · A Minor\n' +
+        '• Sunset Ride · 96 BPM · F# Minor\n' +
+        '• Cold Case · 140 BPM · C Minor\n' +
+        'Tout le catalogue, avec les licences dès 40 €, est ici :\nbeatstars.com/ton‑nom',
+    },
   ];
 
   function getScenario(index) {

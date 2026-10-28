@@ -20,10 +20,18 @@ test('getScenario returns the exclusivity scenario that escalates to the beatmak
   assert.match(scenario.bot, /beatmaker/);
 });
 
+test('getScenario returns the catalogue scenario with prods and the shop link', () => {
+  const scenario = getScenario(3);
+  assert.match(scenario.client, /catalogue/);
+  assert.match(scenario.bot, /BPM/);
+  assert.match(scenario.bot, /40\s€/);
+  assert.match(scenario.bot, /beatstars\.com/);
+});
+
 test('getScenario throws on an unknown index', () => {
   assert.throws(() => getScenario(99), /Unknown scenario index: 99/);
 });
 
-test('SCENARIOS has exactly 3 entries', () => {
-  assert.equal(SCENARIOS.length, 3);
+test('SCENARIOS has exactly 4 entries', () => {
+  assert.equal(SCENARIOS.length, 4);
 });
