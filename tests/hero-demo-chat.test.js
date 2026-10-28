@@ -6,6 +6,8 @@ test('getScenario returns the pricing scenario with the real WAV price', () => {
   const scenario = getScenario(0);
   assert.match(scenario.client, /WAV/);
   assert.match(scenario.bot, /70 €/);
+  assert.match(scenario.bot, /boutique/);
+  assert.doesNotMatch(scenario.bot, /catalogue/);
 });
 
 test('getScenario returns the West Coast style-clarifying scenario', () => {
@@ -29,10 +31,17 @@ test('getScenario returns the listening scenario: the shop link comes unasked, w
   assert.equal(scenario.bot.match(/beatstars\.com\/\S+/g).length, 1);
 });
 
+test('getScenario returns the catalogue scenario: just the shop link, once, without saying "catalogue"', () => {
+  const scenario = getScenario(4);
+  assert.match(scenario.client, /catalogue/);
+  assert.equal(scenario.bot.match(/beatstars\.com\/\S+/g).length, 1);
+  assert.doesNotMatch(scenario.bot, /catalogue|BPM/);
+});
+
 test('getScenario throws on an unknown index', () => {
   assert.throws(() => getScenario(99), /Unknown scenario index: 99/);
 });
 
-test('SCENARIOS has exactly 4 entries', () => {
-  assert.equal(SCENARIOS.length, 4);
+test('SCENARIOS has exactly 5 entries', () => {
+  assert.equal(SCENARIOS.length, 5);
 });

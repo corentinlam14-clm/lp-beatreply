@@ -8,7 +8,7 @@
   var SCENARIOS = [
     {
       client: 'Salut ! Combien pour une WAV ?',
-      bot: 'La licence WAV est à 70 €. Tu veux que je t’envoie le catalogue ?',
+      bot: 'La licence WAV est à 70 €. Tu veux le lien de ma boutique pour écouter les prods ?',
     },
     {
       client: 'Salut, je cherche une prod West Coast.',
@@ -30,6 +30,16 @@
         'Grave ! J’ai de la trap avec Midnight Soul, 140 BPM en C Minor.\n' +
         'Tu peux l’écouter sur ma boutique, dans la rubrique "Trap" :\n' +
         'beatstars.com/ton‑nom',
+    },
+    // A buyer who asks for the catalogue gets the shop link alone, as the real
+    // bot does: it sends that link when asked, once, and never says
+    // "catalogue" to the buyer (respond.ts).
+    {
+      client: 'Yo ! Tu peux m’envoyer ton catalogue ?',
+      bot:
+        'Bien sûr ! Toutes mes prods sont sur ma boutique :\n' +
+        'beatstars.com/ton‑nom\n' +
+        'Si tu cherches un style en particulier, dis‑moi et je te guide.',
     },
   ];
 
