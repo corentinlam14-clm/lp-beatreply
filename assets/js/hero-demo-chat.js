@@ -18,18 +18,21 @@
       client: 'Je voudrais négocier une exclusivité.',
       bot: 'Bien sûr. Je laisse le beatmaker reprendre la conversation pour en discuter avec toi.',
     },
+    // The assistant shares the catalogue without being asked (Lucas's idea).
+    // Fictional prod title and links: nothing on this public page points to a
+    // real beatmaker.   and ‑ (non-breaking space and hyphen) keep
+    // "! :" and the links on one line on phones.
     {
-      client: 'Tu peux m’envoyer ton catalogue ?',
+      client: 'J’adore la prod que tu as faite sur ce reel, j’aimerais l’écouter !',
       bot:
-        //   and ‑ (non-breaking space and hyphen) keep "moment :" and
-        // the shop link on one line on phones.
-        'Avec plaisir ! Trois prods du moment :\n' +
-        '• Night Drive · 92 BPM · A Minor\n' +
-        '• Sunset Ride · 96 BPM · F# Minor\n' +
-        '• Cold Case · 140 BPM · C Minor\n' +
-        'Tout le catalogue, avec les licences dès 40 €, est ici :\nbeatstars.com/ton‑nom',
+        'Merci beaucoup ! Voici « Midnight Soul » :\n' +
+        'beatstars.com/ton‑nom/midnight‑soul\n' +
+        'Et si tu veux voir ce que je propose d’autre, tout mon catalogue est ici :\n' +
+        'beatstars.com/ton‑nom',
     },
   ];
+
+  var LINK_PATTERN = /(beatstars\.com\/\S+)/;
 
   function getScenario(index) {
     var scenario = SCENARIOS[index];
@@ -47,7 +50,19 @@
       labelEl.textContent = label;
       bubble.appendChild(labelEl);
     }
-    bubble.appendChild(doc.createTextNode(text));
+    // Links are shown as links (copper, underlined) but not clickable: they
+    // are examples, not real shops.
+    var parts = text.split(LINK_PATTERN);
+    for (var i = 0; i < parts.length; i++) {
+      if (i % 2 === 1) {
+        var link = doc.createElement('span');
+        link.className = 'demo-link';
+        link.textContent = parts[i];
+        bubble.appendChild(link);
+      } else if (parts[i]) {
+        bubble.appendChild(doc.createTextNode(parts[i]));
+      }
+    }
     return bubble;
   }
 
