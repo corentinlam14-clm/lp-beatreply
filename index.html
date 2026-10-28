@@ -83,6 +83,12 @@ h2{font-size:clamp(30px,4vw,49px);line-height:1.15;letter-spacing:-1.7px;font-we
 .bubble{background:#26211c;border:1px solid #352c23;padding:15px 20px;border-radius:15px 15px 15px 3px;max-width:85%;font-size:15px;white-space:pre-line}
 .bubble.out{align-self:flex-end;background:#38261a;border-color:#6c482d;border-radius:15px 15px 3px 15px}
 .bubble small{display:block;color:#e7b486;font-size:12px;margin-bottom:7px}
+.demo-shop{margin:-15px 0 28px}
+.shop-options{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.shop-option{padding:9px 18px;font-size:13px}
+.shop-option.active,.shop-option.active:hover{background:var(--copper);color:#24170e;border-color:var(--copper)}
+.shop-note{font-size:13px;margin:12px 0 0;color:var(--text)}
+.tag-premium{border:1px solid #966947;color:#ffd7b1;border-radius:20px;font-size:11px;line-height:1.4;padding:1px 8px}
 .demo-link{color:#f5b986;text-decoration:underline;text-underline-offset:3px;overflow-wrap:anywhere}
 .composer{display:flex;padding:18px 25px;gap:10px;border-top:1px solid var(--line)}
 .composer input{width:100%;min-width:0;background:#191612;color:#fff;border:1px solid #403429;padding:12px 15px;border-radius:10px;font-size:14px}
@@ -264,11 +270,22 @@ tbody tr:last-child td{border-bottom:0}
       </div>
       <p>Choisis une demande pour découvrir comment ton assistant peut répondre. Puis reprends la main pour essayer toi-même.</p>
     </div>
+    <div class="demo-shop">
+      <div class="mini-label" id="hero-demo-shop-label">Ta boutique dans cette démo</div>
+      <div class="shop-options" role="group" aria-labelledby="hero-demo-shop-label">
+        <button type="button" class="shop-option active" data-shop="beatstars" aria-pressed="true">BeatStars</button>
+        <button type="button" class="shop-option" data-shop="airbit" aria-pressed="false">Airbit</button>
+        <button type="button" class="shop-option" data-shop="untitled" aria-pressed="false">Untitled</button>
+        <button type="button" class="shop-option" data-shop="none" aria-pressed="false">Sans boutique</button>
+      </div>
+      <p class="shop-note" id="hero-demo-shop-note">Les liens envoyés par l’assistant mènent à ta boutique BeatStars.</p>
+    </div>
     <div class="demo" id="hero-demo">
       <div class="demo-left">
         <div class="mini-label">Exemples de demandes</div>
         <button type="button" class="scenario active" data-scenario="0" aria-pressed="true">Une question de tarif</button>
         <button type="button" class="scenario" data-scenario="3" aria-pressed="false">Une envie d’écouter</button>
+        <button type="button" class="scenario" data-scenario="5" aria-pressed="false">Un reel qui a plu <span class="tag-premium">Premium</span></button>
         <button type="button" class="scenario" data-scenario="4" aria-pressed="false">Une demande de catalogue</button>
         <button type="button" class="scenario" data-scenario="1" aria-pressed="false">Une recherche de prod</button>
         <button type="button" class="scenario" data-scenario="2" aria-pressed="false">Une exclusivité</button>
