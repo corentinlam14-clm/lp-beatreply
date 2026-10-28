@@ -3,7 +3,7 @@ const assert = require('node:assert/strict');
 const { TONES, getTonePreview } = require('../assets/js/tone-preview.js');
 
 test('Naturel tone quotes the real WAV price', () => {
-  assert.match(getTonePreview('Naturel'), /70 €/);
+  assert.match(getTonePreview('Naturel'), /70\s€/);
 });
 
 test('Professionnel tone uses vouvoiement', () => {
@@ -12,6 +12,13 @@ test('Professionnel tone uses vouvoiement', () => {
 
 test('Familier tone uses tutoiement and informal phrasing', () => {
   assert.match(getTonePreview('Familier'), /Yes/);
+});
+
+test('every tone offers the shop, never "the catalogue", like the real bot', () => {
+  for (const tone of Object.keys(TONES)) {
+    assert.match(getTonePreview(tone), /boutique/, tone);
+    assert.doesNotMatch(getTonePreview(tone), /catalogue/, tone);
+  }
 });
 
 test('getTonePreview throws on an unknown tone', () => {

@@ -3,11 +3,12 @@
 
   // Matches the real tone presets the bot personality setting supports
   // (see memory: bot personality config shipped 2026-08-24) — same WAV
-  // pricing as the hero demo, just rephrased per tone.
+  // pricing as the hero demo, just rephrased per tone. The real bot never
+  // says "catalogue" to a buyer: it offers the shop link.
   var TONES = {
-    Naturel: 'La licence WAV est à 70 €. Tu veux que je t’envoie le catalogue ?',
-    Professionnel: 'Bonjour, la licence WAV est proposée à 70 €. Souhaitez-vous consulter le catalogue ?',
-    Familier: 'Yes, c’est 70 € la WAV ! Je t’envoie le catalogue ?',
+    Naturel: 'La licence WAV est à 70 €. Tu veux le lien de ma boutique pour écouter les prods ?',
+    Professionnel: 'Bonjour, la licence WAV est proposée à 70 €. Souhaitez-vous le lien de ma boutique pour écouter les prods ?',
+    Familier: 'Yes, c’est 70 € la WAV ! Je t’envoie le lien de ma boutique ?',
   };
 
   function getTonePreview(tone) {
