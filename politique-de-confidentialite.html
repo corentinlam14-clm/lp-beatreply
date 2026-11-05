@@ -47,6 +47,12 @@
     margin: 2.75rem 0 1rem;
     letter-spacing: -0.005em;
   }
+  h3 {
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--text);
+    margin: 1.75rem 0 0.75rem;
+  }
   p, li { font-size: 0.975rem; }
   ul { padding-left: 1.25rem; }
   li { margin-bottom: 0.5rem; }
@@ -64,55 +70,127 @@
   <a class="back" href="/lp-beatreply/">← Retour à BeatReply</a>
 
   <h1>Politique de confidentialité</h1>
-  <p class="updated">Dernière mise à jour : 27 octobre 2026</p>
+  <p class="updated">Dernière mise à jour : 5 novembre 2026</p>
 
-  <p>BeatReply est un service d'automatisation des messages directs (DM) Instagram destiné aux producteurs de beats. Cette page explique quelles données sont collectées via ce service, pourquoi, et comment les faire supprimer.</p>
+  <p>BeatReply est un service d'automatisation des messages directs (DM) Instagram destiné aux producteurs de beats. Cette page explique quelles données personnelles sont traitées, pourquoi, sur quel fondement légal, avec qui elles sont partagées, combien de temps elles sont conservées, et comment exercer tes droits.</p>
 
-  <h2>Qui édite ce service</h2>
-  <p>BeatReply est édité par Corentin Lamarlere. Pour toute question relative à vos données, contact : <a href="mailto:beatreply@gmail.com">beatreply@gmail.com</a>.</p>
+  <div>
+  <h2>Qui est responsable de tes données</h2>
+  <p>BeatReply est édité par Corentin Lamarlere, entrepreneur individuel (SIRET 102 683 877 00017), 261 chemin Turon, 64170 Cescau, France. Il est le responsable du traitement des données décrit ici. Pour toute question : <a href="mailto:beatreply@gmail.com">beatreply@gmail.com</a>. Aucun délégué à la protection des données (DPO) n'a été désigné, cette désignation n'étant pas obligatoire pour ce service.</p>
+  </div>
 
-  <h2>Données collectées</h2>
-  <p>Selon que vous êtes un producteur de beats utilisant BeatReply ou une personne qui échange avec un compte Instagram connecté à BeatReply :</p>
+  <div>
+  <h2>Les données traitées, pourquoi et sur quel fondement légal</h2>
+
+  <h3>Producteurs de beats (compte BeatReply)</h3>
   <ul>
-    <li><strong>Producteur de beats (compte connecté)</strong> : identifiant et nom d'utilisateur Instagram, informations de profil professionnel Instagram (via l'API Meta), jetons d'accès nécessaires à l'envoi/réception de messages, adresse email de connexion.</li>
-    <li><strong>Personnes échangeant en DM avec un compte connecté</strong> : identifiant Instagram, contenu des messages échangés avec le bot, horodatage des échanges.</li>
-    <li><strong>Personnes utilisant le formulaire de contact du site</strong> : nom ou pseudo, adresse email et contenu du message.</li>
+  <li><strong>Données :</strong> adresse e-mail, nom d'artiste affiché, catalogue (titres, BPM, tonalité, style, tarifs), identifiant et nom d'utilisateur Instagram, identifiant de la Page liée le cas échéant, jeton d'accès Instagram (stocké chiffré).</li>
+  <li><strong>Pourquoi :</strong> créer et gérer ton compte, connecter ton compte Instagram, faire répondre l'assistant à tes DM et t'envoyer les e-mails de connexion et d'alerte.</li>
+  <li><strong>Fondement légal :</strong> l'exécution du contrat (les conditions générales d'utilisation), article 6.1.b du RGPD.</li>
+  <li><strong>Origine :</strong> toi-même, et Instagram lors de la connexion de ton compte.</li>
   </ul>
 
-  <h2>Finalité du traitement</h2>
+  <h3>Personnes qui écrivent en DM à un compte connecté</h3>
   <ul>
-    <li>Répondre automatiquement aux messages Instagram reçus par le producteur de beats connecté (qualification, réponses aux questions fréquentes, transmission des demandes de vente).</li>
-    <li>Permettre au producteur de beats de suivre ses conversations depuis son tableau de bord.</li>
-    <li>Assurer la sécurité et le bon fonctionnement du service (détection d'erreurs techniques).</li>
-    <li>Répondre aux questions envoyées via le formulaire de contact.</li>
+  <li><strong>Données :</strong> identifiant Instagram, nom d'utilisateur, contenu des messages échangés, date et heure, état de la conversation.</li>
+  <li><strong>Pourquoi :</strong> répondre automatiquement, au nom du producteur de beats, au message que tu lui as envoyé, et lui permettre de suivre ses conversations (résumés des conversations).</li>
+  <li><strong>Fondement légal :</strong> l'intérêt légitime (article 6.1.f du RGPD) du producteur et de BeatReply à répondre aux messages que tu as toi-même envoyés. Tu peux t'y opposer à tout moment (voir « Tes droits »).</li>
+  <li><strong>Origine :</strong> Instagram, à partir du message que tu envoies au compte du producteur.</li>
   </ul>
 
-  <h2>Sous-traitants et hébergement</h2>
-  <p>Les données sont traitées par les prestataires suivants, dans le cadre strict des finalités ci-dessus :</p>
+  <h3>Visiteurs et formulaire de contact</h3>
   <ul>
-    <li><strong>Meta / Instagram (Graph API)</strong> — réception et envoi des messages Instagram.</li>
-    <li><strong>Supabase</strong> — hébergement de la base de données (comptes, conversations, messages).</li>
-    <li><strong>Vercel</strong> — hébergement de l'application web.</li>
-    <li><strong>Anthropic (Claude)</strong> — génération des réponses automatiques du bot et des résumés de conversation à partir du contenu des messages.</li>
-    <li><strong>Sentry</strong> — supervision technique des erreurs applicatives (données techniques, pas le contenu des messages).</li>
-    <li><strong>Resend</strong> — envoi des emails transactionnels (connexion par lien magique).</li>
-    <li><strong>Web3Forms</strong> — transmission par email des messages envoyés via le formulaire de contact.</li>
+  <li><strong>Données :</strong> nom ou pseudo, adresse e-mail, sujet et contenu du message. Comme sur tout site, l'hébergeur voit l'adresse IP des visiteurs.</li>
+  <li><strong>Pourquoi :</strong> répondre à ta demande.</li>
+  <li><strong>Fondement légal :</strong> l'intérêt légitime à répondre aux personnes qui nous écrivent, article 6.1.f du RGPD.</li>
   </ul>
 
-  <h2>Confidentialité des conversations</h2>
-  <p>Les conversations ne sont pas consultées par l'équipe BeatReply. Un accès n'a lieu que pour résoudre un problème technique signalé par le producteur de beats, avec son accord. Le contenu des messages sert uniquement à générer les réponses de l'assistant et à alimenter le tableau de bord du producteur concerné.</p>
+  <h3>Sécurité et bon fonctionnement</h3>
+  <ul>
+  <li><strong>Données :</strong> adresse IP et signaux techniques du navigateur lors de la vérification anti-robot à la connexion, compteurs de limitation de débit, rapports d'erreurs techniques (sans le contenu des messages).</li>
+  <li><strong>Pourquoi :</strong> protéger le service contre les abus et corriger les bugs.</li>
+  <li><strong>Fondement légal :</strong> l'intérêt légitime à sécuriser le service, article 6.1.f du RGPD.</li>
+  </ul>
 
-  <h2>Durée de conservation</h2>
-  <p>Les conversations et messages sont conservés pendant la durée d'utilisation active du service par le producteur de beats concerné, puis supprimés sur demande ou après une période d'inactivité prolongée du compte. Les messages reçus via le formulaire de contact sont conservés dans notre boîte email le temps de traiter la demande, puis supprimés sur demande.</p>
+  <p>Fournir ton adresse e-mail est nécessaire pour avoir un compte : sans elle, nous ne pouvons pas t'en créer un. Pour les autres personnes, aucune donnée n'est obligatoire, mais sans message nous ne pouvons pas répondre.</p>
+  </div>
 
-  <h2>Vos droits</h2>
-  <p>Conformément au RGPD, vous disposez d'un droit d'accès, de rectification et de suppression de vos données. Pour l'exercer, écrivez à <a href="mailto:beatreply@gmail.com">beatreply@gmail.com</a> en précisant votre nom d'utilisateur Instagram (@pseudo). Voir aussi notre page dédiée à la <a href="/lp-beatreply/suppression-donnees.html">suppression de vos données</a>.</p>
+  <div>
+  <h2>Intelligence artificielle</h2>
+  <p>Les réponses sont rédigées par un modèle d'intelligence artificielle (Claude, d'Anthropic) à partir du contenu des messages. Le premier message que l'assistant envoie dans une conversation indique à la personne qu'elle échange avec un assistant IA. Le producteur de beats peut reprendre la main à tout moment. Aucune décision produisant des effets juridiques n'est prise uniquement par l'IA.</p>
+  <p>Les conversations ne sont pas consultées par l'équipe BeatReply. Un accès n'a lieu que pour résoudre un problème technique signalé par le producteur de beats, avec son accord.</p>
+  </div>
 
-  <h2>Cookies</h2>
-  <p>BeatReply n'utilise aucun cookie de suivi ou publicitaire. Seuls des cookies strictement nécessaires au fonctionnement (session de connexion, protection CSRF) sont utilisés.</p>
+  <div>
+  <h2>Qui reçoit les données (sous-traitants)</h2>
+  <p>Ces prestataires traitent les données pour notre compte, dans le seul but décrit ci-dessus :</p>
+  <ul>
+  <li><strong>Meta (Instagram)</strong>, sociétés irlandaise et américaine : réception et envoi des messages Instagram.</li>
+  <li><strong>Supabase</strong> (Supabase Pte. Ltd., Singapour ; support par Supabase, Inc., États-Unis) : base de données et authentification. Les données sont stockées dans l'Union européenne, à Paris.</li>
+  <li><strong>Vercel</strong> (Vercel Inc., États-Unis) : hébergement de l'application. Elle s'exécute sur des serveurs situés aux États-Unis.</li>
+  <li><strong>Anthropic</strong> (États-Unis) : génération des réponses de l'assistant et des résumés de conversation.</li>
+  <li><strong>Cloudflare</strong> (Cloudflare, Inc., États-Unis) : vérification anti-robot (Turnstile) sur la page de connexion. Il reçoit l'adresse IP et des signaux techniques du navigateur.</li>
+  <li><strong>Sentry</strong> (Functional Software, Inc., États-Unis) : supervision des erreurs. Les données sont stockées dans l'Union européenne.</li>
+  <li><strong>Resend</strong> (États-Unis) : envoi des e-mails (lien de connexion, alertes).</li>
+  <li><strong>Web3Forms</strong> : transmission par e-mail des messages du formulaire de contact. Ce prestataire peut traiter les données hors de l'Union européenne.</li>
+  <li><strong>GitHub</strong> (GitHub, Inc., États-Unis) : hébergement du site vitrine. Il voit l'adresse IP des visiteurs.</li>
+  </ul>
+  <p>Nous ne vendons pas tes données et ne les utilisons pas pour de la publicité.</p>
+  </div>
 
+  <div>
+  <h2>Transferts de données hors de l'Union européenne</h2>
+  <p>Un transfert hors UE a lieu lorsque des données personnelles sont envoyées vers un pays situé hors de l'Union européenne, ou peuvent y être consultées (par exemple par un prestataire qui y est établi). Le RGPD ne l'autorise que si ces données y restent protégées à un niveau équivalent à celui de l'Union. Plusieurs de nos prestataires sont établis aux États-Unis ou à Singapour, donc ces transferts existent.</p>
+  <p>Ils sont encadrés par l'un de ces deux mécanismes :</p>
+  <ul>
+  <li><strong>Le Data Privacy Framework UE–États-Unis :</strong> la Commission européenne a décidé en juillet 2023 que les entreprises américaines qui y sont certifiées offrent une protection adéquate.</li>
+  <li><strong>Les clauses contractuelles types de la Commission européenne :</strong> un contrat-type par lequel le prestataire s'engage à protéger les données comme dans l'Union. C'est le mécanisme utilisé lorsque le prestataire n'est pas certifié, et pour Singapour, qui ne bénéficie d'aucune décision d'adéquation.</li>
+  </ul>
+  <p>Tu peux demander une copie des garanties applicables en écrivant à <a href="mailto:beatreply@gmail.com">beatreply@gmail.com</a>.</p>
+  </div>
+
+  <div>
+  <h2>Durées de conservation</h2>
+  <ul>
+  <li><strong>Compte du producteur de beats :</strong> tant que le compte existe. Il est supprimé immédiatement, avec son catalogue, sa connexion Instagram, ses conversations et ses messages, par le bouton « Supprimer mon compte » de la page Profil du tableau de bord, ou sur simple demande par e-mail.</li>
+  <li><strong>Conversations et messages :</strong> 24 mois après le dernier message de la conversation, puis suppression automatique (le nettoyage a lieu chaque semaine). Ils sont supprimés plus tôt si tu le demandes ou si le compte du producteur est supprimé.</li>
+  <li><strong>Messages du formulaire de contact :</strong> au plus 12 mois après le dernier échange, ou plus tôt sur demande.</li>
+  <li><strong>Compteurs de limitation de débit :</strong> 2 jours.</li>
+  <li><strong>Rapports d'erreurs techniques :</strong> environ 90 jours, durée fixée par Sentry.</li>
+  <li><strong>Sauvegardes de la base :</strong> les dernières sauvegardes sont conservées sur l'ordinateur de l'éditeur, jamais sur un service en ligne. Une donnée supprimée en disparaît donc au plus tard environ trois mois plus tard.</li>
+  </ul>
+  </div>
+
+  <div>
+  <h2>Tes droits</h2>
+  <p>Tu disposes des droits suivants sur tes données :</p>
+  <ul>
+  <li><strong>Accès :</strong> savoir si nous avons des données sur toi et en obtenir une copie.</li>
+  <li><strong>Rectification :</strong> faire corriger une donnée inexacte.</li>
+  <li><strong>Effacement :</strong> demander la suppression de tes données.</li>
+  <li><strong>Opposition :</strong> refuser que tes données soient utilisées lorsque le traitement repose sur l'intérêt légitime (c'est le cas des conversations et du formulaire de contact). Nous y mettons fin, sauf motif légitime impérieux que nous devrions te justifier.</li>
+  <li><strong>Limitation :</strong> demander que tes données soient « gelées » (conservées sans être utilisées) pendant que tu contestes leur exactitude ou notre droit de les traiter, ou si tu en as besoin pour une démarche juridique.</li>
+  <li><strong>Portabilité :</strong> recevoir les données que tu nous as fournies (compte, catalogue) dans un format structuré et lisible par machine, pour les réutiliser ailleurs. Elle s'applique aux traitements fondés sur le contrat.</li>
+  <li><strong>Directives après décès :</strong> indiquer ce que tes données deviennent après ta mort.</li>
+  </ul>
+  <p>Pour exercer un droit, écris à <a href="mailto:beatreply@gmail.com">beatreply@gmail.com</a>. Si tu as écrit en DM à un compte connecté, précise ton nom d'utilisateur Instagram (@pseudo). Nous pouvons te demander de prouver ton identité. Nous répondons dans un délai d'un mois, prolongeable de deux mois pour une demande complexe (nous t'en informons alors). Voir aussi la page <a href="/lp-beatreply/suppression-donnees.html">Suppression de tes données</a>.</p>
+  <p>Si tu estimes que tes droits ne sont pas respectés, tu peux déposer une réclamation auprès de la CNIL (Commission nationale de l'informatique et des libertés), 3 place de Fontenoy, TSA 80715, 75334 Paris Cedex 07, ou en ligne sur <a href="https://www.cnil.fr/plaintes">cnil.fr/plaintes</a>.</p>
+  </div>
+
+  <div>
+  <h2>Cookies et traceurs</h2>
+  <p>BeatReply n'utilise aucun cookie publicitaire ni de mesure d'audience. Le site vitrine ne dépose aucun cookie. L'application n'utilise que des traceurs strictement nécessaires à son fonctionnement, qui ne demandent pas ton consentement : la session de connexion, la protection de la connexion à Instagram, et la vérification anti-robot de Cloudflare à la connexion.</p>
+  </div>
+
+  <div>
   <h2>Sécurité</h2>
-  <p>Les accès aux données sont restreints par des règles de sécurité au niveau de la base de données, les échanges sont chiffrés en transit (HTTPS), et les identifiants d'accès aux API tierces sont stockés de façon sécurisée et non exposés publiquement.</p>
+  <p>Les échanges sont chiffrés en transit (HTTPS). L'accès aux données est limité par des règles de sécurité au niveau de la base : chaque producteur ne voit que ses propres données. Les jetons d'accès Instagram sont chiffrés avant d'être stockés. Les comptes d'administration des services utilisés sont protégés par une double authentification.</p>
+  </div>
+
+  <div>
+  <h2>Modifications</h2>
+  <p>Cette politique peut évoluer avec le service. Chaque changement important y sera daté, et les producteurs de beats en seront informés.</p>
+  </div>
 
   <div class="card">
     <p style="margin:0; font-size:0.875rem; color: var(--text-muted);">Ce document est amené à évoluer avec le service. Pour toute question, contactez-nous directement à l'adresse ci-dessus.</p>
