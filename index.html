@@ -120,6 +120,7 @@ details p{color:var(--text);max-width:750px}
 footer{padding:25px 0;border-top:1px solid var(--line);color:var(--text);font-size:12px}
 footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
 footer nav{padding:0;gap:16px;display:flex}
+footer nav a{display:inline-block;padding-block:4px}
 footer nav a:hover{color:var(--copper)}
 /* Prix */
 h2 em{font-style:normal;color:var(--copper)}
@@ -251,6 +252,8 @@ tbody tr:last-child td{border-bottom:0}
   </div>
 </header>
 
+<main id="main-content">
+
 <div class="strip">
   <div class="wrap">
     <span>Disponible 24h/24 - 7j/7</span>
@@ -259,7 +262,6 @@ tbody tr:last-child td{border-bottom:0}
   </div>
 </div>
 
-<main id="main-content">
 
 <section class="content" id="demo">
   <div class="wrap">
@@ -344,7 +346,7 @@ tbody tr:last-child td{border-bottom:0}
     </div>
     <div class="settings">
       <h3>Le style de ton assistant</h3>
-      <div class="options" aria-label="Style de réponse">
+      <div class="options" role="group" aria-label="Style de réponse">
         <button type="button" data-tone="Naturel" class="active" aria-pressed="true">Naturel</button>
         <button type="button" data-tone="Professionnel" aria-pressed="false">Professionnel</button>
         <button type="button" data-tone="Familier" aria-pressed="false">Familier</button>
@@ -444,7 +446,7 @@ tbody tr:last-child td{border-bottom:0}
     <div class="compare" id="comparatif">
       <div class="eyebrow">À chaque besoin, sa formule</div>
       <h3>Les différences, en un coup d’œil.</h3>
-      <div class="table-shell">
+      <div class="table-shell" tabindex="0" role="region" aria-label="Tableau comparatif des formules">
         <table>
           <thead>
             <tr><th scope="col">Fonctionnalités</th><th scope="col">Essai gratuit</th><th scope="col">Standard</th><th scope="col" class="hl">Premium</th></tr>
